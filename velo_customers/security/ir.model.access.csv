@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_velo_customer_brand,customer_brand,model_brand_object,base.group_system,1,1,1,1
+access_velo_customer_group,customer_group,model_group_object,base.group_system,1,1,1,1
+access_velo_customer_manager,pic_manager,model_pic_manager,base.group_system,1,1,1,1
+access_velo_pic,pop_pic,model_pop_pic,base.group_system,1,1,1,1
+access_velo_customer_summary,customer_summary,model_customer_summary,base.group_system,1,1,1,1
+access_velo_potential_summary,potential_summary,model_potential_summary,base.group_system,1,1,1,1
+access_velo_ytd_achievement,ytd_achievement,model_ytd_achievement,base.group_system,1,1,1,1
+access_velo_ytd_sales_focus,ytd_sales_focus,model_ytd_sales_focus,base.group_system,1,1,1,1
+access_velo_ytd_mcfc,ytd_mcfc,model_ytd_mcfc,base.group_system,1,1,1,1
+access_velo_ytd_cold_leads,ytd_cold_leads,model_ytd_cold_leads,base.group_system,1,1,1,1
+access_pic_am,pic_am,model_pic_am,base.group_system,1,1,1,1
+
+
+

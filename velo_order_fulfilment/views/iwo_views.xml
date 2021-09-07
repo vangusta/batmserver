@@ -1,0 +1,147 @@
+<odoo>
+  <data>
+
+    <record id="view_order_iwo_tree" model="ir.ui.view">
+        <field name="name">order.iwo.tree</field>
+        <field name="model">order.iwo</field>
+        <field name="arch" type="xml">
+            <tree string="IWO">
+                <field name="name"/>
+                <field name="registration_date"/>
+                <field name="iwo_issue_date"/>
+                <field name="signed_reg_form"/>
+                <field name="signed_final_quotation"/>
+                <field name="approve_gp_price"/>
+                <field name="marketing_associate_doc"/>
+                <field name="cita"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_order_iwo_form" model="ir.ui.view">
+        <field name="name">order.iwo.form</field>
+        <field name="model">order.iwo</field>
+        <field name="arch" type="xml">
+
+            <form string="IWO">
+                <header>
+                    <button name="action_proses" string="Confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_preview" string="Preview" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'submit')]}"/>
+                    <button name="action_rcf" string="Send RCF" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'submit')]}"/>
+                    <button name="action_cancel" string="Cancel" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'confirm')]}"/>
+                    <field name="state" widget="statusbar" statusbar_colors='{"draft":"grey","submit":"orange","confirm":"green"}'/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <div><field name="name" readonly="0"/></div>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="registration_date"/>
+                            <field name="iwo_issue_date"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="signed_reg_form"/>
+                            <field name="signed_final_quotation"/>
+                        </group>
+                        <group>
+                            <field name="approve_gp_price"/>
+                            <field name="marketing_associate_doc"/>
+                            <field name="cita"/>
+                        </group>
+                    </group>
+                    <div><h2>Customer Infomation</h2></div>
+                    <group>
+                        <group>
+                            <field name="customer_name"/>
+                            <field name="customer_code"/>
+                            <field name="npwp"/>
+                            <field name="activation_address"/>
+                            <field name="billing_address"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <div><h3>Contact Person</h3></div>
+                    <group>
+                        <group>
+                            <field name="admin_contact"/>
+                            <field name="installation_contact"/>
+                            <field name="billing_contact"/>
+                        </group>
+                        <group>
+                            <field name="admin_email"/>
+                            <field name="installation_email"/>
+                            <field name="billing_email"/>
+                        </group>
+                    </group>
+                    <div><h2>Customer Requirements</h2></div>
+                    <group>
+                        <field name="category_of_solution" widget="radio" options="{'horizontal': true}"/>
+                        <field name="type_of_service" widget="radio"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="service_details"/>
+                            <field name="remarks"/>
+                            <field name="pop"/>
+                            <field name="expected_activation_date"/>
+                            <field name="am"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <div><h2>Billing Information</h2></div>
+                    <group>
+                        <group>
+                            <field name="registration_fee"/>
+                            <field name="monthly_subscription_fee"/>
+                            <field name="others_fee"/>
+                            <field name="total_selling_price"/>
+                            <field name="montly_fee"/>
+                            <field name="billing_fee"/>
+                        </group>
+                        <group>
+                            <field name="standart_tariff"/>
+                            <field name="average_discount"/>
+                            <field name="average_gp"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+      <record id="action_velo_order_iwo" model="ir.actions.act_window">
+        <field name="name">IWO</field>
+        <field name="res_model">order.iwo</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new IWO
+            </p>
+        </field>
+      </record>
+
+        <menuitem id="velo_order_iwo_menu"
+            parent="sale.sale_menu_root"
+            action="velo_order_fulfilment.action_velo_order_iwo"
+            sequence="4" />
+
+  </data>
+</odoo>

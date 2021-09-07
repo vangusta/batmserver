@@ -1,0 +1,448 @@
+<odoo>
+  <data>
+    
+    <record id="action_velo_hos_potential" model="ir.actions.act_window">
+        <field name="name">Potentials - HOS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('customer_rank','>', 0),('tenant','>', 0),('industry.pop_industry_name','ilike', 'hos')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_velo_hrb_potential" model="ir.actions.act_window">
+        <field name="name">Potentials - HRB</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('customer_rank','>', 0),('tenant','>', 0),('industry.pop_industry_name','ilike', 'hrb')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_velo_itemb_potential" model="ir.actions.act_window">
+        <field name="name">Potentials - ITEMB</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('customer_rank','>', 0),('tenant','>', 0),('industry.pop_industry_name','ilike', 'itemb')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_velo_nrx_potential" model="ir.actions.act_window">
+        <field name="name">Potentials - NRX</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('customer_rank','>', 0),('tenant','>', 0),('industry.pop_industry_name','ilike', 'nrx')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_velo_hos_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="velo_customers.view_tenant_tree"/>
+          <field name="act_window_id" ref="action_velo_hos_potential"/>
+    </record>
+    <record id="action_velo_hos_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="velo_customers.view_velo_tenant_form"/>
+          <field name="act_window_id" ref="action_velo_hos_potential"/>
+    </record>
+
+    <record id="action_velo_hrb_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="velo_customers.view_tenant_tree"/>
+          <field name="act_window_id" ref="action_velo_hrb_potential"/>
+    </record>
+    <record id="action_velo_hrb_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="velo_customers.view_velo_tenant_form"/>
+          <field name="act_window_id" ref="action_velo_hrb_potential"/>
+    </record>
+
+    <record id="action_velo_itemb_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="velo_customers.view_tenant_tree"/>
+          <field name="act_window_id" ref="action_velo_itemb_potential"/>
+    </record>
+    <record id="action_velo_itemb_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="velo_customers.view_velo_tenant_form"/>
+          <field name="act_window_id" ref="action_velo_itemb_potential"/>
+    </record>
+
+    <record id="action_velo_nrx_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="velo_customers.view_tenant_tree"/>
+          <field name="act_window_id" ref="action_velo_nrx_potential"/>
+    </record>
+    <record id="action_velo_nrx_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="velo_customers.view_velo_tenant_form"/>
+          <field name="act_window_id" ref="action_velo_nrx_potential"/>
+    </record>
+
+    <record id="potential_view_kanban1" model="ir.ui.view">
+        <field name="name">potential.summary.kanban</field>
+        <field name="model">potential.summary</field>
+        <field name="arch" type="xml">
+            <kanban create="true">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div style="width:100%;margin: 0px!important;" class="pb-0">
+                            <div class="row pb-1">
+                                <div class="col-sm-1 pr-1">
+                                    <div class="o_kanban_primary_left pt-3 pl-3" style="background:#33ff33;min-height:65px;">
+                                        <p><b>INDUSTRY</b></p>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#b3ffb3;border-top:2px solid white;">
+                                        <b>HOS</b>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#b3ffb3;border-top:2px solid white;">
+                                        <b>HRB</b>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#b3ffb3;border-top:2px solid white;">
+                                        <b>ITEMB</b>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#b3ffb3;border-top:2px solid white;">
+                                        <b>NRX</b>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#b3ffb3;border-top:2px solid white;">
+                                        <b>TOTAL</b>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-11 row">
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>Number of Customer</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_customer)d" type="action"><field name="hos_number_of_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_customer)d" type="action"><field name="hrb_number_of_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_customer)d" type="action"><field name="itemb_number_of_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_customer)d" type="action"><field name="nrx_number_of_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_number_of_customer"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>Number of Potential</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_number_of_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_number_of_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_number_of_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_number_of_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_number_of_potential"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>Penetration</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_penetration"/>%</a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_penetration"/>%</a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_penetration"/>%</a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_penetration"/>%</a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_penetration"/>%
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>Tariff</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_tariff"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_tariff"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_tariff"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_tariff"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_tariff"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>Quota</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_quota"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_quota"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_quota"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_quota"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_quota"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>YTD OB</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_ytd_ob"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_ytd_ob"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_ytd_ob"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_ytd_ob"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_ytd_ob"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>YTD Achivement</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_ytd_achivement"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_ytd_achivement"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_ytd_achivement"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_ytd_achivement"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_ytd_achivement"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>SF This Month</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_sf_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_sf_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_sf_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_sf_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_sf_this_month"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>MCF-C This Month</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_mcfc_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_mcfc_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_mcfc_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_mcfc_this_month"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_mcfc_this_month"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="pl-0 pr-1" style="width:10%;">
+                                        <div class="o_kanban_primary_left pt-3 text-center" style="background:#33ff33;min-height:65px;border:1px solid silver;">
+                                            <p><b>Cold Leads</b></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hos_potential)d" type="action"><field name="hos_cold_leads"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_hrb_potential)d" type="action"><field name="hrb_cold_leads"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_itemb_potential)d" type="action"><field name="itemb_cold_leads"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <a name="%(velo_customers.action_velo_nrx_potential)d" type="action"><field name="nrx_cold_leads"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                            <field name="total_pot_cold_leads"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_potential_summary_tree" model="ir.ui.view">
+        <field name="name">potential.summary.tree</field>
+        <field name="model">potential.summary</field>
+        <field name="arch" type="xml">
+          <tree string="potential.summary">
+              <field name="hos_name"/>
+              <field name="hrb_name"/>
+              <field name="itemb_name"/>
+              <field name="nrx_name"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_potential_summary_form" model="ir.ui.view">
+        <field name="name">potential.summary.form</field>
+        <field name="model">potential.summary</field>
+        <field name="arch" type="xml">
+          <form string="potential.summary">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="hos_name"/>
+                            <field name="hrb_name"/>
+                            <field name="itemb_name"/>
+                            <field name="nrx_name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+          </form>
+        </field>
+    </record>
+    
+  
+    <record id="potential_action_main1" model="ir.actions.act_window">
+        <field name="name">Potential</field>
+        <field name="res_model">potential.summary</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="velo_customers.potential_view_kanban1"/>
+    </record>
+
+    <record model="ir.ui.view" id="board_potential_summary">
+        <field name="name">Potentials</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Session Dashboard" create="false" >
+                <board style="1">
+                    <column>
+                        <action
+                            string=""
+                            name="%(potential_action_main1)d"
+                            height="150"
+                            width="100%" readonly="1"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="potential_dashboard_action_main">
+        <field name="name">Potentials</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="board_potential_summary"/>
+    </record>
+
+    
+
+
+  </data>
+</odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record model="customer.summary" id="customer_summary_1">
+        <field name="name">summary</field>
+    </record>
+</odoo>

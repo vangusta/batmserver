@@ -1,0 +1,152 @@
+<odoo>
+  <data>
+
+  	<record model="ir.ui.view" id="view_telemarketing_tree">
+        <field name="name">telemarketing.telemarketing.tree</field>
+        <field name="model">telemarketing.telemarketing</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree string="Telemarketing">
+                <field name="name"/>
+                <field name="product"/>
+                <field name="total"/>
+                <field name="phone_reach"/>
+                <field name="mcf_b"/>
+                <field name="assigned"/>
+                <field name="phone_schedule"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_telemarketing_form">
+        <field name="name">telemarketing.telemarketing.form</field>
+        <field name="model">telemarketing.telemarketing</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+	            <form string="Telemarketing">
+                    <header>
+                        <button name="action_send" string="Send" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'queue')]}"/>
+                        <button name="action_done" string="Done" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"queue":"grey","progress":"blue","done":"green"}'/>
+                    </header>
+    	        	<sheet>
+		            	<group>
+		            		<group>
+				                <field name="name"/>
+				                <field name="product"/>
+				                <field name="total" />
+				                <field name="phone_reach"/>
+				                <field name="mcf_b"/>
+				            </group>
+				            <group>
+				                <field name="assigned"/>
+				                <field name="phone_schedule"/>
+				            </group>
+		                </group>
+		                <notebook>
+		                	<page string="Contact List">
+		                		<field name="contact_list_ids">
+                                    <tree string="Contact List" editable="bottom">
+                                        <field name="company"/>
+                                        <field name="brand"/>
+                                        <field name="email"/>
+                                        <field name="phone"/>
+                                        <field name="state_line"/>
+                                        <field name="done_by_phone" attrs="{'readonly': [('state_line', '=', 'done')]}"/>
+                                        <field name="mcf_b" attrs="{'readonly': [('state_line', '=', 'done')]}"/>
+                                        <field name="replying_mail" attrs="{'readonly': [('state_line', '=', 'done')]}"/>
+                                    </tree>
+                                </field>
+		                	</page>
+		                </notebook>
+		            </sheet>
+	            </form>
+        </field>
+    </record>
+
+    <record id="view_telemarketing_telemarketing_kanban" model="ir.ui.view">
+        <field name="name">view.telemarketing.telemarketing.kanban</field>
+            <field name="model">telemarketing.telemarketing</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" quick_create_view="view_telemarketing_form"
+                    archivable="false" default_order="state desc">
+                    <field name="name"/>
+	                <field name="product"/>
+	                <field name="total"/>
+	                <field name="phone_reach"/>
+	                <field name="mcf_b"/>
+	                <field name="assigned"/>
+	                <field name="phone_schedule"/>
+
+                    <progressbar field="state" colors='{"queue": "info","progress": "primary", "done": "success"}' help="This bar allows to filter the opportunities based on state activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                          <div t-attf-class="#{!selection_mode ? kanban_color() : ''} oe_kanban_global_click mt-2">
+                            <b><field name="name" /></b><p/>
+                            <span>Total Contact : </span><field name="total"/><p/>
+                            <span>Telemarketer : </span><field name="assigned"/><p/>
+                            <span>Phone Schedule : </span><field name="phone_schedule"/><p/>
+
+
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+
+
+
+                                <div class="oe_kanban_content">
+                                  <div class="text-muted o_kanban_record_subtitle">
+
+                                  </div>
+
+                                  <div class="o_kanban_record_bottom">
+                                      <div class="oe_kanban_bottom_left">
+
+                                      </div>
+                                      <div class="oe_kanban_bottom_right">
+
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                            </div>
+
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+    <record id="action_telemarketing_telemarketing" model="ir.actions.act_window">
+            <field name="name">Telemarketing</field>
+            <field name="res_model">telemarketing.telemarketing</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[]</field>
+            <!-- <field name="context">{
+                    'search_default_assigned_to_me': 1,
+                    'default_user_id': uid,
+                    'default_mailing_type': 'mail',
+            }</field> -->
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new telemarketing
+              </p><p>
+                You don't need to import your telemarketing lists, you can easily
+                send emails<br/> to any contact saved in other Odoo apps.
+              </p>
+            </field>
+        </record>
+
+  </data>
+</odoo>

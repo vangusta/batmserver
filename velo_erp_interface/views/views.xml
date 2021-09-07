@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <record id="action_erp_interface_test_views" model="ir.actions.act_window">
+          <field name="name">ERP Interface</field>
+          <field name="res_model">erp.interface.test</field>
+          <field name="view_mode">tree,form</field>
+          <!-- <field name="view_id" ref="velo_marketing_activities.view_marketing_test_tree"/> -->
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  ERP Interface
+              </p><p>
+                  Click to Add a ERP Interface
+              </p>
+          </field>
+    </record>
+
+    <record id="view_erp_interface_test_tree" model="ir.ui.view">
+        <field name="name">view.erp.interface.test.tree</field>
+        <field name="model">erp.interface.test</field>
+        <field name="arch" type="xml">
+          <tree string="ERP Interface">
+              <field name="name"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_erp_interface_test_form" model="ir.ui.view">
+      <field name="name">view.erp.interface.test.form</field>
+      <field name="model">erp.interface.test</field>
+      <field name="arch" type="xml">
+        <form string="ERP Interface">
+          <sheet>
+            <div class="oe_title">
+            <label for="name" class="oe_edit_only"/>
+                  <h1><field name="name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="description"/>                   
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <menuitem
+            id="menu_erp_interface_test"
+            name="ERP Interface"
+            web_icon="velo_erp_interface,static/description/icon.png"
+            groups="base.group_system"
+            sequence="100"/>
+
+    <menuitem 
+            id="header_erp_interface_test" 
+            name="Overview" 
+            parent="menu_erp_interface_test" 
+            sequence="1" 
+            action="action_erp_interface_test_views"/>
+  </data>
+</odoo>

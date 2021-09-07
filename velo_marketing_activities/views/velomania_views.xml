@@ -1,0 +1,151 @@
+<odoo>
+  <data>
+
+  	<record model="ir.ui.view" id="view_velomania_tree">
+        <field name="name">velomania.tree</field>
+        <field name="model">velomania</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree string="VeloMania">
+                <field name="name"/>
+                <field name="campaign_scheduled"/>
+                <field name="campaign_duration"/>
+                <field name="industry"/>
+                <field name="location"/>
+                <field name="regional"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_velomania_form">
+        <field name="name">velomania.form</field>
+        <field name="model">velomania</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+	            <form string="VeloMania">
+                    <!-- <header>
+                        <button name="action_send" string="Send" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'queue')]}"/>
+                        <button name="action_done" string="Done" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'progress')]}"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"queue":"grey","progress":"blue","done":"green"}'/>
+                    </header> -->
+    	        	<sheet>
+		            	<group>
+		            		<group>
+				                <field name="name"/>
+                                <field name="campaign_scheduled"/>
+                                <field name="campaign_duration"/>
+                                <field name="industry"/>
+                                <field name="location"/>
+				                <field name="regional"/>
+				            </group>
+				            <group>
+                                <field name="expected_leads"/>
+                                <field name="leads_acquired"/>
+				            </group>
+		                </group>
+		                <notebook>
+                            <page string="Campaign Cost">
+                                <field name="campaign_cost_ids">
+                                    <tree string="Campaign Cost" editable="bottom">
+                                        <field name="cost_name"/>
+                                        <field name="cost"/>
+                                        <field name="qty"/>
+                                        <field name="desc"/>
+                                        <field name="total_costs"/>
+                                    </tree>
+                                    <form string="Campaign Cost">
+                                        <group>
+                                            <field name="cost_name"/>
+                                            <field name="cost"/>
+                                            <field name="qty"/>
+                                            <field name="desc"/>
+                                            <field name="total_costs"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+		                	<page string="Event Summary">
+                                <form string="Event Summary">
+                                    <group>
+                                        <group>
+                                            <field name="expected_invitation"/>
+                                            <field name="expected_confirmation"/>
+                                            <field name="expected_attendant"/>
+                                            <field name="actual_invitation_sent"/>
+                                            <field name="actual_confirmation"/>
+                                            <field name="actual_attendance"/>
+                                        </group>
+                                        <group>
+                                            <field name="expected_invitation"/>
+                                            <field name="confirmation_expected"/>
+                                            <field name="attendance_expected"/>
+                                            <field name="budget"/>
+                                        </group>
+                                    </group>
+                                </form>
+ 		                	</page>
+                            <page string="Event Attendance">
+                                <field name="event_attendance_ids">
+                                    <tree string="Event Attendance" editable="bottom">
+                                        <field name="contact_name"/>
+                                        <field name="company"/>
+                                        <field name="budget"/>
+                                        <field name="work_function"/>
+                                        <field name="work_level"/>
+                                        <field name="remarks"/>
+                                    </tree>
+                                    <form string="Event Attendance">
+                                        <group>
+                                            <field name="contact_name"/>
+                                            <field name="company"/>
+                                            <field name="budget"/>
+                                            <field name="work_function"/>
+                                            <field name="work_level"/>
+                                            <field name="remarks"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Budget Forecast">
+                                <field name="forecast_ids">
+                                    <tree string="Budget Forecast" editable="bottom">
+                                         <field name="cost_name"/>
+                                        <field name="cost"/>
+                                        <field name="qty"/>
+                                        <field name="desc"/>
+                                        <field name="total_costs"/>
+                                    </tree>
+                                    <form string="Budget Forecast">
+                                        <group>
+                                            <field name="cost_name"/>
+                                            <field name="cost"/>
+                                            <field name="qty"/>
+                                            <field name="desc"/>
+                                            <field name="total_costs"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+		                </notebook>
+		            </sheet>
+	            </form>
+        </field>
+    </record>
+
+    
+
+
+    <record id="action_velomania" model="ir.actions.act_window">
+        <field name="name">VeloMania</field>
+        <field name="res_model">velomania</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new velomania
+          </p>
+        </field>
+    </record>
+
+  </data>
+</odoo>

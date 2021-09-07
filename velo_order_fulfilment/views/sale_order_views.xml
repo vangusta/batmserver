@@ -1,0 +1,91 @@
+<odoo>
+  <data>
+
+      <menuitem id="sale.sale_order_menu"
+            name="Orders"
+            parent="sale.sale_menu_root"
+            sequence="2" active="false"/>
+
+      <menuitem id="sale.menu_sale_invoicing"
+            name="To Invoice"
+            parent="sale.sale_menu_root"
+            sequence="3" groups="sales_team.group_sale_salesman" active="false"/>
+      
+      <menuitem id="sale.product_menu_catalog" 
+            name="Products" 
+            parent="sale.sale_menu_root" 
+            sequence="4" 
+            groups="sales_team.group_sale_salesman" active="false"/>
+
+
+    <record id="velo_inherit_sale_order_form_view" model="ir.ui.view">
+      <field name="name">velo_inherit_sale_order_form_view</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <field name="partner_id" position="before">
+              <field name="potential"/>
+        </field>
+        <field name="partner_id" position="after">
+              <field name="phone" />
+              <field name="email" />
+        </field>
+        <field name="partner_id" position="replace">
+            <field name="partner_id" string="Company" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{&quot;always_reload&quot;: True}"/>
+        </field>
+        <field name="validity_date" position="replace">
+              <field name="validity_date" invisible="1"/>
+        </field>
+        <field name="payment_term_id" position="after">
+              <!-- <field name="pop_id" /> -->
+              <field name="pop_name" string='POP' domain="[('res_partner', 'in', partner_id)]"/>
+              <field name="program" />
+              <field name="discount_monthly_tariff" invisible="1"/>
+        </field>
+        <xpath expr="//field[@name='order_line']//tree//field[@name='product_template_id']" position="after">
+            <field name="product_group" widget="section_and_note_text" optional="show"/>
+            <field name="product_category" widget="section_and_note_text" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="replace"/>
+
+        <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="replace">
+            <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}" string="Monthly Tariff"/>
+            <field name="one_time_charge" />
+            <field name="discount_monthly_tariff" optional="show"/>
+            <field name="name" widget="section_and_note_text" optional="show"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="replace">
+            <field name="product_uom_qty" context="{
+                        'partner_id': parent.partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': parent.pricelist_id,
+                        'uom': product_uom,
+                        'company_id': parent.company_id
+                    }" widget="section_and_note_text" optional="show" string="Duration"
+                />
+        </xpath>
+
+        <xpath expr="//group//group/div[@class='o_td_label']" position="replace">
+            <div class="o_td_label" groups="base.group_no_one" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}">
+                <label for="date_order" string="Order Date"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//page[@name='customer_signature']" position="replace">
+            <page groups="base.group_no_one" string="Customer Signature" name="customer_signature" invisible="1" attrs="{'invisible': [('require_signature', '=', False), ('signed_by', '=', False), ('signature', '=', False), ('signed_on', '=', False)]}">
+                <group>
+                    <field name="signed_by"/>
+                    <field name="signed_on"/>
+                    <field name="signature" widget="image"/>
+                </group>
+            </page>
+        </xpath>
+
+        
+      </field>
+    </record> 
+
+
+
+  </data>
+</odoo>

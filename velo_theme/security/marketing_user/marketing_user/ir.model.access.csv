@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_velo_spv_pim,access.velo.spv.pim,velo_customers.model_pic_manager,velo_theme.group_supervisor_id,1,1,1,1
+access_velo_spv_pop_type,access.velo.spv.pop.type,velo_service_coverage.model_pop_type,velo_theme.group_supervisor_id,1,1,1,1
+access_velo_spv_pop_pic,access.velo.spv.pop.pic,velo_customers.model_pop_pic,velo_theme.group_supervisor_id,1,0,0,0
+access_velo_spv_pop_industry_cluster,access.velo.spv.pop.industry.cluster,velo_service_coverage.model_pop_industry_cluster,velo_theme.group_supervisor_id,1,0,0,0
+access_velo_spv_pop_service_coverage,access.velo.spv.pop.service.coverage,velo_service_coverage.model_pop_service_coverage,velo_theme.group_supervisor_id,1,0,0,0

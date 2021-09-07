@@ -1,0 +1,1637 @@
+<odoo>
+    <data>
+
+        <record id="crm_case_form_view_salesteams_opportunity_all" model="ir.actions.act_window">
+            <field name="name">Opportunities</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">kanban,tree,graph,form,calendar,pivot</field>
+            <field name="domain">[('type','=','opportunity')]</field>
+            <field name="view_id" ref="crm.crm_case_kanban_view_leads"/>
+            <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+            <field name="context">{}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new lead
+                </p><p>
+                    Odoo helps you keep track of your sales pipeline to follow
+                    up potential sales and better forecast your future revenues.
+                </p><p>
+                    You will be able to plan meetings and phone calls from
+                    opportunities, convert them into quotations, attach related
+                    documents, track all discussions, and much more.
+                </p>
+            </field>
+        </record>
+
+        <record id="overview_team_view_kanban1" model="ir.ui.view">
+            <field name="name">Overview Program Promotion</field>
+            <field name="model">overview.program.promotion</field>
+            <field name="arch" type="xml">
+                <kanban create="false">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div style="width:100%;">
+                                <div class="row">
+                                    <div class="col-sm-3 ml-4 mr-2">
+                                        <div class="o_kanban_primary_left pt-2" style="border-top:4px solid white;">
+                                            <strong>Program ID</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-3" style="border-top:4px solid white;">
+                                            <strong>Program Category</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-3" style="border-top:4px solid white;">
+                                            <strong>Program Type</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-3" style="border-top:4px solid white;">
+                                            <strong>Available Program(POP/Industry)</strong>
+                                        </div>
+
+                                        <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Target:</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Penetration</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Annual Tarif Increase</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Annual Customer Increase</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Annual Marketing Budget</strong>
+                                        </div>
+
+                                        <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Content:</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Contract Period</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Fee - Discount%</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Fee - Discount Period (Month)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Onetime Fee - Discount Free</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;height:100px;">
+                                            <strong>Gimmick</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Special Arrangement</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Validity Start</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Validity End</strong>
+                                        </div>
+
+                                        <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Result (YTD):</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Cold Leads Generated</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-4" style="border-top:4px solid white;">
+                                            <strong>Tariff Generated (OB)</strong>
+                                        </div>
+                                        <!-- <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Current SF</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Current MCF-C</strong>
+                                        </div> -->
+                                        <!-- <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Current Cold Leads</strong>
+                                        </div> -->
+                                       <!--  <div class="o_kanban_primary_left pl-5 pt-2" style="border-top:4px solid white;">
+                                            <strong>Average Selling Cycle</strong>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="col-sm-9 row">
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h2><field name="bevelo"/></h2></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_prog_categ"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_available_prog"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_penetration"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_annual_tarif_increase"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_annual_customer_increase"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_annual_marketing_budget"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_contract_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_monthly_fee_discount"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_monthly_fee_discount_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_onetime_fee"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;height: 100px;overflow: auto;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_special_arrangement"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="bevelo_validity_end"/></h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h2><field name="lovevelo"/></h2></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_prog_categ"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_available_prog"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_penetration"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_annual_tarif_increase"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_annual_customer_increase"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_annual_marketing_budget"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_contract_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_monthly_fee_discount"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_monthly_fee_discount_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_onetime_fee"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;height: 100px;overflow: auto;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_special_arrangement"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.lovevelo_overview_action)d" type="action">
+                                                <h6><field name="lovevelo_validity_end"/></h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h2><field name="velome"/></h2></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_prog_categ"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_available_prog"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velome_penetration"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velome_annual_tarif_increase"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velome_annual_customer_increase"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velome_annual_marketing_budget"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velome_contract_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_monthly_fee_discount"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_monthly_fee_discount_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_onetime_fee"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;height: 100px;overflow: auto;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_special_arrangement"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velome_overview_action)d" type="action">
+                                                <h6><field name="velome_validity_end"/></h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h2><field name="velox"/></h2></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_prog_categ"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_available_prog"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velox_penetration"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velox_annual_tarif_increase"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velox_annual_customer_increase"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="velox_annual_marketing_budget"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_contract_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_monthly_fee_discount"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_monthly_fee_discount_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_onetime_fee"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;height: 100px;overflow: auto;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_special_arrangement"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.velox_overview_action)d" type="action">
+                                                <h6><field name="velox_validity_end"/></h6></a>
+                                            </div>
+                                        </div>
+
+                                       
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h2><field name="newnormal"/></h2></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_prog_categ"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_available_prog"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="newnormal_penetration"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="newnormal_annual_tarif_increase"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="newnormal_annual_customer_increase"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.bevelo_overview_action)d" type="action">
+                                                <h6><field name="newnormal_annual_marketing_budget"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_contract_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_monthly_fee_discount"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_monthly_fee_discount_period"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_onetime_fee"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;height: 100px;overflow: auto;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_special_arrangement"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.newnormal_overview_action)d" type="action">
+                                                <h6><field name="newnormal_validity_end"/></h6></a>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="mcfb"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="ob"/></h6></a>
+                                            </div>
+
+                                        </div>
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="lovevelo_cold_leads"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="lovevelo_ob"/></h6></a>
+                                            </div>
+                                        </div>
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="velome_cold_leads"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="velome_ob"/></h6></a>
+                                            </div>
+                                        </div>
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="velox_cold_leads"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="velox_ob"/></h6></a>
+                                            </div>
+                                        </div>
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:19%;">
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="newnormal_cold_leads"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(crm_case_form_view_salesteams_opportunity_all)d" type="action">
+                                                <h6><field name="newnormal_ob"/></h6></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="overview_team_view_kanban2" model="ir.ui.view">
+            <field name="name">Overview Program Retention</field>
+            <field name="model">overview.program.retention</field>
+            <field name="arch" type="xml">
+                <kanban create="false">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div style="width:100%;">
+                                <div class="row">
+                                    <div class="col-sm-3 ml-4 mr-2">
+                                        <div class="o_kanban_primary_left pt-2" style="border-top:4px solid white;">
+                                            <strong>Program ID</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Target:</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Contract Renewal Rate</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Tariff Loss from Churn</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Tariff Loss from Downgrade</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-3" style="border-top:4px solid white;">
+                                            <strong>Program Name</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-3" style="border-top:4px solid white;">
+                                            <strong>Program Type</strong>
+                                        </div>
+                                        <!-- <div class="o_kanban_primary_left text-center pt-4" style="background:#ffffff; border-top:4px solid white;">
+                                        </div> -->
+                                        <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Content:</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Decrease % - Monthly Tariff from New Tariff</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Incre(Decre) % - B/W Capacity</strong>
+                                        </div>
+                                    
+                                       <div class="o_kanban_primary_left pt-3" style="border-top:4px solid white;">
+                                            <strong>Gimmick</strong>
+                                        </div>
+                                       <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Period:</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Validity Start</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Validity End</strong>
+                                        </div>
+
+                                        <div class="o_kanban_primary_left pt-4" style="border-top:4px solid white;">
+                                            <strong>Program Result:</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Tariff Adjustment (Downgrade)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Customer Loss (Churn)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Contract Renewal Rate</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pl-4 pt-2" style="border-top:4px solid white;">
+                                            <strong>Monthly Contract Loss</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9 row">
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:98%">
+                                            <div class="o_kanban_primary_left text-center" style="border-top:6px solid white;" >
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h2><field name="blue"/></h2></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-4" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_contract_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_mtl_churn"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_mtl_downgrade"/></h6></a>
+                                            </div>
+                                        </div>
+                                            <div class="o_kanban_primary_left text-center pt-4" style="background:#ffffff; border-top:4px solid white;">
+                                            </div> 
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.blue_overview_action)d" type="action">
+                                                <h6><field name="blue_montly_contract_loss"/>%</h6></a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_montly_contract_loss"/>%</h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_montly_contract_loss"/>%</h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_montly_contract_loss"/>%</h6></a>
+                                            </div>
+                                        </div>
+
+
+                                       <!--  <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:6px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h2><field name="green"/></h2></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-4" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_contract_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_mtl_churn"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_mtl_downgrade"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.green_overview_action)d" type="action">
+                                                <h6><field name="green_montly_contract_loss"/>%</h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:6px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h2><field name="yellow"/></h2></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-4" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_contract_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_mtl_churn"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_mtl_downgrade"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.yellow_overview_action)d" type="action">
+                                                <h6><field name="yellow_montly_contract_loss"/>%</h6></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="background:#c1c1c1; width:24%;">
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:6px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h2><field name="red"/></h2></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-4" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_contract_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_mtl_churn"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_mtl_downgrade"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_prog_name"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_prog_type"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_decrease"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_increase"/>%</h6></a>
+                                            </div>
+                                            
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_gimmick" widget="html"/></h6></a>
+                                            </div>
+                                             <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_validity_start"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_validity_end"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-5" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_mothly_tariff_adj"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_monthly_customer_loss"/></h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_montly_customer_renewal_rate"/>%</h6></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2" style="border-top:4px solid white;">
+                                                <a name="%(velo_program_promotion.red_overview_action)d" type="action">
+                                                <h6><field name="red_montly_contract_loss"/>%</h6></a>
+                                            </div> -->
+                                       <!--  </div> -->
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="form_overview_program_promotion" model="ir.ui.view">
+            <field name="name">Program Promotion Overview</field>
+            <field name="model">overview.program.promotion</field>
+            <field name="arch" type="xml">
+                <form string="Form Overview Summary">
+                    <sheet> 
+                        <div class="oe_title">
+                        <label for="overview_program_promotion" class="oe_edit_only"/>
+                            <h1><field name="overview_program_promotion" placeholder="Overview..."/></h1>
+                        </div>  
+                        <group>
+                            <group string="BeVelo">
+                                <field name="bevelo_id"/>
+                                <field name="bevelo"/>
+                                <field name="bevelo_prog_categ"/>
+                                <field name="bevelo_prog_type"/>
+                                <field name="bevelo_available_prog"/>
+                                <label for="bevelo_penetration"/>
+                                <div class="o_row">
+                                    <field name="bevelo_penetration"/>%<br/>
+                                </div>
+                                <label for="bevelo_annual_tarif_increase"/>
+                                <div class="o_row">
+                                    <field name="bevelo_annual_tarif_increase"/>%<br/>
+                                </div>
+                                <!-- <field name="bevelo_penetration"/> -->
+                                <!-- <field name="bevelo_annual_tarif_increase"/> -->
+                                <field name="bevelo_annual_customer_increase"/>
+                                <field name="bevelo_annual_marketing_budget"/>
+                                <field name="bevelo_contract_period"/>
+                                <label for="bevelo_monthly_fee_discount"/>
+                                <div class="o_row">
+                                    <field name="bevelo_monthly_fee_discount"/>%<br/>
+                                </div>
+                                <label for="bevelo_monthly_fee_discount_period"/>
+                                <div class="o_row">
+                                    <field name="bevelo_monthly_fee_discount_period"/> Month<br/>
+                                </div>
+                                <!-- <field name="bevelo_monthly_fee_discount"/>
+                                <field name="bevelo_monthly_fee_discount_period"/> -->
+                                <field name="bevelo_onetime_fee"/>
+                                <field name="bevelo_gimmick"/>
+                                <field name="bevelo_special_arrangement"/>
+                                <field name="bevelo_validity_start"/>
+                                <field name="bevelo_validity_end"/>
+                            </group>
+                            <group string="LoveVelo">
+                                <field name="lovevelo_id"/>
+                                <field name="lovevelo"/>
+                                <field name="lovevelo_prog_categ"/>
+                                <field name="lovevelo_prog_type"/>
+                                <field name="lovevelo_available_prog"/>
+                                <label for="lovevelo_penetration"/>
+                                <div class="o_row">
+                                    <field name="lovevelo_penetration"/>%<br/>
+                                </div>
+                                <label for="lovevelo_annual_tarif_increase"/>
+                                <div class="o_row">
+                                    <field name="lovevelo_annual_tarif_increase"/>%<br/>
+                                </div>
+                                <!-- <field name="lovevelo_penetration"/>
+                                <field name="lovevelo_annual_tarif_increase"/> -->
+                                <field name="lovevelo_annual_customer_increase"/>
+                                <field name="lovevelo_annual_marketing_budget"/>
+                                <field name="lovevelo_contract_period"/>
+                                <label for="lovevelo_monthly_fee_discount"/>
+                                <div class="o_row">
+                                    <field name="lovevelo_monthly_fee_discount"/>%<br/>
+                                </div>
+                                <label for="lovevelo_monthly_fee_discount_period"/>
+                                <div class="o_row">
+                                    <field name="lovevelo_monthly_fee_discount_period"/> Month<br/>
+                                </div>
+                               <!--  <field name="lovevelo_monthly_fee_discount"/>
+                                <field name="lovevelo_monthly_fee_discount_period"/> -->
+                                <field name="lovevelo_onetime_fee"/>
+                                <field name="lovevelo_gimmick"/>
+                                <field name="lovevelo_special_arrangement"/>
+                                <field name="lovevelo_validity_start"/>
+                                <field name="lovevelo_validity_end"/>
+                            </group>
+                            <group string="VeloMe">
+                                <field name="velome_id"/>
+                                <field name="velome"/>
+                                <field name="velome_prog_categ"/>
+                                <field name="velome_prog_type"/>
+                                <field name="velome_available_prog"/>
+                                <label for="velome_penetration"/>
+                                <div class="o_row">
+                                    <field name="velome_penetration"/>%<br/>
+                                </div>
+                                <label for="velome_annual_tarif_increase"/>
+                                <div class="o_row">
+                                    <field name="velome_annual_tarif_increase"/>%<br/>
+                                </div>
+                               <!--  <field name="velome_penetration"/>
+                                <field name="velome_annual_tarif_increase"/> -->
+                                <field name="velome_annual_customer_increase"/>
+                                <field name="velome_annual_marketing_budget"/>
+                                <field name="velome_contract_period"/>
+                                <label for="velome_monthly_fee_discount"/>
+                                <div class="o_row">
+                                    <field name="velome_monthly_fee_discount"/>%<br/>
+                                </div>
+                                <label for="velome_monthly_fee_discount_period"/>
+                                <div class="o_row">
+                                    <field name="velome_monthly_fee_discount_period"/> Month<br/>
+                                </div>
+                               <!--  <field name="velome_monthly_fee_discount"/>
+                                <field name="velome_monthly_fee_discount_period"/> -->
+                                <field name="velome_onetime_fee"/>
+                                <field name="velome_gimmick"/>
+                                <field name="velome_special_arrangement"/>
+                                <field name="velome_validity_start"/>
+                                <field name="velome_validity_end"/>
+                            </group>
+                            <group string="VeloX">
+                                <field name="velox_id"/>
+                                <field name="velox"/>
+                                <field name="velox_prog_categ"/>
+                                <field name="velox_prog_type"/>
+                                <field name="velox_available_prog"/>
+                                <label for="velox_penetration"/>
+                                <div class="o_row">
+                                    <field name="velox_penetration"/>%<br/>
+                                </div>
+                                <label for="velox_annual_tarif_increase"/>
+                                <div class="o_row">
+                                    <field name="velox_annual_tarif_increase"/>%<br/>
+                                </div>
+                               <!--  <field name="velox_penetration"/>
+                                <field name="velox_annual_tarif_increase"/> -->
+                                <field name="velox_annual_customer_increase"/>
+                                <field name="velox_annual_marketing_budget"/>
+                                <field name="velox_contract_period"/>
+                                <label for="velox_monthly_fee_discount"/>
+                                <div class="o_row">
+                                    <field name="velox_monthly_fee_discount"/>%<br/>
+                                </div>
+                                <label for="velox_monthly_fee_discount_period"/>
+                                <div class="o_row">
+                                    <field name="velox_monthly_fee_discount_period"/> Month<br/>
+                                </div>
+                               <!--  <field name="velox_monthly_fee_discount"/>
+                                <field name="velox_monthly_fee_discount_period"/> -->
+                                <field name="velox_onetime_fee"/>
+                                <field name="velox_gimmick"/>
+                                <field name="velox_special_arrangement"/>
+                                <field name="velox_validity_start"/>
+                                <field name="velox_validity_end"/>
+                            </group>
+                            <group string="NewNormal">
+                                <field name="newnormal_id"/>
+                                <field name="newnormal"/>
+                                <field name="newnormal_prog_categ"/>
+                                <field name="newnormal_prog_type"/>
+                                <field name="newnormal_available_prog"/>
+                                <label for="newnormal_penetration"/>
+                                <div class="o_row">
+                                    <field name="newnormal_penetration"/>%<br/>
+                                </div>
+                                <label for="newnormal_annual_tarif_increase"/>
+                                <div class="o_row">
+                                    <field name="newnormal_annual_tarif_increase"/>%<br/>
+                                </div>
+                                <field name="newnormal_annual_customer_increase"/>
+                                <field name="newnormal_annual_marketing_budget"/>
+                                <field name="newnormal_contract_period"/>
+                                <label for="newnormal_monthly_fee_discount"/>
+                                <div class="o_row">
+                                    <field name="newnormal_monthly_fee_discount"/>%<br/>
+                                </div>
+                                <label for="newnormal_monthly_fee_discount_period"/>
+                                <div class="o_row">
+                                    <field name="newnormal_monthly_fee_discount_period"/> Month<br/>
+                                </div>
+                               <!--  <field name="newnormal_monthly_fee_discount"/>
+                                <field name="newnormal_monthly_fee_discount_period"/> -->
+                                <field name="newnormal_onetime_fee"/>
+                                <field name="newnormal_gimmick"/>
+                                <field name="newnormal_special_arrangement"/>
+                                <field name="newnormal_validity_start"/>
+                                <field name="newnormal_validity_end"/>
+                            </group>
+                            <group string="YTD Progress">
+                                <field name="mcfb"/>
+                                <field name="ob"/>
+                                <field name="lovevelo_cold_leads"/>
+                                <field name="lovevelo_ob"/>
+                                <field name="velome_cold_leads"/>
+                                <field name="velome_ob"/>
+                                <field name="velox_cold_leads"/>
+                                <field name="velox_ob"/>
+                                <field name="newnormal_cold_leads"/>
+                                <field name="newnormal_ob"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="form_overview_program_retention" model="ir.ui.view">
+            <field name="name">Program Retention Overview</field>
+            <field name="model">overview.program.retention</field>
+            <field name="arch" type="xml">
+                <form string="Form Overview Summary">
+                    <sheet> 
+                        <div class="oe_title">
+                        <label for="overview_program_retention" class="oe_edit_only"/>
+                            <h1><field name="overview_program_retention" placeholder="Overview..."/></h1>
+                        </div>  
+                        <group>
+                            <group string="Blue (Mind)">
+                                <field name="blue_id"/>
+                                <field name="blue"/>
+                                <label for="blue_contract_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="blue_contract_renewal_rate"/>%<br/>
+                                </div>
+                                <!-- <field name="blue_contract_renewal_rate"/> -->
+                                <field name="blue_mtl_churn"/>
+                                <field name="blue_mtl_downgrade"/>
+                                <field name="blue_prog_name"/>
+                                <field name="blue_prog_type"/>
+                                <label for="blue_decrease"/>
+                                <div class="o_row">
+                                    <field name="blue_decrease"/>%<br/>
+                                </div>
+                                <label for="blue_increase"/>
+                                <div class="o_row">
+                                    <field name="blue_increase"/>%<br/>
+                                </div>
+                                <!-- <field name="blue_decrease"/>
+                                <field name="blue_increase"/> -->
+                                <field name="blue_gimmick"/>
+                                <field name="blue_validity_start"/>
+                                <field name="blue_validity_end"/>
+                                <field name="blue_mothly_tariff_adj"/>
+                                <field name="blue_monthly_customer_loss"/>
+                                <label for="blue_montly_customer_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="blue_montly_customer_renewal_rate"/>%<br/>
+                                </div>
+                                <label for="blue_montly_contract_loss"/>
+                                <div class="o_row">
+                                    <field name="blue_montly_contract_loss"/>%<br/>
+                                </div>
+                               <!--  <field name="blue_montly_customer_renewal_rate"/>
+                                <field name="blue_montly_contract_loss"/> -->
+                            </group>
+                            <group string="Green (Soul)">
+                                <field name="green_id"/>
+                                <field name="green"/>
+                                <label for="green_contract_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="green_contract_renewal_rate"/>%<br/>
+                                </div>
+                                <!-- <field name="green_contract_renewal_rate"/> -->
+                                <field name="green_mtl_churn"/>
+                                <field name="green_mtl_downgrade"/>
+                                <field name="green_prog_name"/>
+                                <field name="green_prog_type"/>
+                                <label for="green_decrease"/>
+                                <div class="o_row">
+                                    <field name="green_decrease"/>%<br/>
+                                </div>
+                                <label for="green_increase"/>
+                                <div class="o_row">
+                                    <field name="green_increase"/>%<br/>
+                                </div>
+                               <!--  <field name="green_decrease"/>
+                                <field name="green_increase"/> -->
+                                <field name="green_gimmick"/>
+                                <field name="green_validity_start"/>
+                                <field name="green_validity_end"/>
+                                <field name="green_mothly_tariff_adj"/>
+                                <field name="green_monthly_customer_loss"/>
+                                <label for="green_montly_customer_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="green_montly_customer_renewal_rate"/>%<br/>
+                                </div>
+                                <label for="green_montly_contract_loss"/>
+                                <div class="o_row">
+                                    <field name="green_montly_contract_loss"/>%<br/>
+                                </div>
+                                <!-- <field name="green_montly_customer_renewal_rate"/>
+                                <field name="green_montly_contract_loss"/> -->
+                            </group>
+                            <group string="Yellow (Reality)">
+                                <field name="yellow_id"/>
+                                <field name="yellow"/>
+                                <label for="yellow_contract_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="yellow_contract_renewal_rate"/>%<br/>
+                                </div>
+                                <!-- <field name="yellow_contract_renewal_rate"/> -->
+                                <field name="yellow_mtl_churn"/>
+                                <field name="yellow_mtl_downgrade"/>
+                                <field name="yellow_prog_name"/>
+                                <field name="yellow_prog_type"/>
+                                <label for="yellow_decrease"/>
+                                <div class="o_row">
+                                    <field name="yellow_decrease"/>%<br/>
+                                </div>
+                                <label for="yellow_increase"/>
+                                <div class="o_row">
+                                    <field name="yellow_increase"/>%<br/>
+                                </div>
+                                <!-- <field name="yellow_decrease"/>
+                                <field name="yellow_increase"/> -->
+                                <field name="yellow_gimmick"/>
+                                <field name="yellow_validity_start"/>
+                                <field name="yellow_validity_end"/>
+                                <field name="yellow_mothly_tariff_adj"/>
+                                <field name="yellow_monthly_customer_loss"/>
+                                <label for="yellow_montly_customer_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="yellow_montly_customer_renewal_rate"/>%<br/>
+                                </div>
+                                <label for="yellow_montly_contract_loss"/>
+                                <div class="o_row">
+                                    <field name="yellow_montly_contract_loss"/>%<br/>
+                                </div>
+                               <!--  <field name="yellow_montly_customer_renewal_rate"/>
+                                <field name="yellow_montly_contract_loss"/> -->
+                            </group>
+                            <group string="Red (Power)">
+                                <field name="red_id"/>
+                                <field name="red"/>
+                                <label for="red_contract_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="red_contract_renewal_rate"/>%<br/>
+                                </div>
+                                <!-- <field name="red_contract_renewal_rate"/> -->
+                                <field name="red_mtl_churn"/>
+                                <field name="red_mtl_downgrade"/>
+                                <field name="red_prog_name"/>
+                                <field name="red_prog_type"/>
+                                <label for="red_decrease"/>
+                                <div class="o_row">
+                                    <field name="red_decrease"/>%<br/>
+                                </div>
+                                <label for="red_increase"/>
+                                <div class="o_row">
+                                    <field name="red_increase"/>%<br/>
+                                </div>
+                               <!--  <field name="red_decrease"/>
+                                <field name="red_increase"/> -->
+                                <field name="red_gimmick"/>
+                                <field name="red_validity_start"/>
+                                <field name="red_validity_end"/>
+                                <field name="red_mothly_tariff_adj"/>
+                                <field name="red_monthly_customer_loss"/>
+                                <label for="red_montly_customer_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="red_montly_customer_renewal_rate"/>%<br/>
+                                </div>
+                                <label for="red_montly_contract_loss"/>
+                                <div class="o_row">
+                                    <field name="red_montly_contract_loss"/>%<br/>
+                                </div>
+                                <!-- <field name="red_montly_customer_renewal_rate"/>
+                                <field name="red_montly_contract_loss"/> -->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tree_overview_program_retention" model="ir.ui.view">
+            <field name="name">Overvie Program Retention Tree</field>
+            <field name="model">overview.program.retention</field>
+            <field name="arch" type="xml"> 
+                 <tree string="Overview Summary">
+                    <field name="blue" width="50" string="Blue (Mind)"/>
+                    <field name="green" width="50" string="Green (Soul)"/>
+                    <field name="yellow" width="50" string="Yellow (Reality)"/>
+                    <field name="red" width="50" string="Red (Power)"/>
+                 </tree>
+            </field>
+        </record>
+
+        <record id="tree_overview_program_promotion" model="ir.ui.view">
+            <field name="name">Overview Program Promotion Tree</field>
+            <field name="model">overview.program.promotion</field>
+            <field name="arch" type="xml"> 
+                 <tree string="Overview Summary">
+                    <field name="bevelo" width="50"/>
+                    <field name="lovevelo" width="80"/>
+                    <field name="velome" width="80"/>
+                    <field name="velox" width="80"/>
+                    <field name="newnormal" width="80"/>
+                 </tree>
+            </field>
+        </record>
+
+         <record id="action_overview_program_retention" model="ir.actions.act_window">
+            <field name="name">Program Retention Overview</field>
+            <field name="res_model">overview.program.retention</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="overview_team_view_kanban2"/>
+        </record>
+
+        <record id="action_overview_program_promotion" model="ir.actions.act_window">
+            <field name="name">Program Promotion Overview</field>
+            <field name="res_model">overview.program.promotion</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="overview_team_view_kanban1"/>
+        </record>
+
+        <record model="ir.ui.view" id="board_overview_program_promotion">
+            <field name="name">Program Promotion Board</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Session Dashboard">
+                    <board style="1">
+                        <column>
+                            <action
+                                string=""
+                                name="%(action_overview_program_promotion)d"
+                                height="250"
+                                width="500" readonly="1"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="board_overview_program_retention">
+            <field name="name">Program Retention Board</field>
+            <field name="model">board.board</field>
+            <field name="arch" type="xml">
+                <form string="Session Dashboard">
+                    <board style="1">
+                        <column>
+                            <action
+                                string=""
+                                name="%(action_overview_program_retention)d"
+                                height="250"
+                                width="500" readonly="1"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="open_board_program_action">
+            <field name="name">My Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_overview_program_promotion"/>
+        </record> 
+
+        <record model="ir.actions.act_window" id="open_board_program_action1">
+            <field name="name">My Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_overview_program_retention"/>
+        </record>
+
+        <menuitem id="overview_program_promotion"
+                  name="Acquisition"
+                  sequence="0" 
+                  action="velo_program_promotion.open_board_program_action"
+                  parent="velo_program_promotion.header_program_promotion"/>
+
+        <menuitem id="overview_program_retention"
+                  name="Retention"
+                  sequence="1" 
+                  action="velo_program_promotion.open_board_program_action1"
+                  parent="velo_program_promotion.header_program_promotion"/>
+        
+        <menuitem
+            id="mass_mailing.mass_mailing_menu"
+            name="Canvasing"
+            sequence="5"
+            parent="velo_program_promotion.header_program_promotion"
+            active="True"/>
+        
+      <!--   <menuitem id="marketing_menu_campaign" sequence="10" parent="velo_program_promotion.header_program_promotion" name="Campaign" active="True"/>
+
+                    <menuitem name="On Site Campaign" id="osc_menu"
+                            parent="marketing_menu_campaign"
+                            sequence="1"
+                            action="velo_marketing_activities.action_osc"
+                            groups="mass_mailing.group_mass_mailing_user"
+                            active="True"/>
+                            
+                    <menuitem name="Tradeshow" id="tradeshow_menu"
+                            parent="marketing_menu_campaign"
+                            sequence="3"
+                            action="velo_marketing_activities.action_tradeshow"
+                            groups="mass_mailing.group_mass_mailing_user"
+                            active="True"/>
+                    
+                    <menuitem name="VeloMania" id="velomania_menu"
+                            parent="marketing_menu_campaign"
+                            sequence="4"
+                            action="velo_marketing_activities.action_velomania"
+                            groups="mass_mailing.group_mass_mailing_user"
+                            active="True"/>
+
+                    <menuitem name="Velo Solution Day" id="vsd_menu"
+                            parent="marketing_menu_campaign"
+                            sequence="2"
+                            action="velo_marketing_activities.action_vsd"
+                            groups="mass_mailing.group_mass_mailing_user"
+                            active="True"/> -->
+        
+        <menuitem name="Telemarketing" id="telemarketing_menu"
+                parent="velo_program_promotion.header_program_promotion"
+                sequence="4"
+                action="velo_marketing_activities.action_telemarketing_telemarketing"
+                groups="mass_mailing.group_mass_mailing_user"
+                active="True"/>
+
+        <menuitem id="menu_velo_overview_program_promotion" 
+                  name="Overview Program Promotion" 
+                  parent="velo_program_promotion.menu_velo_setting" 
+                  sequence="10" 
+                  action="velo_program_promotion.action_overview_program_promotion" groups="base.group_no_one"/>
+
+        <menuitem id="menu_velo_overview_program_retention" 
+                  name="Overview Program Retention" 
+                  parent="velo_program_promotion.menu_velo_setting" 
+                  sequence="11" 
+                  action="velo_program_promotion.action_overview_program_retention" groups="base.group_no_one"/>
+
+    </data>
+</odoo>

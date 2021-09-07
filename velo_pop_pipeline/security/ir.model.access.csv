@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_velo_pop_pipeline,velo_pop_pipeline_test,model_pop_pipeline_test,base.group_system,1,1,1,1
+access_velo_pop_pipeline_master,velo_pop_pipeline_master,model_pop_pipeline_master,base.group_system,1,1,1,1
+access_velo_acquisition_activities,velo_acquisition_activities,model_acquisition_activities,base.group_system,1,1,1,1

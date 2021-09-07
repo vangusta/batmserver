@@ -1,0 +1,139 @@
+<odoo>
+  <data>
+
+        <record id="view_order_bcrf_tree" model="ir.ui.view">
+            <field name="name">order.bcrf.tree</field>
+            <field name="model">order.bcrf</field>
+            <field name="arch" type="xml">
+                <tree string="BCRF">
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="brand_name"/>
+                    <field name="activation_date"/>
+                    <field name="invoice_date"/>
+                    <field name="contract_tarif"/>
+                    <field name="tect_cp"/>
+                    <field name="bill_cp"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_order_bcrf_form" model="ir.ui.view">
+            <field name="name">order.bcrf.form</field>
+            <field name="model">order.bcrf</field>
+            <field name="arch" type="xml">
+                <form string="BCRF">
+                    <header>
+                        <button name="action_proses" string="Confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_cancel" string="Cancel" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"draft":"grey","active":"orange"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <div><field name="name" readonly="0"/></div>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_name"/>
+                                <field name="company_address"/>
+                                <field name="company_phone"/>
+                                <field name="brand_name"/>
+                            </group>
+                            <group>
+                                <field name="activation_date"/>
+                                <field name="invoice_date"/>
+                                <field name="contract_tarif"/>
+                                <field name="tect_cp"/>
+                                <field name="bill_cp"/>
+                            </group>
+                        </group>
+                        <div><h2>General Information</h2></div>
+                        <group>
+                            <group>
+                                <field name="iwo_ref"/>
+                                <field name="product_type"/>
+                                <field name="capacity"/>
+                                <field name="rack_server"/>
+                                <field name="other"/>
+                            </group>
+                        </group>
+                        <div><h2>Bandwidth Capacity Request Form</h2></div>
+                        <group>
+                            <group>
+                                <div><h3>Backhaul</h3></div>
+                                <field name="backhaul"/>
+                                <field name="upgrade_downgrade_backhaul"/>
+                                <field name="nearend"/>
+                                <field name="farend"/>
+                                <field name="existing_capacity_backhaul"/>
+                                <field name="new_capacity_cost_backhaul"/>
+                                <field name="effective_date_backhaul"/>
+                                <field name="increase_decrease_backhaul"/>
+                            </group>
+                            <group>
+                                <div><h3>VPN Link</h3></div>
+                                <field name="vpn_link"/>
+                                <field name="upgrade_downgrade_vpn"/>
+                                <field name="existing_capacity_vpn"/>
+                                <field name="new_capacity_vpn"/>
+                                <field name="existing_capacity_cost_vpn"/>
+                                <field name="new_capacity_cost_vpn"/>
+                                <field name="effective_date_vpn"/>
+                                <field name="increase_decrease_vpn"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <div><h3>Lastmile/Direct</h3></div>
+                                <field name="lastmile_direct"/>
+                                <field name="upgrade_downgrade_lastmile"/>
+                                <field name="existing_capacity_lastmile"/>
+                                <field name="new_capacity_lastmile"/>
+                                <field name="existing_capacity_cost_lastmile"/>
+                                <field name="new_capacity_cost_lastmile"/>
+                                <field name="effective_date_lastmile"/>
+                                <field name="increase_decrease_lastmile"/>
+                            </group>
+                            <group>
+                                <div><h3>VSAT Link</h3></div>
+                                <field name="vsat_link"/>
+                                <field name="upgrade_downgrade_vsat"/>
+                                <field name="existing_capacity_vsat"/>
+                                <field name="new_capacity_vsat"/>
+                                <field name="existing_capacity_cost_vsat"/>
+                                <field name="new_capacity_cost_vsat"/>
+                                <field name="effective_date_vsat"/>
+                                <field name="increase_decrease_vsat"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+      <record id="action_velo_order_bcrf" model="ir.actions.act_window">
+        <field name="name">BCRF</field>
+        <field name="res_model">order.bcrf</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new BCRF
+            </p>
+        </field>
+      </record>
+
+        <menuitem id="velo_order_bcrf_menu"
+            parent="velo_order_acmrf_menu_head"
+            action="velo_order_fulfilment.action_velo_order_bcrf"
+            sequence="2" />
+
+  </data>
+</odoo>

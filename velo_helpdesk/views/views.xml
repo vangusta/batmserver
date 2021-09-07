@@ -1,0 +1,181 @@
+<odoo>
+  <data>
+
+    <menuitem id="helpdesk.menu_helpdesk_root" name="Helpdesk"
+        sequence="8"
+        groups="base.group_system"
+        web_icon="velo_helpdesk,static/description/icon.png"/>
+
+
+
+    <record id="velo_inherit_helpdesk_ticket_form_view" model="ir.ui.view">
+      <field name="name">velo_inherit_helpdesk_ticket_form_view</field>
+      <field name="model">helpdesk.ticket</field>
+      <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+      <field name="arch" type="xml">
+        <field name="team_id" position="before">
+              <field name="ticket"/>
+              <field name="create_date" string="Create On"/>
+        </field>
+        <field name="user_id" position="replace"></field>
+        <field name="ticket_type_id" position="after">
+              <field name="impact_to"/>
+              <field name="parent_ticket"/>
+        </field>
+        <field name="priority" position="replace"></field>
+        <field name="tag_ids" position="replace"></field>
+
+        <field name="partner_email" position="after">
+              <field name="service"/>
+              <field name="pop"/>
+              <field name="pop_state"/>
+        </field>
+
+        <field name="description" position="before">
+        	<group>
+	        	<group string="Severity">
+	              	<field name="saverity"/>
+	              	<field name="problem"/>
+	              	<field name="characteristic"/>
+	              	<field name="business_priority"/>
+	            </group>
+	            <group string="Problem">
+	              	<field name="segment"/>
+	              	<field name="problem_segment"/>
+	              	<field name="sub_problem_category"/>
+	              	<field name="service_impact"/>
+	              	<field name="problem_description"/>
+	            </group>
+	        </group>
+
+	        <group>
+	        	<group string="Internal Status">
+	              	<label for="progress"/>
+	              	<div class="progress-bar bg-success" t-attf-style="width: #{percent_rating_5}%;" title="Progress">
+	                    <t t-esc="progress"/>%
+	                </div>
+	              	<field name="user_id"/>
+	              	<field name="internal_status"/>
+	              	<field name="department"/>
+	              	<field name="progress_action_details"/>
+	              	<field name="supporting_file"/>
+	            </group>
+	        </group>
+        </field>
+
+
+        <field name="description" position="after">
+        	<notebook>
+                  <page string="Customer Status Detail">
+                      <field name="helpdesk_customer_ids">
+                      	<tree string="Customer Status Detail" editable="bottom">
+              							<field name="status"/>
+              							<field name="start_time"/>
+              							<field name="finish_time"/>
+              							<field name="duration"/>
+	                     </tree>
+                      </field>
+                  </page>
+
+                  <page string="Internal Status Detail">
+                      <field name="helpdesk_internal_ids">
+                      	<tree string="Internal Status Detail" editable="bottom">
+            							<field name="exception_report"/>
+                          <field name="status"/>
+            							<field name="start_time"/>
+            							<field name="finish_time"/>
+            							<field name="action"/>
+            							<field name="progress"/>
+            							<field name="pic"/>
+            							<field name="supporting_file"/>
+  	                    </tree>
+                      </field>                  	
+                  </page>
+                  <page string="Partner Detail">
+                    <field name="helpdesk_partner_ids">
+                        <tree string="Partner Detail" editable="bottom">
+                          <field name="partner"/>
+                          <field name="circuit_id"/>
+                          <field name="start_time"/>
+                          <field name="finish_time"/>
+                          <field name="duration"/>
+                        </tree>
+                      </field>
+                  </page>
+                  <page string="Ticket List">
+                      <field name="helpdesk_ticket_list_ids">
+                        <tree string="Partner Detail" editable="bottom">
+                          <field name="helpdesk_ticket"/>
+                          <field name="customer"/>
+                        </tree>
+                      </field>
+                  </page>
+            </notebook>
+         </field>
+      </field>
+    </record>
+
+
+
+    <record id="velo_inherit_helpdesk_ticket_tree_view" model="ir.ui.view">
+      <field name="name">velo_inherit_helpdesk_ticket_tree_view</field>
+      <field name="model">helpdesk.ticket</field>
+      <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+      <field name="arch" type="xml">
+        <field name="team_id" position="after">
+          <field name="ticket" />
+        </field>
+        <field name="stage_id" position="replace"></field>
+
+        <field name="display_name" position="after">
+          <field name="impact_to" />
+          <field name="saverity" />
+          <field name="stage_id" string="External Status"/>
+          <field name="internal_status" />
+          <field name="duration" />
+          <field name="assign_to" />
+        </field>
+      </field>
+    </record>
+
+    <record id="velo_inherit_quick_create_ticket_form" model="ir.ui.view">
+      <field name="name">velo_inherit_helpdesk_ticket_tree_view</field>
+      <field name="model">helpdesk.ticket</field>
+      <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+      <field name="arch" type="xml">
+        <field name="team_id" position="after">
+          <field name="ticket" />
+        </field>
+        <field name="stage_id" position="replace"></field>
+
+        <field name="display_name" position="after">
+          <field name="impact_to" />
+          <field name="saverity" />
+          <field name="stage_id" string="External Status"/>
+          <field name="internal_status" />
+          <field name="duration" />
+          <field name="assign_to" />
+        </field>
+      </field>
+    </record>
+
+    <record id="velo_inherit_helpdesk_quick_ticket_form_view" model="ir.ui.view">
+      <field name="name">velo_inherit_helpdesk_ticket_form_view</field>
+      <field name="model">helpdesk.ticket</field>
+      <field name="inherit_id" ref="helpdesk.quick_create_ticket_form"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="service_impact" />
+        </field>
+        <field name="partner_id" position="after">
+          <field name="service" />
+          <field name="pop" />
+        </field>
+        <field name="user_id" position="replace"></field>
+        <field name="priority" position="replace"></field>
+
+      </field>
+    </record>
+    
+  </data>
+</odoo>

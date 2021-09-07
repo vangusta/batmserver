@@ -1,0 +1,157 @@
+<odoo>
+  <data>
+
+  	<record id="velo_inherit_view_mail_mass_mailing_kanban" model="ir.ui.view">
+      <field name="name">velo_mailing.mailing.kanban</field>
+      <field name="model">mailing.mailing</field>
+	  <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_kanban"/>
+      <field name="arch" type="xml">
+	      <xpath expr="//div[hasclass('o_kanban_record_headings')]" position="replace">
+	      		<div class="o_kanban_record_headings">
+	                <div class="row"  attrs="{'invisible': [('sent_date', '=', False)]}">
+	                    <h3 class="my-1 col-8 o_text_overflow">
+	                        <field name="subject"/>
+	                    </h3>
+	                    <!-- <field name="email_from"/>
+	                    <div class="progress border col-3 px-0 mt-2" style="background-color: inherit; height:12px;">
+	                        <div class="progress-bar" role="progressbar" 
+	                            aria-valuemin="0"
+	                            t-att-aria-valuenow="record.delivered.raw_value"
+	                            t-att-aria-valuemax="record.expected.raw_value"
+	                            t-attf-style="width: #{record.delivered.raw_value * 100 / record.expected.raw_value}%"/>
+	                    </div> -->
+	                </div>
+	                <h3 class="my-1 o_text_overflow"  attrs="{'invisible': [('sent_date', '!=', False)]}">
+	                    <p><field name="subject"/></p>
+	                </h3>
+	                <br/>
+	                <div style="font-size:12px;">
+		                <p><span>Send From : </span><field name="email_from"/></p>
+		                <p><span>Send Schedule : </span><field name="next_departure"/></p>
+		            </div>
+	                <field name="mailing_type" invisible="1"/>
+	                <div class="o_kanban_record_subtitle" attrs="{'invisible': [('sent_date', '=', False)]}">
+	                    <h5 style="display: inline;">
+	                        <field name="campaign_id" groups="mass_mailing.group_mass_mailing_campaign"/>
+	                    </h5>
+	                </div>
+	            </div>
+	      </xpath>
+
+	      <xpath expr="//div[@name='div_responsible_avatar']" position="replace">
+	      		<div name="div_responsible_avatar">
+	                <span attrs="{'invisible': [('sent_date', '=', False)]}">
+	                    <span class="fa fa-clock-o text-muted mr-2"/>
+	                    <field name="sent_date" widget="date"/>
+	                </span>
+	                <span attrs="{'invisible': [('sent_date', '!=', False)]}" class="oe_clear text-muted">
+	                    <span>Total Contact : </span><field name='total'/>
+	                    <field name='mailing_model_id' attrs="{'invisible': [('mailing_model_name','=','mailing.list')]}"/>
+	                    <span attrs="{'invisible': [('mailing_model_name','!=','mailing.list')]}">Mailing Contact</span>
+	                </span>
+	                <img t-att-src="kanban_image('res.users', 'image_128', record.user_id.raw_value)" t-att-title="record.user_id.value" t-att-alt="record.user_id.value" class="o_image_24_cover oe_kanban_avatar float-right"/>
+	            </div>
+	      </xpath>
+
+      </field>
+    </record>
+
+    <record id="velo_inherit_view_mail_mass_mailing_form" model="ir.ui.view">
+      <field name="name">velo_mailing.mailing.form</field>
+      <field name="model">mailing.mailing</field>
+	  <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_form"/>
+      <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_test']" position="replace">
+                <button name="action_send_mail" type="object" class="btn-secondary" string="Mass Send"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_view_opened']" position="replace">
+	      		<button name="action_view_opened"
+                    type="object"
+                    context="{'search_default_filter_opened': True}"
+                    attrs="{'invisible': [('state', 'in', ('draft','test'))]}"
+                    class="oe_stat_button"
+                    invisible="True">
+                    <field name="opened_ratio" string="Opened" widget="percentpie" invisible="True"/>
+                </button>
+            </xpath>
+      </field>
+    </record>
+
+    <menuitem name="Account Management" 
+              id="mass_mailing.mass_mailing_menu_root" 
+              sequence="4"
+              groups="base.group_system" 
+              web_icon="velo_marketing_activities,static/description/icon.png"/>
+
+    <menuitem name="Mailing Lists" id="mass_mailing.mass_mailing_mailing_list_menu" 
+    	parent="mass_mailing.mass_mailing_configuration" sequence="4" 
+    	groups="mass_mailing.group_mass_mailing_user"
+    	active="True"/>
+
+
+
+
+    <record id="velo_mailing_mailing_sale_view_form" model="ir.ui.view">
+        <field name="name">mailing.mailing.view.form.inherit.sale</field>
+        <field name="model">mailing.mailing</field>
+        <field name="inherit_id" ref="mass_mailing_sale.mailing_mailing_view_form"/>
+        <field name="arch" type="xml">
+    		<xpath expr="//button[@name='action_redirect_to_quotations']" position="replace">
+                <button name="action_redirect_to_quotations"
+                    type="object"
+                    icon="fa-pencil"
+                    class="oe_stat_button"
+                    groups="sales_team.group_sale_salesman"
+                    attrs="{'invisible': [('state', '=', 'draft')]}" 
+                    invisible="True">
+                    <!-- <field name="sale_quotation_count" string="Quotations" widget="statinfo" invisible="True"/> -->
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_redirect_to_invoiced']" position="replace">
+                <button name="action_redirect_to_invoiced"
+                    type="object"
+                    icon="fa-dollar"
+                    class="oe_stat_button"
+                    groups="sales_team.group_sale_salesman"
+                    attrs="{'invisible': [('state', '=', 'draft')]}" 
+                    invisible="True">
+                    <!-- <field name="sale_invoiced_amount" string="Invoiced" widget="statinfo" invisible="True"/> -->
+                </button>
+    		</xpath>
+        </field>
+    </record>
+
+
+    <record id="velo_mailing_mailing_crm_view_form" model="ir.ui.view">
+        <field name="name">mailing.mailing.view.form.inherit.crm</field>
+        <field name="model">mailing.mailing</field>
+        <field name="inherit_id" ref="mass_mailing_crm.mailing_mailing_view_form"/>
+        <field name="arch" type="xml">
+    		<xpath expr="//button[@name='action_redirect_to_leads']" position="replace">
+                <button name="action_redirect_to_leads"
+                    type="object"
+                    icon="fa-star"
+                    class="oe_stat_button"
+                    groups="sales_team.group_sale_salesman"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('crm_lead_activated', '=', False)]}" 
+                    invisible="True">
+                    <field name="crm_lead_count" string="Leads" widget="statinfo" invisible="True"/>
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_redirect_to_opportunities']" position="replace">
+                <button name="action_redirect_to_opportunities"
+                    type="object"
+                    icon="fa-star"
+                    class="oe_stat_button"
+                    groups="sales_team.group_sale_salesman"
+                    attrs="{'invisible': ['|', ('state', '=', 'draft'), ('crm_lead_activated', '=', True)]}" 
+                    invisible="True">
+                    <field name="crm_opportunities_count" string="Opportunities" widget="statinfo" invisible="True"/>
+                </button>
+    		</xpath>
+        </field>
+    </record>
+
+  </data>
+</odoo>

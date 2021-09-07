@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_velo_order_acc,velo_order_acc,model_order_acc,base.group_system,1,1,1,1
+access_velo_order_acmrf,velo_order_acmrf,model_order_acmrf,base.group_system,1,1,1,1
+access_velo_order_bcrf,velo_order_bcrf,model_order_bcrf,base.group_system,1,1,1,1
+access_velo_order_cperf,velo_order_acc,model_order_cperf,base.group_system,1,1,1,1
+access_velo_order_iwo,velo_order_iwo,model_order_iwo,base.group_system,1,1,1,1
+access_velo_order_picf,velo_order_picf,model_order_picf,base.group_system,1,1,1,1
+access_velo_order_iwo,velo_order_iwo,model_order_iwo,base.group_system,1,1,1,1
+access_velo_order_picf,velo_order_picf,model_order_picf,base.group_system,1,1,1,1
+access_velo_order_fulfilment,velo_order_fulfilment,model_order_fulfilment,base.group_system,1,1,1,1
+access_velo_order_retention,velo_order_retention,model_order_retention,base.group_system,1,1,1,1

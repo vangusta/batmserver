@@ -1,0 +1,23 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+velo1,Program,model_velo_program,base.group_system,1,1,1,1
+velo2,Program category,model_velo_program_category,base.group_system,1,1,1,1
+velo3,Program promo_type,model_velo_program_promo_type,base.group_system,1,1,1,1
+velo4,Product program cost,model_velo_program_cost,base.group_system,1,1,1,1
+velo5,Promotion,model_velo_promo,base.group_system,1,1,1,1
+velo6,Pop,model_velo_pop,base.group_system,1,1,1,1
+velo7,Location,model_velo_location,base.group_system,1,1,1,1
+velo8,Tipe,model_velo_tipe,base.group_system,1,1,1,1
+velo9,overview,model_overview_program_promotion,base.group_system,1,1,1,1
+velo10,avaibility,model_velo_avaibility,base.group_system,1,1,1,1
+velo12,Program Retention,model_velo_retention,base.group_system,1,1,1,1
+velo13,Program Name,model_velo_program_name,base.group_system,1,1,1,1
+velo14,overview,model_overview_program_retention,base.group_system,1,1,1,1
+velo15,Promo Type,model_velo_promo_type,base.group_system,1,1,1,1
+velo16,velo Market Potential,model_velo_market_potential,base.group_system,1,1,1,1
+velo17,velo Leads Acquired,model_velo_leads_acquired,base.group_system,1,1,1,1
+velo18,velo Promo Costs,model_velo_promo_costs,base.group_system,1,1,1,1
+velo19,velo Relation,model_velo_relation,base.group_system,1,1,1,1
+velo20,velo Promo,model_velo_promo,base.group_system,1,1,1,1
+velo21,velo Relation Market Potential,model_velo_market_potential_relation,base.group_system,1,1,1,1
+velo22,velo Relation Leads Acquired,model_velo_leads_acquired_relation,base.group_system,1,1,1,1
+velo23,velo Relation Promo Costs,model_velo_promo_costs_relation,base.group_system,1,1,1,1

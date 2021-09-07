@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="module_category_marketing">
+        <field name="name">Marketing Dept</field>
+        <field name="sequence">2</field>
+        <field name="description"></field>
+    </record>
+
+    <record id="group_marketing_maker_1" model="res.groups">
+        <field name="name">Maker 1</field>
+        <field name="category_id" ref="module_category_marketing"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('velo_program_promotion.header_program_promotion')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('velo_service_coverage.menu_service_coverage_root')),
+                                         (4, ref('velo_customers.res_partner_velo_menu_customer')),
+                                         (4, ref('velo_retention_pipeline.menu_retention_pipeline')),
+                                         (4, ref('velo_pop_pipeline.menu_pop_pipeline_master')),
+                                        ]"/>
+    </record>
+
+    <record id="group_marketing_maker_2" model="res.groups">
+        <field name="name">Maker 2</field>
+        <field name="category_id" ref="module_category_marketing"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('velo_program_promotion.header_program_promotion')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('velo_service_coverage.menu_service_coverage_root')),
+                                         (4, ref('velo_customers.res_partner_velo_menu_customer')),
+                                         (4, ref('velo_retention_pipeline.menu_retention_pipeline')),
+                                         (4, ref('velo_pop_pipeline.menu_pop_pipeline_master')),
+                                        ]"/>
+    </record>
+
+    <record id="group_marketing_checker" model="res.groups">
+        <field name="name">Checker</field>
+        <field name="category_id" ref="module_category_marketing"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('velo_program_promotion.header_program_promotion')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('velo_service_coverage.menu_service_coverage_root')),
+                                         (4, ref('velo_customers.res_partner_velo_menu_customer')),
+                                         (4, ref('crm.crm_menu_root')),
+                                         (4, ref('velo_retention_pipeline.menu_retention_pipeline')),
+                                         (4, ref('velo_pop_pipeline.menu_pop_pipeline_master')),
+                                        ]"/>    
+    </record>
+
+    <record id="group_marketing_advisor" model="res.groups">
+        <field name="name">Advisor</field>
+        <field name="category_id" ref="module_category_marketing"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('velo_program_promotion.header_program_promotion')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('velo_service_coverage.menu_service_coverage_root')),
+                                         (4, ref('velo_customers.res_partner_velo_menu_customer')),
+                                         (4, ref('crm.crm_menu_root')),
+                                         (4, ref('velo_retention_pipeline.menu_retention_pipeline')),
+                                         (4, ref('velo_pop_pipeline.menu_pop_pipeline_master')),
+                                        ]"/>
+    </record>
+
+    <record id="group_marketing_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="module_category_marketing"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_employee.menu_action_res_users')),
+                                         (4, ref('base.menu_management')),
+                                         (4, ref('base.menu_administration')),
+                                        ]"/>
+    </record>
+
+    <record id="group_marketing_superadmin" model="res.groups">
+        <field name="name">Super Admin</field>
+        <field name="category_id" ref="module_category_marketing"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_employee.menu_action_res_users')),
+                                         (4, ref('base.menu_management')),
+                                         (4, ref('base.menu_administration')),
+                                        ]"/>
+    </record>
+    
+
+
+</odoo>

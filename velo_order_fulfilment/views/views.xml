@@ -1,0 +1,277 @@
+<odoo>
+  <data>
+
+    <record id="view_order_fulfilment_kanban" model="ir.ui.view">
+        <field name="name">view.order.fulfilment.kanban</field>
+            <field name="model">order.fulfilment</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" quick_create_view="view_order_fulfilment_form"
+                    archivable="false" default_order="state asc">
+                    <field name="state" options='{"group_by_tooltip": {"requirements": "Description"}}'/>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="company_name"/>
+                   
+                    <progressbar field="state" colors='{"request_service": "info","fulfilment": "warning", "activation": "success", "contract_signed": "primary"}' help="This bar allows to filter the opportunities based on state activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                          <div t-attf-class="#{!selection_mode ? kanban_color() : ''} oe_kanban_global_click mt-2">
+                            <b><field name="company_name" /></b><p/>
+                            <span>Prospect Name : </span><field name="name" /><p/>
+                            <span>OB date : </span><field name="create_date"/><p/>
+                            <span>Service ID / Sales Pipeline ID : </span><field name="name"/><p/>
+
+
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+
+
+
+                                <div class="oe_kanban_content">
+                                  <div class="text-muted o_kanban_record_subtitle">
+
+                                  </div>
+
+                                  <div class="o_kanban_record_bottom">
+                                      <div class="oe_kanban_bottom_left">
+
+                                      </div>
+                                      <div class="oe_kanban_bottom_right">
+
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                            </div>
+
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_order_fulfilment_overview_kanban" model="ir.ui.view">
+          <field name="name">view.order.fulfilment.kanban</field>
+            <field name="model">order.fulfilment</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" create="false"
+                    archivable="false" default_order="state asc">
+                    <field name="state" options='{"group_by_tooltip": {"requirements": "Description"}}'/>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="company_name"/>
+                   
+                    <progressbar field="state" colors='{"request_service": "info","fulfilment": "warning", "activation": "success", "contract_signed": "primary"}' help="This bar allows to filter the opportunities based on state activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                          <div t-attf-class="#{!selection_mode ? kanban_color() : ''} oe_kanban_global_click mt-2">
+                            <b><field name="company_name" /></b><p/>
+                            <span>Prospect Name : </span><field name="name" /><p/>
+                            <span>OB date : </span><field name="create_date"/><p/>
+                            <span>Service ID / Sales Pipeline ID : </span><field name="name"/><p/>
+
+
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+
+
+
+                                <div class="oe_kanban_content">
+                                  <div class="text-muted o_kanban_record_subtitle">
+
+                                  </div>
+
+                                  <div class="o_kanban_record_bottom">
+                                      <div class="oe_kanban_bottom_left">
+
+                                      </div>
+                                      <div class="oe_kanban_bottom_right">
+
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                            </div>
+
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_order_fulfilment_tree" model="ir.ui.view">
+            <field name="name">order.fulfilment.tree</field>
+            <field name="model">order.fulfilment</field>
+            <field name="arch" type="xml">
+                <tree string="Overview">
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="new_retention"/>
+                    <field name="downgrade_upgrade"/>
+                    <field name="service_amount"/>
+                    <field name="contract_period"/>
+                    <field name="order_lines"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_order_fulfilment_form" model="ir.ui.view">
+            <field name="name">order.fulfilment.form</field>
+            <field name="model">order.fulfilment</field>
+            <field name="arch" type="xml">
+                <form string="Overview">
+                    <header>
+                        <button name="create_iwo" string="Create IWO" class="oe_highlight" type="object" />
+                        <button name="create_cperf" string="Create CPERF" class="oe_highlight" type="object" />
+                        <button name="create_bcrf" string="Create BCRF" class="oe_highlight" type="object" />
+                        <button name="create_acmrf" string="Create ACMRF" class="oe_highlight" type="object" />
+                        <button name="create_acc" string="Create ACC" class="oe_highlight" type="object" />
+                        <field name="state" widget="statusbar" statusbar_colors='{"request_service":"grey","fulfilment":"orange"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <div><field name="name" readonly="0"/></div>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_name"/>
+                                <field name="company_address"/>
+                                <field name="company_phone"/>
+                                <field name="new_retention"/>
+                                <field name="downgrade_upgrade"/>
+                            </group>
+                            <group>
+                                <field name="service_amount"/>
+                                <field name="contract_period"/>
+                                <field name="order_lines">
+                                    <tree  editable="bottom">
+                                      <field name="name"/>
+                                      <field name="standard_price"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                        <notebook>
+                          <page string="PCIF">
+                            <field name="pcif_ids">
+                              <tree string="PCIF" editable="bottom">
+                                  <field name="pcif_id" invisible="1"/>
+                                  <field name="name"/>
+                                  <field name="create_date"/>
+                                  <field name="expected_activated_date"/>
+                                  <field name="registration_date"/>
+                                  <field name="expected_activated_date"/>
+                                  <field name="acceptence_date"/>
+                                  <field name="state"/>
+                              </tree>
+                            </field>
+                          </page>
+                          <page string="IWO">
+                            <field name="iwo_ids">
+                              <tree string="IWO" editable="bottom">
+                                  <field name="iwo_id" invisible="1"/>
+                                  <field name="name"/>
+                                  <field name="create_date"/>
+                                  <field name="expected_activation_date"/>
+                                  <field name="state"/>
+                              </tree>
+                            </field>
+                          </page>
+                          <page string="Fulfilment Form">
+
+                          </page>
+                          <page string="ACC">
+                            <field name="pcif_ids">
+                              <tree string="ACC" editable="bottom">
+                                  <field name="pcif_id" invisible="1"/>
+                                  <field name="name"/>
+                                  <field name="create_date"/>
+                                  <field name="state"/>
+                              </tree>
+                            </field>
+
+                          </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <record id="action_velo_order_fulfilment" model="ir.actions.act_window">
+        <field name="name">Order Fulfilment Pipeline</field>
+        <field name="res_model">order.fulfilment</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="velo_order_fulfilment.view_order_fulfilment_kanban"/>
+        <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new Order Fulfilment Pipeline
+            </p>
+        </field>
+      </record>
+
+      <menuitem id="velo_order_fulfilment_menu"
+            name="Order Fulfilment"
+            parent="sale.sale_menu_root"
+            action="velo_order_fulfilment.action_velo_order_fulfilment"
+            sequence="1" />
+
+      <record id="action_velo_fulfilment_overview" model="ir.actions.act_window">
+        <field name="name">Overview</field>
+        <field name="res_model">order.fulfilment</field>
+        <field name="view_mode">kanban</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="velo_order_fulfilment.view_order_fulfilment_overview_kanban"/>
+        <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new Overview
+            </p>
+        </field>
+      </record>
+
+      <menuitem id="velo_fulfilment_overview_menu"
+            name="Overview"
+            parent="sale.sale_menu_root"
+            action="velo_order_fulfilment.action_velo_fulfilment_overview"
+            sequence="0" />
+
+
+
+    <menuitem id="sale.sale_menu_root"
+            name="Order Fulfilment"
+            web_icon="velo_order_fulfilment,static/description/icon.png"
+            active="true"
+            groups="base.group_system"
+            sequence="6"/>
+
+  </data>
+</odoo>

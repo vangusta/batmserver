@@ -1,0 +1,182 @@
+<odoo>
+    <data>
+        <record id="pricings_team_view_kanban1" model="ir.ui.view">
+        <field name="name">Product.pricing.kanban</field>
+        <field name="model">pricing.summary</field>
+        <field name="arch" type="xml">
+            <kanban create="false">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div style="width:100%;">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="o_kanban_primary_left">
+                                        <div class="o_primary pb-4"><h2>Region</h2></div>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        <strong>Metro</strong>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        <strong>Non Metro</strong>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-10 row">
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header pt-2 pb-2" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_bali_action)d" type="action">
+                                                    <h2>Bali</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action">
+                                                <field name="metro_bali"/>
+                                            </a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action">
+                                                <field name="non_metro_bali"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header pt-2 pb-2" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action">
+                                                    <h2>Bandung</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action">
+                                                <field name="metro_bandung"/>
+                                            </a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action">
+                                                <field name="non_metro_bandung"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header pt-2 pb-2" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action">
+                                                    <h2>Jakarta</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action">
+                                                <field name="metro_jakarta"/>
+                                            </a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action">
+                                                <field name="non_metro_jakarta"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header pt-2 pb-2" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action">
+                                                    <h2>Semarang</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action">
+                                                <field name="metro_semarang"/>
+                                            </a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action">
+                                                <field name="non_metro_semarang"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header pt-2 pb-2" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action">
+                                                    <h2>Surabaya</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action">
+                                                <field name="metro_surabaya"/>
+                                            </a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action">
+                                                <field name="non_metro_surabaya"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header pt-2 pb-2" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action">
+                                                    <h2>Yogyakarta</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action">
+                                                <field name="metro_yogyakarta"/>
+                                            </a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action">
+                                                <field name="non_metro_yogyakarta"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="pricings_team_action_main1" model="ir.actions.act_window">
+        <field name="name">Pricing Overview</field>
+        <field name="res_model">pricing.summary</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="view_id" ref="velo_product_pricing.pricings_team_view_kanban1"/>
+    </record>
+
+    <record model="ir.ui.view" id="board_product_summary">
+        <field name="name">Product</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Session Dashboard" create="false" >
+                <board style="1">
+                    <column>
+                        <action
+                            string=""
+                            name="%(pricings_team_action_main1)d"
+                            height="150"
+                            width="100%" readonly="1"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="pricings_menu_team_dashboard"
+              name="Pricing 2"
+              parent="header_product_velo"
+              sequence="6"
+              action="velo_product_pricing.pricings_team_action_main1"
+              active="False"/>
+    </data>
+</odoo>

@@ -1,0 +1,281 @@
+<odoo>
+  <data>
+
+
+    <record id="action_mailing_dashboard" model="ir.actions.act_window">
+        <field name="name">Mailing</field>
+        <field name="res_model">mailing.mailing</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[]</field>
+        <!-- <field name="context">{
+                'search_default_assigned_to_me': 1,
+                'default_user_id': uid,
+                'default_mailing_type': 'mail',
+        }</field> -->
+    </record>
+
+    <record id="marketing_team_view_kanban1" model="ir.ui.view">
+        <field name="name">Marketing.summary.kanban</field>
+        <field name="model">marketing.summary</field>
+        <field name="arch" type="xml">
+            <kanban create="false">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div style="width:100%;">
+                            <div class="row">
+                                <div class="col-sm-3" style="height:400px;">
+                                    <div class="o_kanban_primary_left">
+                                        <div class="o_primary pb-4"><h2>Marketing Activities</h2></div>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Number of Events</h4>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Potential/Events</h4>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Annualize Potential</h4>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Cold leads Ratio</h4>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Potential Cold Leads</h4>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Monthly Cold Leads</h4>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3 font-weight-bold">
+                                        <h4>Type of Program</h4>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-9 row">
+
+                                    <div class="pr-0 pl-0 mr-3" style="background:#c1c1c1;width:18.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="background:#fff;border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center pt-1">
+                                                <h4>Direct Mail<br/>(Blast)</h4>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_mailing_dashboard)d" type="action"><field name="number_of_events_blast"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_mailing_dashboard)d" type="action"><field name="potential_events_blast"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_mailing_dashboard)d" type="action"><field name="annualize_potential_blast"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_mailing_dashboard)d" type="action"><field name="cold_leads_ratio_blast"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="potential_cold_leads_blast"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="monthly_cold_leads_blast"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center p-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_mailing_dashboard)d" type="action"><field name="type_of_program_blast"/></a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="pr-0 pl-0 mr-3" style="background:#c1c1c1;width:18.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="background:#fff;border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center pt-1">
+                                                <h4>On Site<br/>Campaign</h4>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_osc)d" type="action"><field name="number_of_events_campaign"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_osc)d" type="action"><field name="potential_events_campaign"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_osc)d" type="action"><field name="annualize_potential_campaign"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_osc)d" type="action"><field name="cold_leads_ratio_campaign"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="potential_cold_leads_campaign"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="monthly_cold_leads_campaign"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center p-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_osc)d" type="action"><field name="type_of_program_campaign"/></a>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="pr-0 pl-0 mr-3" style="background:#c1c1c1;width:18.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="background:#fff;border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center pt-1">
+                                                <h4>Velo Solution<br/>Day</h4>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_vsd)d" type="action"><field name="number_of_events_solution"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_vsd)d" type="action"><field name="potential_events_solution"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_vsd)d" type="action"><field name="annualize_potential_solution"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_vsd)d" type="action"><field name="cold_leads_ratio_solution"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="potential_cold_leads_solution"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="monthly_cold_leads_solution"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center p-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_vsd)d" type="action"><field name="type_of_program_solution"/></a>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="pr-0 pl-0 mr-3" style="background:#c1c1c1;width:18.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="background:#fff;border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center pt-1">
+                                                <h4>Tradeshow<br/>.</h4>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_tradeshow)d" type="action"><field name="number_of_events_tradeshow"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_tradeshow)d" type="action"><field name="potential_events_tradeshow"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_tradeshow)d" type="action"><field name="annualize_potential_tradeshow"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_tradeshow)d" type="action"><field name="cold_leads_ratio_tradeshow"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="potential_cold_leads_tradeshow"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="monthly_cold_leads_tradeshow"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center p-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_tradeshow)d" type="action"><field name="type_of_program_tradeshow"/></a>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="pr-0 pl-0 mr-3" style="background:#c1c1c1;width:18.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="background:#fff;border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center pt-1">
+                                                <h4>VeloMania<br/>.</h4>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_velomania)d" type="action"><field name="number_of_events_velomania"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_velomania)d" type="action"><field name="potential_events_velomania"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_velomania)d" type="action"><field name="annualize_potential_velomania"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_velomania)d" type="action"><field name="cold_leads_ratio_velomania"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="potential_cold_leads_velomania"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;">
+                                            <a name="%(crm.crm_lead_opportunities)d" type="action"><field name="monthly_cold_leads_velomania"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center p-2" style="border-top:2px solid white;">
+                                            <a name="%(velo_marketing_activities.action_velomania)d" type="action"><field name="type_of_program_velomania"/></a>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="summary_team_action_main1" model="ir.actions.act_window">
+        <field name="name">Marketing Overview</field>
+        <field name="res_model">marketing.summary</field>
+        <field name="view_mode">kanban</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="marketing_team_view_kanban1"/>
+    </record>
+
+    <menuitem id="marketing_menu_team_dashboard" action="velo_marketing_activities.summary_team_action_main1"
+        sequence="0" parent="mass_mailing.mass_mailing_menu_root" name="Overview" active="False"/>    
+
+    <menuitem id="account_management"
+              name="Account Management"
+              sequence="0"
+              parent="mass_mailing.mass_mailing_menu_root"/>
+
+              <menuitem id="am_hrb"
+                        name="HRB"
+                        sequence="1"
+                        action="velo_customers.hrb_am_summary_action"
+                        parent="account_management"/>
+              
+              <menuitem id="am_itemb"
+                        name="IT.Emb"
+                        sequence="2"
+                        action="velo_customers.itemb_am_summary_action"
+                        parent="account_management"/>
+              
+              <menuitem id="am_nrx"
+                        name="NRX"
+                        sequence="3"
+                        action="velo_customers.nrx_am_summary_action"
+                        parent="account_management"/>
+            
+              <menuitem id="am_hos"
+                        name="HOS"
+                        sequence="4"
+                        action="velo_customers.hos_am_summary_action"
+                        parent="account_management"/>
+                        
+    <menuitem id="account_management_quota"
+              name="Quota"
+              sequence="1"
+              action="velo_customers.itemb_am_summary_action"
+              parent="mass_mailing.mass_mailing_menu_root"/>
+    
+    <menuitem id="account_management_comission"
+              name="Comission Scheme"
+              sequence="2"
+              action="velo_customers.nrx_am_summary_action"
+              parent="mass_mailing.mass_mailing_menu_root"/>
+
+    <menuitem id="mass_mailing.menu_mass_mailing_report" 
+              active="False"/>  
+    
+    <menuitem id="account_management_reporting"
+              name="Reporting"
+              sequence="3"
+              action="velo_customers.action_pivot_account_management1"
+              parent="mass_mailing.mass_mailing_menu_root"/>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="inherit">
+
+    <t t-extend="UserMenu.Actions">
+        
+        <t t-jquery="a[data-menu='documentation']" t-operation='replace'>
+            <a role="menuitem" href="#" data-menu="documentation" class="dropdown-item d-none">Documentation</a>
+        </t>
+        <t t-jquery="a[data-menu='support']" t-operation='replace'>
+            <a role="menuitem" href="#" data-menu="support" class="dropdown-item d-none">Support</a>
+        </t>
+        <t t-jquery="a[data-menu='account']" t-operation='replace'>
+            <a role="menuitem" href="#" data-menu="account" class="dropdown-item d-none">My Odoo.com account</a>
+        </t>
+        <t t-jquery="a[data-menu='settings']" t-operation='replace'>
+            <a role="menuitem" href="#" data-menu="settings" class="dropdown-item d-none">My Profile</a>
+        </t>
+
+
+        <t t-jquery=".dropdown-item:first" t-operation="after">
+            <a role="menuitem" href="#" data-menu="settings" class="dropdown-item">My Profile</a>
+        </t>
+        <t t-jquery="a[data-menu='logout']" t-operation='before'>
+            <a href="#" class="dropdown-item" data-menu="about">About</a>
+        </t>
+
+    </t>
+
+    <div t-name="UserMenu.about">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="offset-md-2 col-md-8 text-center">
+                    <div style="padding-top:50px;font-size:2em;">Project Velo456</div>
+                    <div style="padding-bottom:50px;">Version 0.7.7</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</templates>

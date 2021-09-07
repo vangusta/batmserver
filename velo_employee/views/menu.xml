@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <delete model="ir.ui.menu" id="hr.menu_hr_root" /> -->
+        <menuitem
+            id="menu_action_res_users"
+            name="User Admin"
+            action="base.action_res_users"
+            web_icon="velo_employee,static/description/icon.png"
+            groups="base.group_system"
+            sequence="320"/>
+
+        <menuitem
+            id="hr.menu_hr_root"
+            parent ="velo_employee.menu_action_res_users"
+            name="Employees"
+            groups="hr.group_hr_manager,hr.group_hr_user,base.group_system"
+            sequence="75"/>
+
+
+
+    </data>
+</odoo>

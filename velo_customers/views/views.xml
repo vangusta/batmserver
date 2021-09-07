@@ -1,0 +1,514 @@
+<odoo>
+  <data>
+
+    <record id="inherit_pop_service_coverage_partner_view" model="ir.ui.view">
+        <field name="name">Number Customer Service Coverage</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="velo_service_coverage.number_customer_service_coverage"/>
+        <field name="arch" type="xml">
+            <field name="name" position="replace"> 
+                <field name="pop_name"/>
+                <field name="pop_ids" string="POP ID"/>
+                <field name="id_object"/>
+                <field name="name" string="Customer Name"/>
+                <field name="industry"/>
+                <field name="revenue_month" widget="integer" string="Monthly Tariff" sum="Subtotal"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="inherit_monthly_tariff_service_coverage_view" model="ir.ui.view">
+        <field name="name">Monthly Tariff Service Coverage</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="velo_service_coverage.monthly_tariff_service_coverage"/>
+        <field name="arch" type="xml">
+            <field name="name" position="replace">
+                <field name="pop_name"/>
+                <field name="pop_ids" string="POP ID"/>
+                <field name="id_object"/>
+                <field name="name" string="Customer Name"/>
+                <field name="industry"/>
+                <field name="revenue_month" widget="integer" string="Monthly Tariff" sum="Subtotal"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="inherit_total_potential_service_coverage_view" model="ir.ui.view">
+        <field name="name">Total Potential Service Coverage</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="velo_service_coverage.total_potential_service_coverage"/>
+        <field name="arch" type="xml">
+            <field name="name" position="replace"> 
+                <field name="pop_name"/>
+                <field name="pop_ids" string="POP ID"/>
+                <field name="name" string="Potential Name"/>
+                <field name="industry"/>
+                <field name="tenant_am"/>
+                <field name="tenant_cold_leads"/>
+                <field name="tenant_mcf_c"/>
+                <field name="tenant_sales_focus"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_velo_customer_form" model="ir.ui.view">
+        <field name="name">view.velo.customer.form</field>
+        <field name="model">res.partner</field>
+        <field eval="0" name="priority"/>
+        <field name="arch" type="xml">  
+            <form string="Partners">
+                <div class="alert alert-warning oe_edit_only" role="alert" attrs="{'invisible': [('same_vat_partner_id', '=', False)]}">
+                  A partner with the same <span><span class="o_vat_label">Tax ID</span></span> already exists (<field name="same_vat_partner_id"/>), are you sure to create a new one?
+                </div>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "image_128"}'/>
+                    <div class="oe_title">
+                        <field name="is_company" invisible="1"/>
+                        <field name="commercial_partner_id" invisible="1"/>
+                        <field name="active" invisible="1"/>
+                        <field name="company_type" widget="radio"
+                            class="oe_edit_only"
+                            options="{'horizontal': true}"/>
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name" attrs="{'required' : [('type', '=', 'customers')]}"/>
+                        </h1>
+                        <div class="o_row">
+                            <field name="parent_id"
+                                widget="res_partner_many2one"
+                                placeholder="Company"
+                                domain="[('is_company', '=', True)]" context="{'default_is_company': True, 'show_vat': True}"
+                                attrs="{'invisible': ['|', '&amp;', ('is_company','=', True),('parent_id', '=', False),('company_name', '!=', False),('company_name', '!=', '')]}"/>
+                                <field name="company_name" attrs="{'invisible': ['|', '|', ('company_name', '=', False), ('company_name', '=', ''), ('is_company', '=', True)]}"/>
+                                <button name="create_company" type="object" class="oe_edit_only btn-link"
+                                    attrs="{'invisible': ['|', '|', ('is_company','=', True), ('company_name', '=', ''), ('company_name', '=', False)]}">
+                                       <span class="fa fa-plus-square"/>
+                                       Create company
+                                </button>
+                        </div>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="id_object"/>
+                            <!-- <field name="brand_object"/> -->
+                            <field name="group_object"/>
+                            <field name="phone" widget="phone"/>
+                            <label for="" name="address_name">
+                                <b attrs="{'invisible': [('type', '!=', 'contact')]}">Address</b>
+                                <b attrs="{'invisible': [('type', '!=', 'invoice')]}">Invoice Address</b>
+                                <b attrs="{'invisible': [('type', '!=', 'delivery')]}">Delivery Address</b>
+                                <b attrs="{'invisible': [('type', '!=', 'other')]}">Other Address</b>
+                                <b attrs="{'invisible': [('type', '!=', 'private')]}">Private Address</b>
+                                <b attrs="{'invisible': [('type', '!=', False)]}">Address</b>
+                            </label>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                <field name="city" placeholder="City" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'zip': zip}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                            </div>
+                            <field name="technical_contact" widget="phone" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
+                            <field name="email" string="Billing Contact" widget="phone" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
+                            <field name="type" groups="base.group_no_one" invisible="1"/>
+                            <field name="vat" placeholder="e.g. BE0477472701" attrs="{'readonly': [('parent_id','!=',False)]}" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="pop_id">
+                                <tree string="POP Service Coverage">
+                                    <field name="pop_id"/>
+                                    <field name="pop_name"/>
+                                </tree>
+                            </field>
+                            <field name="customer_type" string="Customer Type"/>
+                            <field name="industry"/>
+                            <field name="industry_cluster"/>
+                            <field name="total_service"/>
+                            <!-- <field name="total_revenue"/> -->
+                            <field name="revenue_month" string="Monthly Tariff" widget="integer"/>
+                            <field name="arpu_month" widget="integer"/>
+                            <field name="user_ids" invisible="1"/>
+                            <field name="active_lang_count" invisible="1"/>
+                            <label for="lang" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
+                            <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
+                                <field name="lang"/>
+                                <button type="action" name="55" class="btn-sm btn-link mb4 fa fa-globe" aria-label="More languages" groups="base.group_system" title="More languages"/>
+                            </div>
+                            <field name="tenant_floor" invisible="1"/>
+                            <field name="tenant_budget" invisible="1"/>
+                            <field name="tenant_existing_provider" invisible="1"/>
+                            <field name="tenant_service" invisible="1"/>
+                            <field name="tenant_program" invisible="1"/>
+                            <field name="tenant" invisible="1"/>
+                        </group>
+                    </group>
+                <notebook>
+                    <page string="Service Detail">
+                        <field name="sale_subcription_ids" readonly="1"/>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="revenue_month" class="oe_subtotal_footer_separator" widget="integer" options="{'currency_field': 'currency_id'}" modifiers="{'readonly': true}"/>
+                            </group>
+                    </page>
+                      
+                </notebook>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="inherit_customer_kanban_view" model="ir.ui.view">
+      <field name="name">inherit_customer_kanban_view</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//kanban/templates//div//div/strong/field[@name='display_name']" position="after">
+            <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                <ul>
+                    <field name="brand_object"/>
+                </ul>
+          <!-- <li t-if="record.brand_object.raw_value and !record.function.raw_value"><field name="brand_object"/></li> -->
+        </xpath>
+      </field>
+    </record>
+
+
+    <record id="view_velo_customer_tree" model="ir.ui.view">
+        <field name="name">Customers List</field>
+        <field name="model">res.partner</field>
+        <field eval="0" name="priority"/>
+        <field name="arch" type="xml">
+          <tree string="Customer">
+              <field name="name" string="Cust Name" width="10"/>
+              <field name="id_object" string="Cust ID" width="15"/>
+              <field name="pop_name" width="10"/>
+              <field name="industry" width="10"/>
+              <field name="revenue_month" string="Monthly Tariff" widget="integer" width="15"/>
+              <field name="arpu_month" string="ARPU" widget="integer" width="10"/>
+              <field name="space"/>
+              <field name="service_id" width="10"/>
+              <field name="exp_date" width="10"/>
+              <field name="space"/>
+              <field name="activation_date" width="10"/>
+              <field name="space"/>
+              <field name="termination_date" width="10"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="action_velo_partner_customer_form" model="ir.actions.act_window">
+          <field name="name">Customers</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">res.partner</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="domain">[('tenant','=', False),('customer_rank','>', 0)]</field>
+          <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+          <field name="filter" eval="True"/>
+          <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+              Create a new customer in your address book
+            </p><p>
+              Odoo helps you easily track all activities related to a customer.
+            </p>
+          </field>
+      </record>
+
+
+      <record id="res_partner_velo_view_search" model="ir.ui.view">
+          <field name="name">res.partner_velo.search.inherit</field>
+          <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_res_partner_filter"/>
+          <field name="arch" type="xml">
+              <xpath expr="//filter[@name='inactive']" position="before">
+                 <filter string="Potential" name="tenant" domain="[('tenant','>', 0),('customer_rank','>', 0)]"/>
+                 <filter string="Customer" name="realcustomer" domain="[('tenant','=', False),('customer_rank','>', 0)]"/>
+              </xpath>
+          </field>
+      </record>
+
+      <record id="inherit_pop_industry_cluster_view" model="ir.ui.view">
+          <field name="name">pop.industry.cluster.inherit</field>
+          <field name="model">pop.industry.cluster</field>
+          <field name="inherit_id" ref="velo_service_coverage.view_pop_industry_cluster_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//notebook" position="inside">
+                <page string="Customer" name="industry_cluster_customer">
+                    <field name="industry_cluster_customer_ids">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="name" string="Customer Name" width="2"/>
+                            <field name="id_object" width="1"/>
+                            <field name="industry" width="1"/>
+                            <field name="revenue_month" width="1"/>
+                            <field name="service_id" width="1"/>
+                            <field name="exp_date" width="1"/>
+                        </tree>
+                        <form create="false" delete="false">
+                            <sheet>
+                                <div class="oe_title">
+                                        <label for="name" class="oe_edit_only"/>
+                                        <h1><field name="name" placeholder="Company"/></h1>
+                                </div> 
+                                <group>  
+                                    <group>
+                                        <field name="id_object"/>
+                                        <field name="brand_object"/>
+                                        <field name="group_object"/>
+                                        <field name="phone" widget="phone"/>
+                                        <field name="contact_name"/>
+                                        <field name="mobile"/>
+                                        <field name="email"/>
+                                        <field name="street"/>
+                                    </group>
+                                    <group>
+                                        <field name="pop_id">
+                                            <tree string="POP Service Coverage">
+                                                <field name="pop_id"/>
+                                                <field name="pop_name"/>
+                                            </tree>
+                                        </field>
+                                        <field name="customer_type" string="Customer Type"/>
+                                        <field name="industry" string="Industry"/>
+                                        <field name="industry_cluster" string="Industry Cluster"/>
+                                        <field name="total_service"/>
+                                        <field name="revenue_month"/>
+                                        <field name="arpu_month"/>
+                                    </group>
+                                </group>
+                                    <notebook>
+                                        <page string="Contract">
+                                            <field name="sale_subcription_ids"/>
+                                                <group class="oe_subtotal_footer oe_right">
+                                                    <field name="revenue_month" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}" modifiers="{'readonly': true}"/>
+                                                </group>
+                                        </page>
+                                    </notebook>
+                            </sheet>
+                        </form>                              
+                    </field>
+                </page>
+                <page string="Potential" name="Potential">
+                    <field name="pop_potential_ids">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="name" string="Company" width="2"/>
+                            <field name="tenant_budget" width="1"/>
+                            <field name="tenant_existing_provider" width="1"/>
+                            <field name="tenant_service" width="1"/>
+                            <field name="tenant_expired" width="1"/>
+                            <field name="tenant_sales_pipeline2" width="1"/>
+                        </tree>
+                        <form create="false" delete="false">
+                            <sheet>
+                                <div class="oe_title">
+                                        <label for="name" class="oe_edit_only"/>
+                                        <h1><field name="name" placeholder="Company"/></h1>
+                                </div> 
+                                <group>  
+                                    <group>
+                                        <field name="brand_object"/>
+                                        <field name="group_object"/>
+                                        <field name="phone" widget="phone"/>
+                                        <field name="contact_name"/>
+                                        <field name="mobile"/>
+                                        <field name="email"/>
+                                        <field name="street"/>
+                                    </group>
+                                    <group>
+                                        <field name="pop_id">
+                                            <tree string="POP Service Coverage">
+                                                <field name="pop_id"/>
+                                                <field name="pop_name"/>
+                                            </tree>
+                                        </field>
+                                        <field name="customer_type" string="Customer Type"/>
+                                        <field name="industry" string="Industry"/>
+                                        <field name="industry_cluster" string="Industry Cluster"/>
+                                        <field name="tenant_am"/>
+                                        <field name="tenant_remarks"/>
+                                    </group>
+                                </group>
+                                    <notebook>
+                                        <page string="Location">
+                                            <group>
+                                                <group>
+                                                    <field name="tenant_floor" />
+                                                    <field name="tenant_budget" />
+                                                    <field name="tenant_existing_provider" />
+                                                    <field name="tenant_service" />
+                                                    <field name="tenant_program" />
+                                                </group>
+                                                <group>
+                                                    <field name="tenant_total_user" />
+                                                    <field name="tenant_expired" />
+                                                    <field name="tenant_sales_pipeline2" />
+                                                    <field name="tenant" invisible="0"/>
+                                                </group>
+                                            </group>
+                                        </page>
+                                    </notebook>
+                            </sheet>
+                        </form>                              
+                    </field>
+                </page>
+                
+              </xpath>
+          </field>
+      </record>
+
+      <record id="inherit_pop_service_coverage_view" model="ir.ui.view">
+          <field name="name">pop.service.coverage.inherit</field>
+          <field name="model">pop.service.coverage</field>
+          <field name="inherit_id" ref="velo_service_coverage.view_pop_service_coverage_form"/>
+          <field name="arch" type="xml">
+              <field name="pop_pic_bm" position="after">
+                  <field name="pic_manager"/>
+                  <field name="pic_id" string="AM" invisible="1"/>
+              </field>
+              <xpath expr="//notebook" position="inside">
+                <page string="Sellable Product" name="product">
+                    <field name="product_template_ids"/>
+                </page>
+                <page string="Customer" name="customer">
+                    <field name="res_partner">
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="name" string="Cust Name" width="10"/>
+                            <field name="id_object" string="Cust ID" width="5"/>
+                            <field name="industry" width="5"/>
+                            <field name="revenue_month" string="Monthly Tariff" widget="integer" width="10"/>
+                            <!-- <field name="arpu_month" string="ARPU" widget="integer" width="10"/> -->
+                            <field name="space"/>
+                            <field name="service_id" width="8"/>
+                            <field name="exp_date" width="8"/>
+                            <!-- <field name="space"/> -->
+                            <!-- <field name="activation_date" width="8"/> -->
+                            <!-- <field name="space"/> -->
+                            <!-- <field name="termination_date" width="8"/> -->
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="pop_total_monthly_tariff" class="oe_subtotal_footer_separator" string="Total Monthly Tariff" widget="integer" options="{'currency_field': 'currency_id'}" modifiers="{'readonly': true}"/>
+                    </group>
+                </page>
+                <page string="Potential" name="Potential">
+                    <field name="pop_tenant_id" >
+                        <tree editable="bottom" create="false" delete="false">
+                            <field name="name" string="Potential Name" width="2"/>
+                            <field name="tenant_existing_provider" width="1"/>
+                            <field name="tenant_expired" width="1"/>
+                            <field name="tenant_budget" width="1"/>
+                            <field name="tenant_program" string="Marketing Program" width="1"/>
+                            <field name="tenant_sales_pipeline2" string="Pipeline Progress" width="1"/>
+
+                        </tree>
+                        <form create="false" delete="false">
+                            <sheet>
+                                <div class="oe_title">
+                                        <label for="name" class="oe_edit_only"/>
+                                        <h1><field name="name" placeholder="Company"/></h1>
+                                </div> 
+                                <group>  
+                                    <group>
+                                        <field name="brand_object"/>
+                                        <field name="group_object"/>
+                                        <field name="phone" widget="phone"/>
+                                        <field name="contact_name"/>
+                                        <field name="mobile"/>
+                                        <field name="email"/>
+                                        <field name="street"/>
+                                    </group>
+                                    <group>
+                                        <field name="pop_id">
+                                            <tree string="POP Service Coverage">
+                                                <field name="pop_id"/>
+                                                <field name="pop_name"/>
+                                            </tree>
+                                        </field>
+                                        <field name="customer_type" string="Customer Type"/>
+                                        <field name="industry" string="Industry"/>
+                                        <field name="industry_cluster" string="Industry Cluster"/>
+                                        <field name="tenant_am"/>
+                                        <field name="tenant_remarks"/>
+                                    </group>
+                                </group>
+                                    <notebook>
+                                        <page string="Location">
+                                            <group>
+                                                <group>
+                                                    <field name="tenant_floor" />
+                                                    <field name="tenant_budget" />
+                                                    <field name="tenant_existing_provider" />
+                                                    <field name="tenant_service" />
+                                                    <field name="tenant_program" />
+                                                </group>
+                                                <group>
+                                                    <field name="tenant_total_user" />
+                                                    <field name="tenant_expired" />
+                                                    <field name="tenant_sales_pipeline2" />
+                                                    <field name="tenant" invisible="0"/>
+                                                </group>
+                                            </group>
+                                        </page>
+                                    </notebook>
+                            </sheet>
+                        </form>                       
+                    </field>
+                </page>
+              </xpath>
+          </field>
+      </record>
+
+
+      
+
+      
+      <record id="action_velo_partner_customer_form_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_velo_customer_tree"/>
+          <field name="act_window_id" ref="action_velo_partner_customer_form"/>
+      </record>
+      <record id="action_velo_partner_customer_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_customer_form"/>
+          <field name="act_window_id" ref="action_velo_partner_customer_form"/>
+      </record>
+      <record id="action_velo_partner_customer_form_view1" model="ir.actions.act_window.view">
+          <field eval="4" name="sequence"/>
+          <field name="view_mode">kanban</field>
+          <field name="view_id" ref="base.res_partner_kanban_view"/>
+          <field name="act_window_id" ref="action_velo_partner_customer_form"/>
+      </record>
+
+    <record id="action_velo_customer_brand_form" model="ir.actions.act_window">
+        <field name="name">Brand</field>
+        <field name="res_model">brand.object</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <!-- <field name="search_view_id" ref="base.view_res_partner_filter"/> -->
+        <field name="help" type="html">
+            <p>
+                Click to Add Brand
+            </p>
+        </field>
+    </record>
+
+    <record id="action_velo_customer_group_form" model="ir.actions.act_window">
+        <field name="name">Group</field>
+        <field name="res_model">group.object</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <!-- <field name="search_view_id" ref="base.view_res_partner_filter"/> -->
+        <field name="help" type="html">
+            <p>
+                Click to Add Brand
+            </p>
+        </field>
+    </record>
+
+
+  </data>
+</odoo>

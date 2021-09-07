@@ -1,0 +1,119 @@
+<odoo>
+  <data>
+
+    <record id="view_order_cperf_tree" model="ir.ui.view">
+            <field name="name">order.cperf.tree</field>
+            <field name="model">order.cperf</field>
+            <field name="arch" type="xml">
+                <tree string="CPERF">
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="brand_name"/>
+                    <field name="activation_date"/>
+                    <field name="invoice_date"/>
+                    <field name="contract_tarif"/>
+                    <field name="tect_cp"/>
+                    <field name="bill_cp"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_order_cperf_form" model="ir.ui.view">
+            <field name="name">order.cperf.form</field>
+            <field name="model">order.cperf</field>
+            <field name="arch" type="xml">
+                <form string="CPERF">
+                    <header>
+                        <button name="action_proses" string="Confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_cancel" string="Cancel" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"draft":"grey","active":"orange"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <div><field name="name" readonly="0"/></div>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_name"/>
+                                <field name="company_address"/>
+                                <field name="company_phone"/>
+                                <field name="brand_name"/>
+                            </group>
+                            <group>
+                                <field name="activation_date"/>
+                                <field name="invoice_date"/>
+                                <field name="contract_tarif"/>
+                                <field name="tect_cp"/>
+                                <field name="bill_cp"/>
+                            </group>
+                        </group>
+                        <div><h2>General Information</h2></div>
+                        <group>
+                            <group>
+                                <field name="iwo_ref"/>
+                                <field name="product_type"/>
+                                <field name="capacity"/>
+                                <field name="rack_server"/>
+                                <field name="other1"/>
+                            </group>
+                        </group>
+                        <div><h2>CPE Requirement for instalation</h2></div>
+                        <group>
+                            <group>
+                                <div><h3>Router</h3></div>
+                                <field name="router"/>
+                                <field name="number_of_unit_router"/>
+                                <field name="specification_router"/>
+                                <field name="preference_partner_router"/>
+                            </group>
+                            <group>
+                                <div><h3>Radio Link</h3></div>
+                                <field name="radio_link"/>
+                                <field name="number_of_unit_radio"/>
+                                <field name="specification_radio"/>
+                                <field name="preference_partner_radio"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <div><h3>Switch</h3></div>
+                                <field name="switch"/>
+                                <field name="number_of_unit_switch"/>
+                                <field name="specification_switch"/>
+                                <field name="preference_partner_switch"/>
+                            </group>
+                            <group>
+                                <div><h3>Other</h3></div>
+                                <field name="other2"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+      <record id="action_velo_order_cperf" model="ir.actions.act_window">
+        <field name="name">CPERF</field>
+        <field name="res_model">order.cperf</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new CPERF
+            </p>
+        </field>
+      </record>
+
+        <menuitem id="velo_order_cperf_menu"
+            parent="velo_order_acmrf_menu_head"
+            action="velo_order_fulfilment.action_velo_order_cperf"
+            sequence="3" />
+
+  </data>
+</odoo>

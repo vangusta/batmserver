@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_service_coverage_1,pop_type,model_pop_type,base.group_system,1,1,1,1
+access_service_coverage_2,pop_regional,model_pop_regional,base.group_system,1,1,1,1
+access_service_coverage_3,pop_area,model_pop_area,base.group_system,1,1,1,1
+access_service_coverage_5,pop_service_coverage,model_pop_service_coverage,base.group_system,1,1,1,1
+access_service_coverage_6,pop_industry,model_pop_industry,base.group_system,1,1,1,1
+access_service_coverage_8,pop_service,model_pop_service,base.group_system,1,1,1,1
+access_service_coverage_9,pop_industry_cluster,model_pop_industry_cluster,base.group_system,1,1,1,1
+access_service_coverage_10,pop_regional_hub,model_pop_hub_region,base.group_system,1,1,1,1
+access_service_coverage_11,pop_master,model_pop_master,base.group_system,1,1,1,1
+access_service_coverage_12,pop_overview_summary,model_pop_overview_summary,base.group_system,1,1,1,1

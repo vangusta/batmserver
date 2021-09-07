@@ -1,0 +1,54 @@
+.o_dashboard_view {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    padding: 4px 0;
+    background-color: white;
+}
+
+.o_dashboard_view > .o_group, .o_dashboard_view .o_subview {
+    flex: 1 1 100%;
+    margin: 0 5px 1rem;
+}
+
+.o_caption {
+    color: black!important;
+}
+
+
+.o_home_menu .o_home_menu_scrollable .o_apps {
+    padding-top:35px;
+    margin-left: 53px;
+    width: 117.7%;
+}
+
+    
+
+.o_home_menu_background:not(.o_home_menu_background_custom) .o_main_navbar {
+    border-color: transparent;
+    border-bottom: 1px solid #68465f;
+    background-color: #875A7B;
+}
+
+.o_home_menu {
+    background: url(/velo_product_pricing/static/src/img/background.jpg), linear-gradient(to right bottom, #77717e, #c9a8a9);
+    background-size: cover;
+}
+
+.o_home_menu .o_home_menu_scrollable .o_apps .o_app .o_app_icon {
+    max-width: 100px;
+}
+
+.o_menu_search {
+    background-color: black;
+   
+}
+
+.o_home_menu .o_home_menu_scrollable .o_menuitems {
+    background-color: black;
+}

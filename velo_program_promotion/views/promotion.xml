@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_velo_promo_form" model="ir.ui.view">
+            <field name="name">velo.promo.form</field>
+            <field name="model">velo.promo</field>
+            <field name="arch" type="xml">
+                <form string="Promotion">
+                    <sheet>
+                        <header>
+                            <field name="state" widget="statusbar" statusbar_visible="active" statusbar_colors='{"draft":"grey","active":"blue"}'/>
+                        </header>
+                        <!-- <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Promotion Name" required="True"/>
+                            </h1>
+                        </div> -->
+                        <group>
+                            <group>
+                                <field name="promo_type"/>
+                                <field name="name"/>
+                                <field name="start_period"/>
+                                <field name="finish_period"/>
+                                <field name="duration"/>
+                            </group>
+                            <group>
+                                <field name="pop_name"/>
+                                <field name="leads_generated"/>
+                                <field name="tarif_acquired"/>
+                                <field name="total_attendance"/>
+                            </group>
+                        </group>
+                        <!-- <group>
+                            <field name="content"/>
+                        </group> -->
+                        <notebook>
+                            <page string="Market Potential">
+                                <field name="market_potential_ids">
+                                    <tree editable="bottom">
+                                        <field name="potential_name" width="4"/>
+                                        <field name="existing_provider" width="4"/>
+                                        <field name="contract_expiry" width="4"/>
+                                        <field name="tarif_acquired" width="4"/>
+                                        <field name="sales_pipeline" width="4"/>
+                                        <field name="Attendance" width="4"/>
+                                        <field name="request_followup" width="4"/>
+                                        <field name="cold_leads" width="4"/>
+                                    </tree> 
+                                </field>
+                            </page>
+                            <page string="Leads Acquiered">
+                                <field name="leads_acquired_ids">
+                                    <tree editable="bottom">
+                                        <field name="company_name" width="4"/>
+                                        <field name="pop" width="4"/>
+                                        <field name="tarif_acquired" width="4"/>
+                                        <field name="existing" width="4"/>
+                                        <field name="sales_pipeline" width="4"/>
+                                        <field name="remarks" width="4"/>
+                                    </tree> 
+                                </field>
+                            </page>
+                            <page string="Promo Cost">
+                                <field name="promo_costs_ids">
+                                    <tree editable="bottom">
+                                        <field name="cost_name" width="4"/>
+                                        <field name="cost" width="4"/>
+                                        <field name="quantity" width="4"/>
+                                        <field name="desc" width="4"/>
+                                        <field name="total_costs" width="4"/>
+                                    </tree> 
+                                </field>
+                            </page>
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_velo_relation_form" model="ir.ui.view">
+            <field name="name">velo.relation.form</field>
+            <field name="model">velo.relation</field>
+            <field name="arch" type="xml">
+                <form string="Relation">
+                    <sheet>
+                        <header>
+                            <field name="state" widget="statusbar" statusbar_visible="active" statusbar_colors='{"draft":"grey","active":"blue"}'/>
+                        </header>
+                        <group>
+                            <group>
+                                <field name="relation_promo_type"/>
+                                <field name="relation_promo_code"/>
+                                <field name="name"/>
+                                <field name="start_period"/>
+                                <field name="finish_period"/>
+                                <field name="duration"/>
+                            </group>
+                            <group>
+                                <field name="relation_pop_name"/>
+                                <field name="relation_leads_generated"/>
+                                <field name="relation_tarif_acquired"/>
+                                <field name="relation_total_attendance"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Market Potential">
+                                <field name="relation_market_potential_ids">
+                                    <tree editable="bottom">
+                                        <field name="relation_potential_name" width="4"/>
+                                        <field name="relation_existing_provider" width="4"/>
+                                        <field name="relation_contract_expiry" width="4"/>
+                                        <field name="relation_tarif_acquired" width="4"/>
+                                        <field name="relation_sales_pipeline" width="4"/>
+                                        <field name="relation_Attendance" width="4"/>
+                                        <field name="relation_request_followup" width="4"/>
+                                        <field name="relation_cold_leads" width="4"/>
+                                    </tree> 
+                                </field>
+                            </page>
+                            <page string="Leads Acquiered">
+                                <field name="relation_leads_acquired_ids">
+                                    <tree editable="bottom">
+                                        <field name="relation_company_name" width="4"/>
+                                        <field name="relation_pop" width="4"/>
+                                        <field name="relation_tarif_acquired" width="4"/>
+                                        <field name="relation_existing" width="4"/>
+                                        <field name="relation_sales_pipeline" width="4"/>
+                                        <field name="relation_remarks" width="4"/>
+                                    </tree> 
+                                </field>
+                            </page>
+                            <page string="Promo Cost">
+                                <field name="relation_promo_costs_ids">
+                                    <tree editable="bottom">
+                                        <field name="relation_cost_name" width="4"/>
+                                        <field name="relation_cost" width="4"/>
+                                        <field name="relation_quantity" width="4"/>
+                                        <field name="relation_desc" width="4"/>
+                                        <field name="relation_total_costs" width="4"/>
+                                    </tree> 
+                                </field>
+                            </page>
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_velo_relation_tree" model="ir.ui.view">
+            <field name="name">velo.relation.tree</field>
+            <field name="model">velo.relation</field>
+            <field name="arch" type="xml">
+                <tree string="Relation">
+                    <field name="relation_promo_type"/>
+                    <field name="relation_promo_code"/>
+                    <field name="name"/>
+                    <field name="start_period"/>
+                    <field name="finish_period"/>
+                    <field name="duration"/>
+                    <field name="relation_pop_name"/>
+                    <field name="relation_leads_generated"/>
+                    <field name="relation_tarif_acquired"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_velo_promo_tree" model="ir.ui.view">
+            <field name="name">velo.promo.tree</field>
+            <field name="model">velo.promo</field>
+            <field name="arch" type="xml">
+                <tree string="Promotion">
+                    <field name="promo_type"/>
+                    <field name="name"/>
+                    <field name="start_period"/>
+                    <field name="finish_period"/>
+                    <field name="duration"/>
+                    <field name="pop_name"/>
+                    <field name="leads_generated"/>
+                    <field name="tarif_acquired"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_velo_relation" model="ir.actions.act_window">
+            <field name="name">Relation</field>
+            <field name="res_model">velo.relation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Relation
+             </p>
+            </field>
+        </record>
+
+        <record id="action_velo_promo" model="ir.actions.act_window">
+            <field name="name">Promo</field>
+            <field name="res_model">velo.promo</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Promo
+             </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_velo_promo" 
+                  name="Promo" 
+                  parent="velo_program_promotion.header_program_promotion" 
+                  sequence="2" 
+                  action="velo_program_promotion.action_velo_promo"/>
+
+         <menuitem id="menu_velo_relation" 
+                  name="Relation" 
+                  parent="velo_program_promotion.header_program_promotion" 
+                  sequence="6" 
+                  action="velo_program_promotion.action_velo_relation"/>
+    </data>
+</odoo>

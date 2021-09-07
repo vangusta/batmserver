@@ -1,0 +1,1177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="number_customer_service_coverage" model="ir.ui.view">
+        <field name="name">Number Customer Service Coverage</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Customer">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="monthly_tariff_service_coverage" model="ir.ui.view">
+        <field name="name">Monthly Tariff Service Coverage</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Customer">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="total_potential_service_coverage" model="ir.ui.view">
+        <field name="name">Total Potential Service Coverage</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Potential">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_velo_tenant_form" model="ir.ui.view">
+        <field name="name">view.velo.customer.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Partners">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="apthtl_overview_action" model="ir.actions.act_window">
+        <field name="name">Number POP APT-HTL</field>
+        <field name="res_model">pop.service.coverage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('pop_type','=', 'APT-HTL')]</field>
+    </record>
+
+    <record id="bws_overview_action" model="ir.actions.act_window">
+        <field name="name">Number POP BWS</field>
+        <field name="res_model">pop.service.coverage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('pop_type','=', 'BWS')]</field>
+    </record>
+
+    <record id="dc_overview_action" model="ir.actions.act_window">
+        <field name="name">Number POP DC</field>
+        <field name="res_model">pop.service.coverage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('pop_type','=', 'DC')]</field>
+    </record>
+
+    <record id="fdc_overview_action" model="ir.actions.act_window">
+        <field name="name">Number POP FDC</field>
+        <field name="res_model">pop.service.coverage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('pop_type','=', 'FDC')]</field>
+    </record>
+    
+    <record id="hrb_overview_action" model="ir.actions.act_window">
+        <field name="name">Number POP HRB</field>
+        <field name="res_model">pop.service.coverage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('pop_type','=', 'HRB')]</field>
+    </record>
+
+    <record id="noc_overview_action" model="ir.actions.act_window">
+        <field name="name">Number POP NOC</field>
+        <field name="res_model">pop.service.coverage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('pop_type','=', 'NOC')]</field>
+    </record>
+
+
+    <record id="number_customer_apt_htl" model="ir.actions.act_window">
+        <field name="name">Customer APT-HTL</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'APT-HTL')]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+    <record id="number_customer_bws" model="ir.actions.act_window">
+        <field name="name">Customer BWS</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type', '=', 'BWS')]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+    <record id="number_customer_dc" model="ir.actions.act_window">
+        <field name="name">Customer DC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type', '=', 'DC')]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+    <record id="number_customer_fdc" model="ir.actions.act_window">
+        <field name="name">Customer FDC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type', '=', 'FDC')]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+    <record id="number_customer_hrb" model="ir.actions.act_window">
+        <field name="name">Customer HRB</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type', '=', 'HRB')]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+    <record id="number_customer_noc" model="ir.actions.act_window">
+        <field name="name">Customer NOC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type', '=', 'NOC')]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+    <record id="number_customer_total" model="ir.actions.act_window">
+        <field name="name">Total Customer</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False)]</field>
+        <field name="view_id" ref="number_customer_service_coverage"/>
+    </record>
+
+
+    <record id="monthly_tariff_apt_htl" model="ir.actions.act_window">
+        <field name="name">Monthly Tariff APT-HTL</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'APT-HTL')]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="monthly_tariff_bws" model="ir.actions.act_window">
+        <field name="name">Monthly Tariff BWS</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'BWS')]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="monthly_tariff_dc" model="ir.actions.act_window">
+        <field name="name">Monthly Tariff DC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'DC')]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="monthly_tariff_fdc" model="ir.actions.act_window">
+        <field name="name">Monthly Tariff FDC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'FDC')]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="monthly_tariff_hrb" model="ir.actions.act_window">
+        <field name="name">Monthly Tariff HRB</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'HRB')]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="monthly_tariff_noc" model="ir.actions.act_window">
+        <field name="name">Monthly Tariff NOC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False), ('pop_id.pop_type','=', 'NOC')]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="monthly_tariff_total" model="ir.actions.act_window">
+        <field name="name">Total Monthly Tariff</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('customer_rank', '=', 1), ('tenant', '=', False)]</field>
+        <field name="view_id" ref="monthly_tariff_service_coverage"/>
+    </record>
+
+    <record id="total_potential_apt_htl" model="ir.actions.act_window">
+        <field name="name">Total Potential APT-HTL</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'APT-HTL')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="total_potential_bws" model="ir.actions.act_window">
+        <field name="name">Total Potential BWS</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'APT-HTL')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="total_potential_dc" model="ir.actions.act_window">
+        <field name="name">Total Potential DC</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'DC')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <!-- <record id="total_potential_fdc" model="ir.actions.act_window">
+        <field name="name">Total Potential FDC</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'FDC')]</field>
+        <field name="view_id" ref="total_potential_service_coverage"/>
+    </record> -->
+
+    <record id="total_potential_fdc" model="ir.actions.act_window">
+        <field name="name">Total Potential FDC</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'FDC')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="total_potential_hrb" model="ir.actions.act_window">
+        <field name="name">Total Potential HRB</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'HRB')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="total_potential_noc" model="ir.actions.act_window">
+        <field name="name">Total Potential NOC</field>
+        <field name="res_model">res.partner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1), ('pop_id.pop_type','=', 'NOC')]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="total_potential" model="ir.actions.act_window">
+        <field name="name">Total Potential</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('tenant','=', 1)]</field>
+        <field name="context">{'res_partner_search_mode': 'realcustomer','default_is_company': True}</field>
+        <field name="filter" eval="True"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new customer in your address book
+            </p><p>
+            Odoo helps you easily track all activities related to a customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_service_coverage_apt_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential_apt_htl"/>
+    </record>
+    <record id="action_service_coverage_apt_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="act_window_id" ref="total_potential_apt_htl"/>
+    </record>
+
+    <record id="action_service_coverage_bws_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential_bws"/>
+    </record>
+    <record id="action_service_coverage_bws_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="act_window_id" ref="total_potential_bws"/>
+    </record>
+
+    <record id="action_service_coverage_dc_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential_dc"/>
+    </record>
+    <record id="action_service_coverage_dc_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="act_window_id" ref="total_potential_dc"/>
+    </record>
+
+    <record id="action_service_coverage_fdc_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential_fdc"/>
+    </record>
+    <record id="action_service_coverage_fdc_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="act_window_id" ref="total_potential_fdc"/>
+    </record>
+
+    <record id="action_service_coverage_hrb_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential_hrb"/>
+    </record>
+    <record id="action_service_coverage_hrb_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <field name="act_window_id" ref="total_potential_hrb"/>
+    </record>
+
+    <record id="action_service_coverage_noc_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential_noc"/>
+    </record>
+    <record id="action_service_coverage_noc_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="act_window_id" ref="total_potential_noc"/>
+    </record>
+
+    <record id="action_service_coverage_total_potential_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="total_potential_service_coverage"/>
+          <field name="act_window_id" ref="total_potential"/>
+    </record>
+    <record id="action_service_coverage_total_potential_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_velo_tenant_form"/>
+          <!-- <field name="view_id" ref="total_potential_service_coverage"/> -->
+          <field name="act_window_id" ref="total_potential"/>
+    </record>
+    
+    <!-- view -->
+    
+    <record id="view_pop_master_form" model="ir.ui.view">
+      <field name="name">view.pop.master.form</field>
+      <field name="model">pop.service.coverage</field>
+      <field eval="2" name="priority"/>
+      <field name="arch" type="xml">
+        <form string="POP Master">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_name" class="oe_edit_only"/>
+                  <h1><field name="pop_name" placeholder="POP Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pop_id"/>
+                    <field name="pop_type"/>
+                    <field name="service_delivery"/>
+                    <field name="pop_regional"/>
+                    <field name="pop_area"/>
+                </group>
+                <group>
+                    <field name="longitude"/>
+                    <field name="latitude"/>
+                    <field name="regionalhub"/>
+                    <field name="state"/>                           
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_overview_form" model="ir.ui.view">
+      <field name="name">view.pop.overview.form</field>
+      <field name="model">pop.service.coverage</field>
+      <field eval="5" name="priority"/>
+      <field name="arch" type="xml">
+        <form string="POP Master">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_name" class="oe_edit_only"/>
+                  <h1><field name="pop_name" placeholder="POP Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pop_type"/>
+                    <field name="number_pop"/>
+                    <field name="pop_total_customer"/>
+                </group>
+                <group>
+                    <field name="pop_monthly_tarif"/>
+                    <field name="pop_total_potential"/>
+                    <field name="pop_total_penetration"/>                           
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_regional_form" model="ir.ui.view">
+      <field name="name">view.pop.regional.form</field>
+      <field name="model">pop.regional</field>
+      <field name="arch" type="xml">
+        <form string="POP Regional">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_regional_name" class="oe_edit_only"/>
+                  <h1><field name="pop_regional_name" placeholder="Regional Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pop_regional_id"/>
+                    <field name="pop_regional_description"/>                   
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_area_form" model="ir.ui.view">
+      <field name="name">view.pop.area.form</field>
+      <field name="model">pop.area</field>
+      <field name="arch" type="xml">
+        <form string="POP Area">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_area_name" class="oe_edit_only"/>
+                  <h1><field name="pop_area_name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="area_id"/>
+                    <field name="pop_area_description"/>  
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="view_pop_type_form" model="ir.ui.view">
+      <field name="name">view.pop.type.form</field>
+      <field name="model">pop.type</field>
+      <field name="arch" type="xml">
+        <form string="POP Type Details">
+          <sheet>
+            <div class="oe_title">
+            <label for="poptype_name" class="oe_edit_only"/>
+                  <h1><field name="poptype_name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="poptype_description"/>                   
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_regional_hub_form" model="ir.ui.view">
+      <field name="name">view.pop.regional.hub.form</field>
+      <field name="model">pop.hub.region</field>
+      <field name="arch" type="xml">
+        <form string="POP Regional Hub">
+          <sheet>
+            <div class="oe_title">
+            <label for="regionalhub_name" class="oe_edit_only"/>
+                  <h1><field name="regionalhub_name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="regionalhub_id"/>                   
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_service_coverage_form" model="ir.ui.view">
+      <field name="name">view.pop.service.coverage.form</field>
+      <field name="model">pop.service.coverage</field>
+      <field eval="1" name="priority"/>
+      <field name="arch" type="xml">
+        <!-- <form string="Service Coverage" create="false"> -->
+        <form string="Service Coverage">
+          <header>
+                <button name="action_active" string="Active" class="oe_highlight" type="object" state="draft"/>
+                <button name="action_inactive" string="Inactive" class="oe_highlight" type="object" state="draft"/>
+                <button name="action_draft" string="Reset to draft" type="object" state="active,inactive" />
+                <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_name" class="oe_edit_only"/>
+                  <h1><field name="pop_name" placeholder="Name..."/></h1>
+            </div>        
+            <group>
+                <group>
+                    <field name="pop_id"/>
+                    <field name="pop_regional"/>
+                    <field name="pop_area" domain="[('area_id', '=', pop_regional)]"/>
+                    <field name="pop_type"/>
+                    <field name="pop_industry"/>
+                    <field name="pop_capacity"/>
+                    <field name="primary_link_capacity"/>
+                    <field name="backup_link_partner"/>
+                    <field name="backup_link_capacity"/>
+                    <field name="pop_pic_bm"/>
+                    <field name="pop_metroe"/>                   
+                </group>
+                <group>
+                    <field name="pop_total_potential"/>
+                    <field name="pop_total_customer"/>
+                    <field name="pop_total_penetration" widget="percentage"/>
+                    <field name="pop_total_monthly_tariff" widget="integer"/>
+                    <field name="pop_arpu" widget="integer"/>
+                    <field name="pop_program"/>
+                    <field name="pop_cold_leads" string="Cold Leads" width="15"/>
+                    <field name="pop_total_customer_hrb" invisible="1"/>
+                    <field name="pop_total_monthly_tarif_hrb" invisible="1"/>
+                    <field name="pop_total_service_hrb" invisible="1"/>
+                    <field name="pop_total_sales_focus" invisible="1"/>
+                    <field name="pop_total_order_booking" invisible="1"/>
+                    <field name="pop_order_booking_this_month" invisible="1"/>
+                </group>  
+            </group>  
+            <group>
+                <notebook>
+                
+                   
+                </notebook>
+            </group>        
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_industry_form" model="ir.ui.view">
+      <field name="name">view.pop.industry.form</field>
+      <field name="model">pop.industry</field>
+      <field name="arch" type="xml">
+        <form string="Industry">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_industry_name" class="oe_edit_only"/>
+                  <h1><field name="pop_industry_name" placeholder="Name..."/></h1>
+            </div>        
+            <group>
+                <group>
+                    <field name="pop_industry_number_of_customer"/>
+                    <field name="pop_industry_revenue_month" widget="integer"/>
+                    <field name="pop_industry_arpu" widget="integer"/>
+                    <field name="pop_industry_number_of_service"/>
+                    <field name="pop_industry_potential"/> 
+                    <field name="pop_industry_penetration"/>             
+                </group>
+                <group>
+                    <field name="pop_industry_ob_quota"/>
+                    <field name="pop_industry_ytd_achivement"/>
+                    <field name="pop_industry_achieve" widget="percentage"/>
+                    <field name="manager_incharge"/>
+                </group>  
+            </group>
+            <group>
+                <notebook>
+                    <page string="Industry Cluster">
+                        <field name="pop_industry_cluster_ids" readonly="1">
+                            <tree string="Industry Cluster List">
+                                <field name="pop_industry_cluster_name"/>
+                                <field name="pop_industry_cluster_total_customer"/>
+                                <field name="pop_industry_cluster_total_potential"/>
+                                <field name="pop_industry_cluster_total_penetration" widget="percentage"/>
+                                <field name="pop_industry_cluster_revenue_month" widget="integer"/>
+                                <field name="space"/>
+                                <field name="pop_industry_cluster_pic_am"/>
+                                <field name="pop_industry_cluster_cold_leads"/>
+                                <field name="pop_industry_cluster_mcfc"/>
+                                <field name="pop_industry_cluster_sf_this_month"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Service Coverage">
+                        <field name="pop_service_coverage_ids" readonly="1">
+                            <tree string="POP List">
+                                <field name="pop_name"/>
+                                <field name="pop_total_customer_hrb"/>
+                                <field name="pop_total_potential"/>
+                                <field name="pop_total_penetration_hrb" string="POP Penetration" widget="percentage"/>
+                                <field name="pop_total_monthly_tarif_hrb" string="Monthly Tariff" widget="integer"/>
+                                <field name="pop_pic_am"/>
+                                <field name="space"/>
+                                <!-- <field name="pop_pic_manager"/> -->
+                                <field name="pop_cold_leads"/>
+                                <field name="pop_mcfc"/>
+                                <field name="pop_total_sales_focus"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </group>          
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_industry_cluster_form" model="ir.ui.view">
+      <field name="name">view.pop.industry.cluster.form</field>
+      <field name="model">pop.industry.cluster</field>
+      <field name="arch" type="xml">
+        <form string="Industry Cluster">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_industry_cluster_name" class="oe_edit_only"/>
+                  <h1><field name="pop_industry_cluster_name" placeholder="Name..."/></h1>
+            </div>        
+            <group>
+                <group>
+                    <field name="pop_industry_cluster_description"/>
+                    <field name="pop_industry_cluster_id"/>
+                    <field name="pop_industry_cluster_manager" string="Manager"/>
+                    <field name="pop_industry_cluster_pic_am" string="Account Management"/>   
+                    <field name="cluster_id" string="Industry Type"/>       
+                </group>
+                <group>
+                    <field name="pop_industry_cluster_total_penetration" widget="percentage"/>
+                    <field name="pop_industry_cluster_total_customer"/>
+                    <field name="pop_industry_cluster_total_potential"/>
+                    <field name="pop_industry_cluster_cold_leads"/>
+                    <field name="pop_industry_cluster_total_revenue" invisible="1"/>
+                    <field name="pop_industry_cluster_revenue_month" widget="integer"/>
+                    <field name="pop_industry_cluster_arpu" widget="integer"/>
+                </group>  
+            </group>
+                <notebook>
+
+                </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_service_form" model="ir.ui.view">
+      <field name="name">view.pop.service.form</field>
+      <field name="model">pop.service</field>
+      <field name="arch" type="xml">
+        <form string="POP Service">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_service" class="oe_edit_only"/>
+                  <h1><field name="pop_service" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pop_service_id" invisible="1"/>
+                    <field name="pop_service_company"/>
+                    <field name="pop_service_contract_period"/>
+                    <field name="pop_service_monthly_tarif"/>
+                    <field name="pop_service_total_revenue"/> 
+                    <field name="pop_service_industry_cluster"/>                  
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Tree -->
+    <record id="view_pop_master_tree" model="ir.ui.view">
+        <field name="name">view.pop.master.tree</field>
+        <field name="model">pop.service.coverage</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+              <tree string="POP Master">
+                    <field name="pop_id"/>
+                    <field name="pop_type"/>
+                    <field name="service_delivery"/>
+                    <field name="pop_regional"/>
+                    <field name="pop_area"/>
+                    <field name="longitude"/>
+                    <field name="latitude"/>
+                    <field name="regionalhub"/>
+                    <field name="state"/> 
+              </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_overview_tree" model="ir.ui.view">
+        <field name="name">view.pop.overview.tree</field>
+        <field name="model">pop.service.coverage</field>
+        <field eval="4" name="priority"/>
+        <field name="arch" type="xml"> 
+              <tree string="POP Overview">
+                    <field name="pop_type" width="50"/>
+                    <field name="number_pop" width="80"/>
+                    <field name="pop_total_customer" width="80"/>
+                    <field name="pop_monthly_tarif" width="80"/>
+                    <field name="pop_total_potential" width="80"/>
+                    <field name="pop_total_penetration" width="80"/>
+              </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_regional_tree" model="ir.ui.view">
+        <field name="name">view.pop.regional.tree</field>
+        <field name="model">pop.regional</field>
+        <field name="arch" type="xml">
+          <tree string="POP Regional">
+              <field name="pop_regional_name"/>
+              <field name="pop_regional_id"/>
+              <field name="pop_regional_description"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_area_tree" model="ir.ui.view">
+        <field name="name">view.pop.area.tree</field>
+        <field name="model">pop.area</field>
+        <field name="arch" type="xml">
+          <tree string="POP Area">
+              <field name="pop_area_name"/>
+              <field name="area_id"/>
+              <field name="pop_area_description"/>
+          </tree>
+        </field>
+    </record>
+
+
+    <record id="view_pop_type_tree" model="ir.ui.view">
+        <field name="name">view.pop.type.tree</field>
+        <field name="model">pop.type</field>
+        <field name="arch" type="xml">
+          <tree string="POP Type">
+              <field name="poptype_name"/>
+              <field name="poptype_description"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_service_coverage_tree" model="ir.ui.view">
+        <field name="name">view.pop.service.coverage.tree</field>
+        <field name="model">pop.service.coverage</field>
+        <field eval="1" name="priority"/>
+        <field name="arch" type="xml">
+          <!-- <tree string="POP"  create="false"> -->
+          <tree string="POP">
+              <field name="pop_name" string="POP Name"/>
+              <field name="pop_total_customer" string="POP Customer" width="15"/>
+              <field name="pop_total_potential" string="POP Potential" width="20"/>
+              <field name="pop_total_penetration" widget="percentage" string="POP Penetration" width="15"/>
+              <field name="pop_total_monthly_tariff" widget="integer" string="Monthly Tariff" width="15"/>
+              <field name="pop_arpu" string="ARPU" widget="integer" width="15px"/>
+              <field name="pop_total_sales_focus" string="Marketing Program" width="15"/>
+              <field name="pop_cold_leads" string="Cold Leads" width="15"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_industry_tree" model="ir.ui.view">
+        <field name="name">view.pop.industry.tree</field>
+        <field name="model">pop.industry</field>
+        <field name="arch" type="xml">
+          <tree string="Industry">
+              <field name="pop_industry_name" string="Industry"/>
+              <field name="pop_industry_number_of_customer" string="Industry Customer"/>
+              <field name="pop_industry_potential"/>
+              <field name="pop_industry_penetration"/>
+              <field name="pop_industry_number_of_service" string="Number of Service"/>
+              <field name="pop_industry_arpu" string="ARPU"/>
+              <field name="pop_industry_revenue_month" string="Monthly Tariff" widget="integer"/>
+              <field name="pop_industry_ob_quota" widget="integer"/>
+              <field name="pop_industry_ytd_achivement" string="YTD Achivement"/>
+              <field name="pop_industry_achieve" string="Achieve %" widget="percentage"/>
+              <field name="pop_industry_cold_leads"/>
+              <field name="pop_industry_mcfc"/>
+              <field name="pop_industry_sales_focus"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_industry_cluster_tree" model="ir.ui.view">
+        <field name="name">view.pop.industry.cluster.tree</field>
+        <field name="model">pop.industry.cluster</field>
+        <field name="arch" type="xml">
+          <tree string="Industry Cluster">
+              <field name="pop_industry_cluster_name" string="Industry Cluster/POP"/>
+              <field name="pop_industry_cluster_total_customer" string="Number of Customer"/>
+              <field name="pop_industry_cluster_total_potential" string="Number of Potential"/>
+              <field name="pop_industry_cluster_total_penetration" widget="percentage" string="Current Penetration"/>
+              <field name="pop_industry_cluster_revenue_month" string="Monthly Tariff"/>
+              <field name="pop_industry_cluster_pic_am" string="PIC-AM"/>
+              <field name="pop_industry_cluster_cold_leads" string="Cold Leads"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_regional_hub_tree" model="ir.ui.view">
+        <field name="name">view.pop.hub.region.tree</field>
+        <field name="model">pop.hub.region</field>
+        <field name="arch" type="xml">
+          <tree string="POP Regional Hub">
+              <field name="regionalhub_name"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_service_tree" model="ir.ui.view">
+        <field name="name">view.pop.service.tree</field>
+        <field name="model">pop.service</field>
+        <field name="arch" type="xml">
+          <tree string="POP Service">
+              <field name="pop_service_id" invisible="1"/>
+              <field name="pop_service"/>
+              <field name="pop_service_company"/>
+              <field name="pop_service_contract_period"/>
+              <field name="pop_service_monthly_tarif"/>
+              <field name="pop_service_total_revenue"/>
+              <field name="pop_service_industry_cluster"/>
+          </tree>
+        </field>
+    </record>
+
+    <!-- Action -->   
+
+
+    <record id="action_pop_master_views" model="ir.actions.act_window">
+          <field name="name">POP Master</field>
+          <field name="res_model">pop.service.coverage</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="view_pop_master_tree"/>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Master
+              </p><p>
+                  Click to Add a POP Master
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_overview_views" model="ir.actions.act_window">
+          <field name="name">POP Overview</field>
+          <field name="res_model">pop.service.coverage</field>
+          <!-- <field name="context">{'group_by' : 'pop_type'}</field> -->
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="view_pop_overview_tree"/>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Overview
+              </p><p>
+                  Click to Add a POP Overview
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_type_views" model="ir.actions.act_window">
+          <field name="name">POP Type</field>
+          <field name="res_model">pop.type</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pop_type_tree"/>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Type
+              </p><p>
+                  Click to Add a POP Type
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_regional_views" model="ir.actions.act_window">
+          <field name="name">POP Regional</field>
+          <field name="res_model">pop.regional</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pop_regional_tree"/>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Regional
+              </p><p>
+                  Click to Add a POP Regional
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_area_views" model="ir.actions.act_window">
+          <field name="name">POP Area</field>
+          <field name="res_model">pop.area</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pop_area_tree"/>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Area
+              </p><p>
+                  Click to Add a POP Area
+              </p>
+          </field>
+    </record>
+
+
+    <record id="action_pop_industry_views" model="ir.actions.act_window">
+          <field name="name">Potential by Industry</field>
+          <field name="res_model">pop.industry</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pop_industry_tree"></field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Industry
+              </p><p>
+                  Click to Add a POP Industry
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_industry_cluster_views" model="ir.actions.act_window">
+          <field name="name">POP Industry Cluster</field>
+          <field name="res_model">pop.industry.cluster</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pop_industry_cluster_tree"></field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Industry Cluster
+              </p><p>
+                  Click to Add a POP Industry Cluster
+              </p>
+          </field>
+    </record>
+
+    <record id="action_regional_hub_views" model="ir.actions.act_window">
+          <field name="name">POP Regional Hub</field>
+          <field name="res_model">pop.hub.region</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="view_pop_regional_hub_tree"></field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Regional Hub
+              </p><p>
+                  Click to Add a POP Regional Hub
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_service_views" model="ir.actions.act_window">
+          <field name="name">POP Service</field>
+          <field name="res_model">pop.service</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="view_pop_service_tree"></field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Service
+              </p><p>
+                  Click to Add a POP Service
+              </p>
+          </field>
+    </record>
+
+
+    <record id="action_pop_service_coverage_views" model="ir.actions.act_window">
+          <field name="name">Service Coverage</field>
+          <field name="res_model">pop.service.coverage</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field eval="False" name="view_id"/>
+    </record>
+
+    <record id="action_pop_master_tree_view2" model="ir.actions.act_window.view">
+          <field eval="2" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_pop_master_tree"/>
+          <field name="act_window_id" ref="action_pop_master_views"/>
+      </record>
+      <record id="action_pop_master_form_view3" model="ir.actions.act_window.view">
+          <field eval="3" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_pop_master_form"/>
+          <field name="act_window_id" ref="action_pop_master_views"/>
+      </record>
+
+      <record id="action_pop_overview_tree_view2" model="ir.actions.act_window.view">
+          <field eval="4" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_pop_overview_tree"/>
+          <field name="act_window_id" ref="action_pop_overview_views"/>
+      </record>
+      <record id="action_pop_overviewr_form_view3" model="ir.actions.act_window.view">
+          <field eval="5" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_pop_overview_form"/>
+          <field name="act_window_id" ref="action_pop_overview_views"/>
+      </record>
+
+
+
+    <!-- Menu Item-->
+    <menuitem id="menu_service_coverage_root" 
+              name="Market and Potential" 
+              web_icon="velo_service_coverage,static/description/icon.png"
+              groups="base.group_system"
+              sequence="1"/>
+    
+    <menuitem id="pop_service_coverage" 
+              name="All POP"
+              groups="base.group_no_one"
+              sequence="3"
+              action="velo_service_coverage.action_pop_industry_views"
+              parent="menu_service_coverage_root"/>
+    
+    <!-- <menuitem id="all_industry" 
+              name="All Industry"
+              sequence="4"
+              action="action_pop_industry_views"
+              parent="menu_service_coverage_root"/> -->
+    
+   <menuitem id="menu_setting" 
+              name="Settings"
+              groups="base.group_no_one"
+              sequence="5"
+              parent="menu_service_coverage_root"/>
+    
+              <menuitem id="pop_master" 
+                        name="POP Master"
+                        sequence="1"
+                        action="action_pop_master_views"
+                        parent="menu_setting"/>
+
+              <menuitem id="pop_type" 
+                        name="POP Type"
+                        sequence="2"
+                        action="action_pop_type_views"
+                        parent="menu_setting"/>
+
+              <menuitem id="pop_regional" 
+                        name="POP Regional"
+                        sequence="3"
+                        action="action_pop_regional_views"
+                        parent="menu_setting"/>
+
+              <menuitem id="pop_area" 
+                        name="POP Area"
+                        sequence="4"
+                        action="action_pop_area_views"
+                        parent="menu_setting"/>
+        
+              <!--<menuitem id="pop_tenant" 
+                        name="POP Tenant"
+                        sequence="6"
+                        action="action_tenant_views"
+                        parent="menu_setting"/> -->
+
+              <!-- <menuitem id="pop_service" 
+                        name="POP Service"
+                        sequence="7"
+                        action="action_pop_service_views"
+                        parent="menu_setting"/> -->
+
+              <menuitem id="pop_indsutry_cluster" 
+                        name="POP Industry Cluster"
+                        sequence="8"
+                        action="action_pop_industry_cluster_views"
+                        parent="menu_setting"/>
+
+              <!-- <menuitem id="tes_overview" 
+                        name="Overview"
+                        sequence="9"
+                        action="action_pop_overview_views"
+                        parent="menu_setting"/> -->
+    
+  </data>
+</odoo>

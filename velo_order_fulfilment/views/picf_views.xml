@@ -1,0 +1,130 @@
+<odoo>
+  <data>
+
+      
+    <record id="view_order_picf_tree" model="ir.ui.view">
+            <field name="name">order.picf.tree</field>
+            <field name="model">order.picf</field>
+            <field name="arch" type="xml">
+                <tree string="PICF">
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="company_phone"/>
+                    <field name="company_email"/>
+                    <field name="current_service"/>
+                    <field name="current_provider"/>
+                    <field name="challenges"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_order_picf_form" model="ir.ui.view">
+            <field name="name">order.picf.form</field>
+            <field name="model">order.picf</field>
+            <field name="arch" type="xml">
+                <form string="PICF">
+                    <header>
+                        <button name="action_proses" string="Confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_cancel" string="Cancel" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"draft":"grey","active":"orange"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <div><field name="name" readonly="0"/></div>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_name"/>
+                                <field name="company_address"/>
+                                <field name="company_phone"/>
+                                <field name="company_email"/>
+                            </group>
+                            <group>
+                                <field name="current_service"/>
+                                <field name="current_provider"/>
+                                <field name="challenges"/>
+                            </group>
+                        </group>
+                        <div><h2>Activation Requirements</h2></div>
+                        <group>
+                            <group>
+                                <field name="type_of_service" widget="radio" options="{'horizontal': true}"/>
+                                <field name="bandwide_capacity"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="type_of_lasmile"/>
+                                <field name="reachable_service_coverage"/>
+                            </group>
+                            <group>
+                                <field name="topology"/>
+                                <field name="backup_coverage"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="cpe_requirement" widget="radio" options="{'horizontal': true}"/>
+                                <field name="lasmine_requirement" widget="radio" options="{'horizontal': true}"/>
+                                <field name="migration_from_existing"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <div><h3>Service Level Agreement</h3></div>
+                                <field name="availability"/>
+                                <field name="bw_guarantee"/>
+                                <field name="support"/>
+                                <field name="other1"/>
+                                <field name="other2"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="specific_requirements"/>
+                                <field name="registration_date"/>
+                                <field name="reference_po_number"/>
+                                <field name="expected_activated_date"/>
+                                <field name="acceptence_date"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+      <record id="action_velo_order_picf" model="ir.actions.act_window">
+        <field name="name">PICF</field>
+        <field name="res_model">order.picf</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new PICF
+            </p>
+        </field>
+      </record>
+
+        <menuitem id="velo_order_picf_menu"
+            parent="sale.sale_menu_root"
+            action="velo_order_fulfilment.action_velo_order_picf"
+            sequence="4" />
+
+  </data>
+</odoo>

@@ -1,0 +1,364 @@
+<odoo>
+  <data> 
+
+    <record id="velo_retention_pipeline_pivot" model="ir.ui.view">
+            <field name="name">velo_retention_pipeline_pivot</field>
+            <field name="model">retention.pipeline</field>
+            <field name="arch" type="xml">
+                <pivot string="Retention Report">
+                    <field name="retention_category" type="row"/>
+                    <field name="cust_name" type="row"/>
+                    <field name="start_of_issues" type="col"/>
+                    <field name="current_tarif" type="measure"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="action_pivot_retention_pipeline" model="ir.actions.act_window">
+            <field name="name">Retention Report</field>
+            <field name="res_model">retention.pipeline</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="velo_retention_pipeline_pivot"/>
+    </record>
+
+    <record id="view_retention_pipeline_tree" model="ir.ui.view">
+        <field name="name">view.retention.pipeline.tree</field>
+        <field name="model">retention.pipeline</field>
+        <field name="arch" type="xml">
+          <tree string="Retention Pipeline">
+              <field name="crf_no" />
+              <field name="start_of_issues"/>
+              <field name="current_issue"/>
+              <field name="industry"/>
+              <field name="cust_name"/>
+              <field name="current_tarif" string="Contact value"/>
+              <field name="product"/>
+              <field name="current_service" string="Service"/>
+              <field name="state"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_retention_pipeline_form" model="ir.ui.view">
+        <field name="name">view.retention.pipeline.form</field>
+        <field name="model">retention.pipeline</field>
+        <field name="arch" type="xml">
+          <form string="Retention Pipeline">
+              <header>
+                <button name="action_proses_warm" string="Process To Warm Survival" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'a_cold_survival')]}"/>
+                <button name="action_proses_hot" string="Process To Hot Survival" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'b_warm_survival')]}"/>
+                <button name="action_proses_result" string="Retention Result" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'c_hot_survival')]}"/>
+                <field name="state" widget="statusbar" statusbar_colors='{"a_cold_survival":"grey","b_warm_survival":"orange","c_hot_survival":"red", "d_result":"green" }'/>
+            </header>
+
+              <sheet>
+                <div class="oe_title">
+                <label for="crf_no" class="oe_edit_only"/>
+                      <h1><field name="crf_no" placeholder="CRF no..." readonly="1"/></h1>
+                </div>    
+                <group>
+                    <group>
+                        <field name="cust_code"/>
+                        <field name="cust_name"/>
+                        <field name="iwo_related"/>
+                        <field name="contract_period"/>
+                        <field name="current_service"/>
+                        <field name="current_tarif"/>
+                    </group>
+                    <group>
+                        <field name="contact_person"/>
+                        <field name="industry" invisible="1"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="effective_date"/>
+                        <field name="issue_category"/>
+                        <field name="retention_category"/>
+                    </group>
+                </group>
+
+                <!-- <hr attrs="{'invisible':['|',('state', '=', 'draft'),'|',('state', '=', 'negotiation'),('termination', '=', True)]}" /> -->
+                <!-- attrs="{'invisible':['|',('state', '=', 'draft'),'|',('state', '=', 'negotiation'),('termination', '=', True)]}" -->
+                <group >
+                    <group  string="Survival">
+                        <field name="survival" invisible="1"/>
+                        <field name="date_of_issue"/>
+                        <field name="price_issue"/>
+                        <field name="reason"/>
+                        <field name="new_tarif_survival"/>
+                        <field name="new_service_survival"/>
+                        <field name="gross_margin"/>
+                    </group>
+
+                    <group  string="Contract Renewal">
+                        <field name="expire_date"/>
+                        <field name="new_tarif_renewal"/>
+                        <field name="new_service_renewal"/>
+                        <field name="other_changes"/>
+                        <field name="new_contract_date"/>
+                    </group>
+                </group>
+
+
+                <!-- <hr string="Termination" attrs="{'invisible':['|',('state', '=', 'draft'),'|',('state', '=', 'negotiation'),('survival', '=', True)]}"/>
+                <group string="Termination" attrs="{'invisible':['|',('state', '=', 'draft'),'|',('state', '=', 'negotiation'),('survival', '=', True)]}">
+                    <group>
+                        <field name="termination" invisible="1"/>
+                        <field name="request_date"/>
+                        <field name="reason_given"/>
+                        <field name="current_issue"/>
+                        <field name="formal_respon"/>
+                        <field name="latest_veloship"/>
+                        <field name="termination_date"/>
+                    </group>
+                    <group>
+                        <field name="competitor_tarif"/>
+                        <field name="new_tarif_proposed"/>
+                        <field name="new_service_proposed"/>
+                        <field name="ytd_sla"/>
+                        <field name="longest_outage"/>
+                        <field name="action_taken_to_resolve_sla"/>
+                    </group>
+                  </group>
+                  <notebook attrs="{'invisible':[('state', '=', 'draft')]}">
+                    <page string="Negotiation">
+                      <field name="negotiation_ids" >
+                        <tree string="Negotiation">
+                          <field name="negotiation_category"/>
+                          <field name="create_date"/>
+                          <field name="tarif_proposed"/>
+                          <field name="service_proposed"/>
+                          <field name="gross_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                          <field name="new_gp_persentage"/>
+                          <field name="effective_date"/>
+                        </tree>
+                        
+                        <form string="Negotiation">
+                          <div>
+                            <h1>Negotiation Form</h1>
+                          </div>
+                          <group>
+                            <group>
+                              <field name="negotiation_category"/>
+                              <field name="service_proposed"/>
+                              <field name="tarif_proposed"/>
+                              <field name="effective_date"/>
+                              <field name="latest_veloship"/>
+                              <field name="new_gp_persentage" style="width:30%%"/>
+                            </group>
+                            <group>
+                              <field name="selling_price"/>
+                              <field name="upstream"/>
+                              <field name="local_loop"/>
+                              <field name="site_cost"/>
+                              <field name="cpe"/>
+                              <field name="marketing_associate"/>
+                              <field name="total_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                              <field name="gross_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                          </group>
+                        </form>
+                      </field>
+                    </page>
+                  </notebook> -->
+              </sheet>
+          </form>
+        </field>
+    </record>
+
+    <record id="view_retention_pipeline_kanban" model="ir.ui.view">
+        <field name="name">view.retention.pipeline.kanban</field>
+            <field name="model">retention.pipeline</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" quick_create_view="view_retention_pipeline_form"
+                    archivable="false" default_order="state asc">
+                    <field name="state" options='{"group_by_tooltip": {"requirements": "Description"}}'/>
+                    <field name="crf_no" />
+                    <field name="start_of_issues"/>
+                    <field name="current_issue"/>
+                    <field name="industry"/>
+                    <field name="cust_name"/>
+                    <field name="current_tarif" string="contact_value"/>
+                    <field name="product"/>
+                    <field name="current_service" string="service"/>
+                    <progressbar field="state" colors='{"a_cold_survival": "info","b_warm_survival": "warning", "c_hot_survival": "danger", "d_result": "success"}' help="This bar allows to filter the opportunities based on state activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                          <div t-attf-class="#{!selection_mode ? kanban_color() : ''} oe_kanban_global_click mt-2">
+                            <b><field name="cust_name" /></b><p/>
+                            <span>CRF No : </span><field name="crf_no" /><p/>
+                            <span>Start Issue : </span><field name="start_of_issues"/><p/>
+                            <span>Facing Issues : </span><field name="issue_category"/><p/>
+                            <span>Retention Result : </span><field name="retention_category"/><p/>
+
+
+                            <div class="o_dropdown_kanban dropdown">
+
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+
+
+
+                                <div class="oe_kanban_content">
+                                  <div class="text-muted o_kanban_record_subtitle">
+
+                                  </div>
+
+                                  <div class="o_kanban_record_bottom">
+                                      <div class="oe_kanban_bottom_left">
+
+                                      </div>
+                                      <div class="oe_kanban_bottom_right">
+
+                                      </div>
+                                  </div>
+                              </div>
+
+
+                            </div>
+
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    <record id="retention_pipeline_view_graph_slides" model="ir.ui.view">
+      <field name="name">retention.pipeline.view.graph.slides</field>
+      <field name="model">retention.pipeline</field>
+      <field name="arch" type="xml">
+          <graph string="eLearning Forum Posts">
+              <field name="state" type="col"/>
+              <!-- <field name="cust_name" type="row"/> -->
+          </graph>
+       </field>
+    </record>
+
+    <record id="retention_pipeline_view_pivot_slides" model="ir.ui.view">
+      <field name="name">retention.pipeline.view.pivot.slides</field>
+      <field name="model">retention.pipeline</field>
+      <field name="arch" type="xml">
+          <pivot string="eLearning Forum Posts">
+              <field name="state" type="col"/>
+              <field name="cust_name" type="row"/>
+          </pivot>
+       </field>
+    </record>
+
+    <record id="view_retention_pipeline_search" model="ir.ui.view">
+          <field name="name">retention_pipeline Search</field>
+          <field name="model">retention.pipeline</field>
+          <field name="priority">60</field>
+          <field name="arch" type="xml">
+              <search string="Retention pipeline">
+                  <group>
+                      <filter string="Retention Category" name="retention_category" context="{'group_by':'retention_category'}"/>
+                  </group>
+              </search>
+          </field>
+      </record>
+
+    <record id="action_retention_pipeline_views" model="ir.actions.act_window">
+          <field name="name">Retention Pipeline</field>
+          <field name="res_model">retention.pipeline</field>
+          <field name="view_mode">kanban,tree,form,graph,pivot</field>
+          <field name="view_id" ref="velo_retention_pipeline.view_retention_pipeline_kanban"/>
+          <field name="search_view_id" ref="view_retention_pipeline_search"/>
+          <field name="context">{}</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Retention Pipeline
+              </p><p>
+                  Click to Add a Retention Pipeline
+              </p>
+          </field>
+    </record>
+
+    <record id="action_velo_current_category_form" model="ir.actions.act_window">
+          <field name="name">Current category</field>
+          <field name="res_model">issue.category</field>
+          <field name="view_mode">tree,form</field>
+          <field name="context">{}</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Current category
+              </p><p>
+                  Click to Add a Current category
+              </p>
+          </field>
+    </record>
+
+    <record id="view_retention_category_tree" model="ir.ui.view">
+        <field name="name">view.retention.category.tree</field>
+        <field name="model">retention.category</field>
+        <field name="arch" type="xml">
+          <tree string="Retention category">
+              <field name="name" />
+              <field name="tipe"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="action_velo_retention_category_form" model="ir.actions.act_window">
+          <field name="name">Retention category</field>
+          <field name="res_model">retention.category</field>
+          <field name="view_mode">tree,form</field>
+          <field name="context">{}</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Retention category
+              </p><p>
+                  Click to Add a Retention category
+              </p>
+          </field>
+    </record>
+
+    <menuitem
+            id="menu_retention_pipeline"
+            name="Retention Pipeline"
+            web_icon="velo_retention_pipeline,static/description/icon.png"
+            groups="base.group_system"
+            sequence="5"/>
+
+    <menuitem 
+            id="header_retention_pipeline" 
+            name="Overview" 
+            parent="menu_retention_pipeline" 
+            sequence="1" 
+            action="action_retention_pipeline_views"/>
+    
+    <menuitem 
+            id="reporting_retention_pipeline" 
+            name="Reporting" 
+            parent="menu_retention_pipeline" 
+            sequence="2" 
+            action="action_pivot_retention_pipeline"/>
+
+    <menuitem id="retention_setting"
+                name="Setting"
+                groups="base.group_no_one"
+                sequence="100"
+                parent="menu_retention_pipeline"/>
+
+                <menuitem id="current_category" 
+                                name="Facing Issues"
+                                sequence="1"
+                                action="action_velo_current_category_form"
+                                parent="retention_setting"/>
+
+                <menuitem id="retention_category" 
+                                name="Retention Result"
+                                sequence="2"
+                                action="action_velo_retention_category_form"
+                                parent="retention_setting"/>
+
+  </data>
+</odoo>

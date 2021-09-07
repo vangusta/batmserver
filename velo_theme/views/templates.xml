@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend" name="account assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/velo_theme/static/src/scss/theme.scss"/>
+                <link rel="stylesheet" href="/velo_theme/static/src/scss/graph_view.scss"/>
+                <script type="text/javascript" src="/velo_theme/static/src/widgets/pie_chart.js"></script>
+                <script type="text/javascript" src="/velo_theme/static/src/widgets/user_menu.js"></script>
+                <!-- <script type="text/javascript" src="/velo_theme/static/src/js/views/graph/graph_renderer.js"></script> -->
+                
+
+            </xpath>
+        </template>
+
+        <menuitem
+            id="mail.menu_root_discuss"
+            name="Discuss"
+            action="mail.action_discuss"
+            web_icon="mail,static/description/icon.png"
+            groups="base.group_user"
+            sequence="1" active="False"/>
+
+        <menuitem
+            id="calendar.mail_menu_calendar"
+            name="Calendar"
+            sequence="2"
+            action="calendar.action_calendar_event"
+            web_icon="calendar,static/description/icon.png"
+            groups="base.group_user" active="False"/>
+
+        <menuitem name="Contacts"
+            id="contacts.menu_contacts"
+            sequence="4"
+            web_icon="contacts,static/description/icon.png"
+            groups="base.group_user,base.group_partner_manager" active="False"/>
+
+        <menuitem name="Invoicing"
+            id="account.menu_finance"
+            groups="account.group_account_user,account.group_account_manager,account.group_account_invoice"
+            web_icon="account,static/description/icon.png"
+            sequence="40" active="False"/>
+
+        <menuitem 
+            id="base.menu_board_root" 
+            name="Dashboards" 
+            sequence="305" 
+            web_icon="base,static/description/board.png" 
+            groups="base.group_user" active="False"/>
+
+        <menuitem id="utm.menu_link_tracker_root"
+        name="Link Tracker"
+        sequence="30"
+        web_icon="utm,static/description/icon.png"
+        groups="base.group_no_one" active="False"/>
+
+    </data>
+</odoo>

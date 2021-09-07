@@ -1,0 +1,307 @@
+<odoo>
+  <data>
+
+    <record id="inherit_subscription_tree_view" model="ir.ui.view">
+        <field name="name">velo_inherit_subscription_tree_view</field>
+        <field name="model">sale.subscription</field>
+        <field eval="0" name="priority"/>
+        <field name="arch" type="xml">
+          <tree string="Sale Subscriptions">
+              <field name="service_id" string="Serv ID"/>
+              <field name="service_location"/>
+              <field name="pop_service_coverage_id"/>
+              <field name="product_code"/>
+              <!-- <field name="capacity"/> -->
+              <field name="recurring_total" widget="integer" string="Tariff"/>
+              <!-- <field name="registration_date" string="Registration date"/> -->
+              <field name="iwo_date"/>
+              <field name="act_date" string="Activation Date"/>
+              <field name="termination_date"/>
+              <field name="contract_date" string="Contract Date"/>
+              <field name="exp_date"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="inherit_pop_service_coverage_view" model="ir.ui.view">
+          <field name="name">pop.service.coverage.inherit</field>
+          <field name="model">pop.service.coverage</field>
+          <field name="inherit_id" ref="velo_service_coverage.view_pop_service_coverage_form"/>
+          <field name="arch" type="xml">
+              <xpath expr="//notebook" position="inside">
+                    <page name="service" string="Service List" invisible="1">
+                        <field name="pop_sale_subscription_ids">
+                            <tree editable="bottom" create="false" delete="false">
+                                <field name="service_id" string="Service ID"/>
+                                <field name="partner_id" string="Company Name"/>
+                                <field name="contract_date" string="Contract Date"/>
+                                <field name="recurring_total" string="Monthly Tariff"/>
+                            </tree>         
+                        </field>
+                        
+                    </page>
+              </xpath>
+          </field>
+      </record>
+
+
+  	<record id="velo_inherit_subscription_form_view" model="ir.ui.view">
+      <field name="name">velo_inherit_subscription_form_view</field>
+      <field name="model">sale.subscription</field>
+	    <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+      <field name="arch" type="xml">
+        <field name="date_start" position="replace">
+              <field name="date_start" invisible="1"/>
+        </field>
+        <field name="template_id" position="replace">
+              <field name="template_id" invisible="1"/>
+        </field>
+        <field name="close_reason_id" position="replace">
+              <field name="close_reason_id" invisible="1"/>
+        </field>
+        <field name="user_id" position="replace">
+              <field name="user_id" string="Account Manager"/>
+        </field>
+        <field name="team_id" position="after">
+              <field name="registration_date" />
+              <field name="iwo_date" />
+              <field name="act_date" />
+              <field name="termination_date" />
+              <field name="contract_date" />
+              <field name="exp_date" />
+              <field name="contract_number"/>
+              <field name="close_reason_id" string="Reason for Termination"/>
+              <field name="act_fee"/>
+              <field name="monthly_fee"/>
+              <field name="contract_period"/>
+              <field name="contract_value"/>
+              <field name="contract_remark"/>
+              <field name="address" invisible="1"/>
+        </field>
+        <field name="in_progress" position="after">
+              <field name="customer_id"/>
+              <field name="service_id"/>
+              <field name="pop_service_coverage_id"/>
+              <field name="product_code"/>
+              <field name="capacity"/>
+              <field name="service_location"/>
+              <field name="serv_desc"/>
+              <field name="brand_id" invisible="1"/>
+              <field name="group_id" invisible="1"/>
+              <field name="pop_name" invisible="1"/>
+              <field name="industry" invisible="1"/>
+              <field name="pic" invisible="1"/>
+        </field>
+        <!-- <xpath expr="//page[@id='lines']" position="attributes">
+              <page id=""/>
+                  <attribute name="invisible">True</attribute>
+        </xpath> -->
+        <xpath expr="//page[@id='other_info']" position="attributes">
+              <page id=""/>
+                  <attribute name="invisible">True</attribute>
+        </xpath>
+
+        <xpath expr="//page[@id='lines']" position="attributes">
+              <attribute name="string">Service Lines</attribute>
+        </xpath>
+
+        <xpath expr="//page[@id='lines']//div/field//tree//field[@name='product_id']" position="attributes">
+              <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//page[@id='lines']//div/field//tree//field[@name='name']" position="attributes">
+              <attribute name="invisible">True</attribute>
+        </xpath>
+
+        <xpath expr="//page[@id='lines']//div/field//tree//field[@name='product_id']" position="before">
+            <field name="service_id"/>
+            <field name="product_id_tmpl"/>
+        </xpath>
+
+        <xpath expr="//page[@id='lines']//div/field//tree//field[@name='product_id']" position="after">
+              <field name="product_code"/>
+              <field name="capacity"/>
+        </xpath>
+
+        <xpath expr="//page[@id='lines']//div/field//tree//field[@name='price_unit']" position="replace">
+              <field name="price_unit" string="Tariff"/>
+        </xpath>
+
+        <xpath expr="//page[@id='lines']//div/field//tree//field[@name='price_subtotal']" position="replace">
+              <field name="price_subtotal" string="Contract Value"/>
+        </xpath>
+        <!-- <xpath expr="//page[@id='lines']//div/field" position="replace">
+              <field name="recurring_invoice_line_ids">
+                  <tree editable="bottom">
+                        <field name="product_id" domain="[('recurring_invoice', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]" context="{'default_recurring_invoice': True}"/>
+                        <field name="name" optional="show"/>
+                        <field name="quantity"/>
+                        <field name="product_uom_category_id" invisible="1"/>
+                        <field name="uom_id" string="UoM" groups="uom.group_uom" optional="show"/>
+                        <field name="price_unit"/>
+                        <field name="discount" string="Disc.%" groups="product.group_discount_per_so_line" optional="show"/>
+                        <field name="price_subtotal" string="Contract Value"/>
+                  </tree>
+                  <form string="Service Lines">
+                    <sheet>
+                        <group>  
+                          <group>
+                              <field name="product_id_tmpl" string="Product Description"/>
+                              <field name="product_code"/>
+                              <field name="capacity"/>
+                              <field name="quantity"/>
+                              <field name="price_unit"/>
+                              <field name="price_subtotal" string="Contract Value"/>
+                          </group>
+                        </group>
+                    </sheet>
+              </form>
+            </field>
+        </xpath> -->
+        
+        <xpath expr="//page[@id='lines']//div/field//form" position="replace">
+              <form string="Service Lines">
+                  <sheet>
+                      <group>  
+                        <group>
+                            <field name="product_id_tmpl" string="Product Description"/>
+                            <field name="product_code"/>
+                            <field name="capacity"/>
+                            <field name="quantity"/>
+                            <field name="price_unit"/>
+                            <field name="price_subtotal" string="Contract Value"/>
+                        </group>
+                      </group>
+                  </sheet>
+              </form>
+        </xpath>
+      </field>
+    </record>
+
+
+    <record id="velo_inherit_subscription_search_view" model="ir.ui.view">
+      <field name="name">velo_inherit_sale_subscription_search</field>
+      <field name="model">sale.subscription</field>
+      <field name="inherit_id" ref="sale_subscription.sale_subscription_view_search"/>
+      <field name="arch" type="xml">
+        <filter name="my_subscriptions" position="replace">
+              <filter name="my_subscriptions" string="My Contracts" domain="[('user_id','=',uid)]"/>
+        </filter>
+      </field>
+    </record>
+
+
+
+    <record id="sale_subscription.sale_subscription_action" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="res_model">sale.subscription</field>
+        <field name="view_mode">tree,form,kanban,pivot,graph,cohort,activity</field>
+        <field name="context">{
+            "search_default_my_subscriptions":1
+        }</field>
+        <field name="domain">[]</field>
+        <field name="search_view_id" eval='False'/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new contract
+            </p><p>
+                Create subscriptions to manage recurring invoicing &amp; payments. Subscriptions can
+                be time-bounded or not. In case of a limited period, they are flagged as to be renewed
+                one month from the end date.
+            </p><p>
+                Subscriptions can be automatically generated from sales orders in Sales or eCommerce
+                apps. To do so, set a contract template on your contract products.
+            </p>
+        </field>
+    </record>
+
+
+    <record id="sale_subscription.sale_subscription_action_pending" model="ir.actions.act_window">
+        <field name="name">Contracts to Renew</field>
+        <field name="res_model">sale.subscription</field>
+        <field name="view_mode">tree,form,pivot,graph,kanban,cohort,activity</field>
+        <field name="context">{
+            "search_default_my_subscriptions":1,
+            'search_default_stage':1,
+            'search_default_pending':1
+        }</field>
+        <field name="domain">[]</field>
+        <field name="search_view_id" eval='False'/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new contract
+          </p><p>
+            You will find here the contract to be renewed (end date is close or passed)
+          </p><p>
+            Odoo automatically sets contract to be renewed in a pending
+            state. After the negotiation, the salesman should close or renew
+            pending contract.
+          </p><p>
+            Send a renewal quotation to the customer.
+            When it is confirmed, the contract is running again.
+          </p>
+        </field>
+    </record>
+
+
+    <record id="sale_subscription.product_action_subscription" model="ir.actions.act_window">
+        <field name="name">Contracts Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context">{"default_recurring_invoice": True, "search_default_filter_recurring": True, "default_type": "service"}</field>
+        <field name="view_id" ref="product.product_template_tree_view"/>
+        <field name="search_view_id" ref="sale_subscription.product_template_search_view_inherit_sale_subscription"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new product
+          </p><p>
+            You must define a product for everything you sell or purchase,
+            whether it's a storable product, a consumable or a service.
+          </p>
+        </field>
+    </record>
+
+    <record id="sale_subscription.sale_subscription_report_pivot_action" model="ir.actions.act_window">
+        <field name="name">Contracts Analysis</field>
+        <field name="res_model">sale.subscription.report</field>
+        <field name="view_mode">pivot,graph,cohort</field>
+    </record>
+
+    <record id="sale_subscription.sale_subscription_template_action" model="ir.actions.act_window">
+        <field name="name">Contracts Templates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.subscription.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new template of contract
+            </p><p>
+                Templates are used to prefigure contract that
+                can be selected by the salespeople to quickly configure the
+                terms and conditions of the contract.
+            </p>
+        </field>
+    </record>    
+
+
+      <menuitem id="sale_subscription.menu_sale_subscription_root"
+                name="Contracts" sequence="7"
+                groups="base.group_system" 
+                web_icon="velo_contract,static/description/icon.png" />
+
+      <menuitem id="sale_subscription.menu_sale_subscription" name="Contracts" parent="sale_subscription.menu_sale_subscription_root" sequence="5"/>
+      <menuitem action="sale_subscription.sale_subscription_action" name="Contracts" id="sale_subscription.menu_sale_subscription_action" sequence="1" parent="sale_subscription.menu_sale_subscription"/>
+      <menuitem action="sale_subscription.sale_subscription_action_pending" name="Contracts to Renew" id="sale_subscription.menu_sale_subscription_pending" sequence="2" parent="sale_subscription.menu_sale_subscription"/>
+
+      <menuitem action="sale_subscription.product_action_subscription" id="sale_subscription.menu_sale_subscription_product" name="Contracts to Products" sequence="3" parent="sale_subscription.menu_sale_subscription"/>
+
+
+      <menuitem id="sale_subscription.menu_sale_subscription_report_pivot" name="Contracts" parent="sale_subscription.menu_sale_subscription_report" action="sale_subscription.sale_subscription_report_pivot_action" sequence="1"/>
+
+
+      <menuitem action="sale_subscription.sale_subscription_template_action" id="sale_subscription.menu_template_of_subscription" parent="sale_subscription.menu_sale_subscription_config" sequence="4" name="Contracts Templates" groups="sale_subscription.group_sale_subscription_manager"/>
+      <menuitem id="sale_subscription.menu_sale_subscription_stage" name="Contracts Stages" parent="sale_subscription.menu_sale_subscription_config" action="sale_subscription.sale_subscription_stage_action" sequence="5" groups="sale_subscription.group_sale_subscription_manager"/>
+
+
+  </data>
+</odoo>

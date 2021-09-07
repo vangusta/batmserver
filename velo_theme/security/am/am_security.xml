@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <!--  <record model="ir.module.category" id="module_category_am">
+        <field name="name">Account Manager Dept</field>
+        <field name="sequence">1</field>
+        <field name="description"></field>
+    </record> -->
+
+    <record id="group_am_id" model="res.groups">
+        <field name="name">Account Manager</field>
+        <field name="category_id" ref="module_category_acces_velo"/>
+        <field name="users" eval="[(4, ref('base.user_root')),]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_service_coverage.menu_service_coverage_root')),
+                                        (4, ref('velo_service_coverage.summary_pop_type')),
+                                        (4, ref('velo_service_coverage.menu_setting')),
+                                        (4, ref('mass_mailing.menu_email_mass_mailing_lists')),
+                                        (4, ref('mass_mailing.menu_email_mass_mailing_contacts')),
+                                        (4, ref('mass_mailing.mail_blacklist_mm_menu')),
+                                        (4, ref('mass_mailing.menu_mass_mailing_global_settings')),
+                                        (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                        (4, ref('velo_product_pricing.header_product_velo')),
+                                        (4, ref('velo_product_pricing.menu_velo_product')),
+                                        (4, ref('velo_product_pricing.product_menu_team_dashboard')),
+                                        (4, ref('velo_product_pricing.menu_velo_pricings')),
+                                        (4, ref('velo_program_promotion.header_program_promotion')),
+                                        (4, ref('mass_mailing.mass_mailing_menu')),
+                                        (4, ref('velo_program_promotion.overview_program_promotion')),
+                                        (4, ref('velo_program_promotion.menu_velo_promo')),
+                                        (4, ref('velo_program_promotion.overview_program_retention')),
+                                        (4, ref('velo_program_promotion.menu_velo_relation')),
+                                        (4, ref('velo_program_promotion.menu_velo_setting')), 
+                                        (4, ref('velo_program_promotion.telemarketing_menu')),
+                                        (4, ref('velo_program_promotion.menu_velo_location')),
+                                        (4, ref('velo_program_promotion.menu_velo_tipe')),
+                                        (4, ref('velo_program_promotion.menu_velo_program_category_type')),
+                                        (4, ref('velo_program_promotion.menu_velo_program_promo_type')),
+                                        (4, ref('velo_program_promotion.menu_velo_program_name')),
+                                        (4, ref('velo_program_promotion.menu_velo_overview_program_promotion')),
+                                        (4, ref('velo_program_promotion.menu_velo_overview_program_retention')),
+                                        (4, ref('velo_program_promotion.menu_velo_promo_type')),
+                                        (4, ref('crm.crm_menu_root')),
+                                        (4, ref('crm.crm_menu_sales')),
+                                        (4, ref('crm.crm_menu_report')),
+                                        (4, ref('crm.crm_menu_config')),
+                                        (4, ref('crm.menu_crm_lead_stage_act')),
+                                        (4, ref('crm.sales_team_menu_team_pipeline')),
+                                        (4, ref('crm.crm_activity_report_menu')),
+                                        (4, ref('crm.menu_crm_lead_categ')),
+                                        (4, ref('crm.crm_config_settings_menu')),
+                                        (4, ref('crm.menu_crm_lost_reason')),
+                                        (4, ref('crm.menu_crm_config_lead')),
+                                        (4, ref('sale_crm.sale_order_menu_quotations_crm')),
+                                        (4, ref('velo_retention_pipeline.menu_retention_pipeline')),
+                                        (4, ref('velo_retention_pipeline.header_retention_pipeline')),
+                                        (4, ref('velo_retention_pipeline.reporting_retention_pipeline')),
+                                        (4, ref('velo_retention_pipeline.retention_setting')),
+                                        (4, ref('velo_retention_pipeline.retention_category')),
+                                        (4, ref('velo_retention_pipeline.current_category')),
+   
+                                        ]"/>
+    
+    </record>
+
+    <!-- <record id="group_finance_maker_2" model="res.groups">
+        <field name="name">Maker 2</field>
+        <field name="category_id" ref="module_category_finance"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('crm.crm_menu_root')),
+                                         (4, ref('sale_subscription.menu_sale_subscription_root')),
+                                        ]"/>    
+    </record>
+
+    <record id="group_finance_checker" model="res.groups">
+        <field name="name">Checker</field>
+        <field name="category_id" ref="module_category_finance"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('crm.crm_menu_root')),
+                                         (4, ref('sale_subscription.menu_sale_subscription_root')),
+                                        ]"/>
+    </record>
+
+    <record id="group_finance_advisor" model="res.groups">
+        <field name="name">Advisor</field>
+        <field name="category_id" ref="module_category_finance"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_product_pricing.header_product_velo')),
+                                         (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                         (4, ref('sale.sale_menu_root')),
+                                         (4, ref('crm.crm_menu_root')),
+                                         (4, ref('sale_subscription.menu_sale_subscription_root')),
+                                        ]"/>
+    </record>
+
+    <record id="group_finance_admin" model="res.groups">
+        <field name="name">Admin</field>
+        <field name="category_id" ref="module_category_finance"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_employee.menu_action_res_users')),
+                                         (4, ref('base.menu_management')),
+                                         (4, ref('base.menu_administration')),
+                                        ]"/>
+    </record>
+
+    <record id="group_finance_superadmin" model="res.groups">
+        <field name="name">Super Admin</field>
+        <field name="category_id" ref="module_category_finance"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_employee.menu_action_res_users')),
+                                         (4, ref('base.menu_management')),
+                                         (4, ref('base.menu_administration')),
+                                        ]"/>
+    </record> -->
+    
+
+
+</odoo>

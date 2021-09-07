@@ -1,0 +1,174 @@
+<odoo>
+  <data>
+    <record id="velo_inherit_crm_lead_form_view" model="ir.ui.view">
+      <field name="name">velo_inherit_crm_lead_form_view</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//header/button[@name='action_set_won_rainbowman']" position="replace">
+                <button name="action_set_won_rainbowman" 
+                        string="Mark Won" 
+                        type="object" 
+                        class="oe_highlight" 
+                        attrs="{'invisible': ['|','|','|','|', ('active','=',False), 
+                                                               ('probability', '=', 100), 
+                                                               ('type', '=', 'lead'),
+                                                               ('stage_id_id','=',5),
+                                                               ('stage_id_id','=',6)], 'readonly':True}"/>
+        </xpath>
+
+        <xpath expr="//header/button[@name='475']" position="after">
+                <button name="action_confirm_mcfb_to_mcfc"
+                        string="Promote to MCF-C" 
+                        class="oe_highlight" 
+                        type="object" 
+                        attrs="{'invisible': ['|','|','|', ('active','=',False), ('probability', '=', 100), ('type', '=', 'lead'),('stage_id_id','!=',5)] , 'readonly':True}"/>
+               
+                <button name="action_confirm_mcfc_to_sf"
+                        string="Promote to SF" 
+                        class="oe_highlight" 
+                        type="object" 
+                        attrs="{'invisible': ['|','|','|', ('active','=',False), ('probability', '=', 100), ('type', '=', 'lead'),('stage_id_id','!=',6)] , 'readonly':True}"/>
+
+                <button name="action_back_sf_to_mcfb"
+                        string="Recycle" 
+                        class="oe_highlight" 
+                        type="object" 
+                        attrs="{'invisible': ['|','|','|', ('active','=',False), ('probability', '=', 100), ('type', '=', 'lead'),('stage_id_id','!=',7)] , 'readonly':True}"/>        
+        </xpath>
+        <field name="stage_id" position="replace">
+          <field name="stage_id" widget="statusbar" options="{'clickable': False, 'fold_field': 'fold'}" domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]" attrs="{'invisible': ['|', ('active', '=', False), ('type', '=', 'lead')], 'readonly':True, 'editable':False}"/>
+        </field>
+        <xpath expr="//h2[@class='o_row row no-gutters d-flex']" position="replace">
+          <h2 class="o_row row no-gutters d-flex" invisible="1">
+              <div class="col" attrs="{'invisible': [('type', '=', 'lead')]}">
+                  <label for="planned_revenue" class="oe_edit_only"/>
+                  <div class="o_row">
+                      <field name="company_currency" invisible="1"/>
+                      <field name="planned_revenue" class="oe_inline" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                      <span class="oe_grey p-2"> at </span>
+                  </div>
+              </div>
+              <div class="col">
+                  <span class="oe_edit_only o_pls_probability">
+                      <label for="probability"/>
+                      <button class="btn btn-link" name="action_set_automated_probability" type="object" attrs="{'invisible': [('is_automated_probability', '=', True)]}">
+                          <i class="fa fa-gear" role="img" title="Switch to automatic probability" aria-label="Switch to automatic probability"/>
+                      </button>
+                      <small class="oe_grey" attrs="{'invisible': [('is_automated_probability', '=', True)]}"><field name="automated_probability"/> % (Estimated by Odoo)</small>
+                      </span>
+                  <div id="probability" class="o_row d-flex">
+                      <field name="is_automated_probability" invisible="1"/>
+                      <field name="probability" widget="float" class="oe_inline"/>
+                      <span class="oe_grey"> %</span>
+                  </div>
+              </div>
+          </h2>
+        </xpath>
+
+        <field name="priority" position="replace">
+              <field name="priority" invisible="1"/>
+        </field>
+        <field name="day_open" position="replace">
+              <field name="day_open" invisible="1"/>
+        </field>
+        <field name="day_close" position="replace">
+              <field name="day_close" invisible="1"/>
+              <field name="stage_id_id" invisible="1"/>
+        </field>
+
+        <xpath expr="//page[@name='lead']//group//group//field[@name='lang_id']" position="replace">
+            <field name="lang_id" invisible="1"/>
+        </xpath>
+
+        <group name="lead_priority" position="before">
+            <group>
+              <field name="opportunity_stage1" widget="progressbar"/>
+              <label for="opportunity_stage"/>
+              <div class="o_row" name="opportunity_stage_budget">
+                    <field name="opportunity_stage_budget"/><span>Budget</span>
+              </div>
+              <label for="space"/>
+              <div class="o_row" name="opportunity_stage_solution_fit">
+                    <field name="opportunity_stage_solution_fit"/><span>Solution Fit</span>
+              </div>
+              <label for="space"/>
+              <div class="o_row" name="opportunity_stage_service_delivery">
+                    <field name="opportunity_stage_service_delivery"/><span>Service Delivery</span>
+              </div>
+              <label for="space"/>
+              <div class="o_row" name="opportunity_stage_pricing">
+                    <field name="opportunity_stage_pricing"/><span>Pricing</span>
+              </div>
+              <label for="space"/>
+              <div class="o_row" name="opportunity_stage_relationship">
+                    <field name="opportunity_stage_relationship"/><span>Relationship</span>
+              </div>
+            </group>
+        </group>
+      </field>
+
+    </record>
+
+    
+    <record id="velo_inherit_crm_lead_form_view2" model="ir.ui.view">
+      <field name="name">velo_inherit_crm_lead_form_view2</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+      <field name="groups_id" eval="[(6, 0, [ref('velo_theme.group_am_id')])]"/>
+      <field name="arch" type="xml">
+        <field name = "opportunity_stage_relationship" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </field>
+        <field name = "opportunity_stage_pricing" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </field>
+        <field name = "opportunity_stage_service_delivery" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </field>
+        <button name = "action_confirm_mcfb_to_mcfc" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </button>
+        <!-- <button name = "action_confirm_mcfc_to_sf" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </button> -->
+        <button name = "action_set_won_rainbowman" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </button>
+        <button name ="475" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </button>
+      </field>
+    </record>
+  
+    <record id="velo_inherit_crm_lead_form_view3" model="ir.ui.view">
+      <field name="name">velo_inherit_crm_lead_form_view3</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+      <field name="groups_id" eval="[(6, 0, [ref('velo_theme.group_mng_id')])]"/>
+      <field name="arch" type="xml">
+        <field name = "opportunity_stage_budget" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </field>
+        <field name = "opportunity_stage_solution_fit" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </field>
+        <field name = "opportunity_stage_relationship" position="attributes">
+          <attribute name="readonly">1</attribute>
+        </field>
+        <button name = "action_set_won_rainbowman" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </button>
+      </field>
+    </record>
+   
+   
+    <menuitem
+            id="crm.crm_menu_root"
+            name="Sales Pipeline"
+            web_icon="velo_sales_pipeline,static/description/icon.png"
+            groups="base.group_system"
+            sequence="5"/>
+  </data>
+</odoo>

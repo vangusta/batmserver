@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record model="ir.module.category" id="module_category_acces_velo">
+        <field name="name">Access Velo Dept</field>
+        <field name="sequence">1</field>
+        <field name="description"></field>
+    </record>
+
+    <record id="group_accounting_user_id" model="res.groups">
+        <field name="name">Accounting User</field>
+        <field name="category_id" ref="module_category_acces_velo"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="menu_access" eval="[(4, ref('velo_service_coverage.menu_service_coverage_root')),
+                                        (4, ref('velo_service_coverage.summary_pop_type')),
+                                        (4, ref('velo_marketing_activities.account_management_reporting')),
+                                        (4, ref('mass_mailing.mass_mailing_configuration')),
+                                        (4, ref('velo_service_coverage.menu_setting')),
+                                        (4, ref('mass_mailing.menu_email_mass_mailing_lists')),
+                                        (4, ref('mass_mailing.menu_email_mass_mailing_contacts')),
+                                        (4, ref('mass_mailing.mail_blacklist_mm_menu')),
+                                        (4, ref('mass_mailing.mass_mailing_menu_root')),
+                                        ]"/>
+    </record>
+
+
+</odoo>

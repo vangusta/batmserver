@@ -1,0 +1,177 @@
+<odoo>
+  <data>
+    <record id="view_pop_pipeline_kanban" model="ir.ui.view">
+        <field name="name">view.pop.pipeline.kanban</field>
+            <field name="model">pop.pipeline.master</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" quick_create_view="view_pop_pipeline_master_form"
+                    archivable="false" default_order="state asc">
+                    <field name="state" options='{"group_by_tooltip": {"requirements": "Description"}}'/>
+                    <field name="pp_name" />
+                    <field name="pp_id"/>
+                    <field name="pp_regional"/>
+                    <field name="pp_area"/>
+                    <field name="pp_type"/>
+                    <field name="pp_capacity"/>
+                    <field name="pp_metroe"/>
+                    <field name="pp_probability_floor"/>
+                    <progressbar field="state" colors='{"a": "info","b": "primary","c": "success"}' help="This bar allows to filter the opportunities based on state activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                          <div t-attf-class="#{!selection_mode ? kanban_color() : ''} oe_kanban_global_click mt-2">
+                            <b><field name="pp_name" /></b><p/>
+                            <span>POP Type : </span><field name="pp_type" /><p/>
+                            <span>Potential Tenant : </span><field name="pp_probability_tenant"/><p/>
+                            <span>District : </span><field name="pp_area"/><p/>
+                            
+                            <div class="o_dropdown_kanban dropdown">
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+                                <div class="oe_kanban_content">
+                                  <div class="text-muted o_kanban_record_subtitle">
+                                  </div>
+                                  <div class="o_kanban_record_bottom">
+                                      <div class="oe_kanban_bottom_left">
+                                      </div>
+                                      <div class="oe_kanban_bottom_right">
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    <record id="view_pop_pipeline_search" model="ir.ui.view">
+          <field name="name">pop_pipeline Search</field>
+          <field name="model">pop.pipeline.master</field>
+          <field name="priority">60</field>
+          <field name="arch" type="xml">
+              <search string="POP pipeline">
+                  <group>
+                      <filter string="POP Pipeline Name" name="pp_name" context="{'group_by':'pp_name'}"/>
+                  </group>
+              </search>
+          </field>
+      </record>
+
+    <record id="action_pop_pipeline_master_views" model="ir.actions.act_window">
+          <field name="name">POP Pipeline</field>
+          <field name="res_model">pop.pipeline.master</field>
+          <field name="view_mode">tree,kanban,form</field>
+          <field name="view_id" ref="velo_pop_pipeline.view_pop_pipeline_kanban"/>
+          <field name="search_view_id" ref="view_pop_pipeline_search"/>
+          <field name="context">{}</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP Pipeline
+              </p><p>
+                  Click to Add a POP Pipeline
+              </p>
+          </field>
+    </record>
+
+    <record id="view_pop_pipeline_master_tree" model="ir.ui.view">
+        <field name="name">view.pop.pipeline.master.tree</field>
+        <field name="model">pop.pipeline.master</field>
+        <field name="arch" type="xml">
+          <tree string="POP Pipeline">
+              <field name="pp_name" string="POP Name"/> 
+              <field name="pp_regional" string="Region"/>
+              <field name="pp_type" string="POP Type"/>
+              <field name="pp_probability_tenant" string="Potential Customer"/>
+              <field name="deadline" string="Deadline"/>
+              <field name="state"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_pipeline_master_form" model="ir.ui.view">
+      <field name="name">view.pop.pipeline.master.form</field>
+      <field name="model">pop.pipeline.master</field>
+      <field name="arch" type="xml">
+        <form string="POP Pipeline">
+          <header>
+                <button name="action_status" string="Update POP Status" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'a')]}"/>
+                <button name="action_fulfillment" string="Site Fulfillment" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'b')]}"/>
+                <button name="action_acquisition" string="Site Acquisition" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'c')]}"/>
+                <field name="state" widget="statusbar" statusbar_colors='{"a":"grey","b":"blue","c":"green"}'/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+            <label for="pp_name" class="oe_edit_only"/>
+                  <h1><field name="pp_name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pp_id"/>  
+                    <field name="pp_regional"/>
+                    <field name="pp_area"/>
+                    <field name="pp_type"/>
+                    <field name="pp_capacity"/>
+                    <field name="pp_metroe"/>
+                    <field name="pp_probability_floor"/>
+                    <field name="pp_probability_tenant"/>                 
+                </group>
+                <group>
+                    <field name="pp_property_management"/>
+                    <field name="pp_pic"/>
+                    <field name="pp_job_title"/>
+                    <field name="pp_phone"/>
+                    <field name="pp_email"/>
+                    <field name="pp_full_address"/>
+                    <field name="pp_longitude"/>
+                    <field name="pp_latitude"/>
+                    <field name="pp_active_date"/>
+                </group>
+            </group>
+            <group>
+                <notebook colspan="4">
+                    <page string="Acquisition Activites">
+                        <field name="pp_activities_ids">
+                          <tree string="Acquisition" editable="bottom">
+                              <field name="activities_id" invisible="1"/>
+                              <field name="activities"/>
+                              <field name="date_start"/>
+                              <field name="deadline"/>
+                              <field name="finish_time"/>
+                              <field name="percentage" widget="percentage"/>
+                              <field name="attachment"/>
+                          </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    
+
+
+    <menuitem
+            id="menu_pop_pipeline_master"
+            name="POP Pipeline"
+            web_icon="velo_pop_pipeline,static/description/icon.png"
+            groups="base.group_system"
+            sequence="6"/>
+
+    <menuitem 
+            id="header_pop_pipeline_master" 
+            name="Overview" 
+            parent="menu_pop_pipeline_master" 
+            sequence="1" 
+            action="action_pop_pipeline_master_views"/>
+  </data>
+</odoo>

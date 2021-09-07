@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+		<record id="view_pic_am_form" model="ir.ui.view">
+      	<field name="name">view.pic.am.form</field>
+      	<field name="model">pic.am</field>
+      	<field name="arch" type="xml">
+        <form >
+          <sheet>
+          	<div class="oe_title">
+	         	<label for="pic_am_id" class="oe_edit_only"/>
+	            <h1><field name="pic_am_id" placeholder="Name..."/></h1>
+	        </div>  
+            <group>
+                <group>
+                	
+                    <field name="pic_am_pic_summary_of_specific_industry"/> 
+                    <field name="pic_am_pic_period"/>
+                    <field name="pic_am_pic_am_manager"/>   
+                    <field name="pic_am_total_rowcount_name_pic"/>
+                    <field name="pic_am_pic_number_of_customer"/>
+                    <field name="pic_am_pic_number_of_potential"/>  
+                    <field name="pic_am_pic_current_penetration" widget="percentage"/>   
+                    <field name="pic_am_pic_monthly_tarif"/>
+                    <field name="pic_am_pic_number_of_arpu"/> 
+                </group>
+                <group>
+                  	<field name="pic_am_pic_annual_quota"/>
+                  	<field name="pic_am_pic_quota_this_month"/>  
+                  	<field name="pic_am_pic_ytd_achievement"/>
+                  	<field name="pic_am_pic_mcfc_this_month"/>
+                  	<field name="pic_am_pic_sf_this_month"/>
+                  	<field name="pic_am_pic_cold_leads"/>   
+              	</group>
+            </group>
+            <group>
+              	<notebook>
+                    <page string="Market Potential">
+                      <field name="pic_am_service_coverage_ids">
+                        <tree string="POP" >
+                            <field name="pic_id" invisible="1"/>
+                            <field name="pop_name" string="POP Name/Industry Cluster"/>
+                            <field name="pop_total_customer" string="POP Customer" width="15" sum="Total"/>
+                            <field name="pop_total_potential" string="POP Potential" width="20" sum="Total"/>
+                            <field name="pop_total_penetration" widget="percentage" string="POP Penetration" width="15"/>
+                            <field name="pop_total_monthly_tariff" string="Monthly Tariff" width="15" sum="Total"/>
+                            <field name="pop_arpu" string="ARPU" widget="integer" width="15px" sum="Total"/>
+                            <field name="pop_total_sales_focus" string="Marketing Program" width="15"/>
+                            <field name="pop_cold_leads" string="Cold Leads" width="15"/>
+                        </tree>
+                      </field>
+                    </page>
+                    <page string="Customer">
+                      <field name="pic_am_partner_ids">
+                        <tree string="Customer">
+                            <field name="pic_partner_id"/>
+                            <field name="name"/>
+                            <field name="id_object"/>
+                            <field name="industry"/>
+                            <field name="revenue_month"/>
+                            <field name="service_id"/>
+                            <field name="exp_date"/>
+                        </tree>
+                      </field>
+                    </page>
+                    <page string="YTD Achievement">
+                      <field name="pic_am_ytd_achievement_ids">
+                        <tree string="YTD Achievement" editable="bottom">
+                            <field name="pic_id" invisible="1"/>
+                            <field name="period" width="5"/>
+                            <field name="ob_date" width="5"/>
+                            <field name="customer_name" width="5"/>
+                            <field name="monthly_tariff" width="5"/>
+                            <field name="service" width="5"/>
+                            <field name="ba_date" width="5"/>
+                        </tree>
+                      </field>
+                    </page>
+                    <page string="YTD Sales Focus">
+                      <field name="pic_am_ytd_sales_focus">
+                        <tree string="YTD Sales Focus" editable="bottom">
+                            <field name="pic_id" invisible="1"/>
+                            <field name="period" width="5"/>
+                            <field name="potential_name" width="5"/>
+                            <field name="propose_tariff" width="5"/>
+                            <field name="service" width="5"/>
+                            <field name="opportunity" widget="percentage" width="5"/>
+                            <field name="opportunity_mix" width="5"/>
+                            <field name="sf_result" width="5"/>
+                            <field name="next_action" width="5"/>
+                        </tree>
+                      </field>
+                    </page>
+                    <page string="YTD MCF-C">
+                      <field name="pic_am_ytd_mcfc_ids">
+                        <tree string="YTD MCF-C" editable="bottom">
+                            <field name="pic_id" invisible="1"/>
+                            <field name="period" width="5"/>
+                            <field name="potential_name" width="5"/>
+                            <field name="propose_tariff" width="5"/>
+                            <field name="service" width="5"/>
+                            <field name="opportunity" widget="percentage" width="5"/>
+                            <field name="opportunity_mix" width="5"/>
+                            <field name="sf_result" width="5"/>
+                            <field name="next_action" width="5"/>
+                        </tree>
+                      </field>
+                    </page>
+                    <page string="YTD Cold Leads">
+                      <field name="pic_am_ytd_cold_leads_ids">
+                        <tree string="YTD Cold Leads" editable="bottom">
+                            <field name="pic_id" invisible="1"/>
+                            <field name="period" width="5"/>
+                            <field name="cold_leads_name" width="5"/>
+                            <field name="cold_leads_date" width="5"/>
+                            <field name="marketing_program" width="5"/>
+                        </tree>
+                      </field>
+                    </page>
+              	</notebook>
+          	</group>
+          	</sheet>
+        </form>
+      	</field>
+    	</record>
+
+		
+		<record id="pic_am_view_tree" model="ir.ui.view">
+			<field name="name">pic.am.tree</field>
+			<field name="model">pic.am</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="pic_am_id"/>
+				</tree>
+			</field>
+		</record>
+
+	    
+		<record id="action_pic_am_view" model="ir.actions.act_window">
+			<field name="type">ir.actions.act_window</field>
+			<field name="name">PIC AM</field>
+			<field name="res_model">pic.am</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p>
+					Create PIC Account Manager
+				</p>
+			</field>
+		</record>
+
+		 <menuitem id="account_management_pic_am"
+              name="Account Management"
+              sequence="4"
+              action="action_pic_am_view"
+              parent="mass_mailing.mass_mailing_menu_root"/>
+
+
+	</data>
+</odoo>

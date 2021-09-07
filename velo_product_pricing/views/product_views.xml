@@ -1,0 +1,752 @@
+<odoo>
+  <data>
+    <record id="inherit_program" model="ir.ui.view">
+        <field name="name">inherit_program</field>
+        <field name="model">velo.program</field>
+        <field name="inherit_id" ref="velo_program_promotion.view_velo_program_form"/>
+        <field name="arch" type="xml">
+            <field name="finish_period" position="after">
+                <field name="product_ids"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.velo.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+        <xpath expr="//form" position="attributes">
+            <attribute name="create">false</attribute>
+        </xpath>
+
+        <xpath expr="//header" position="inside">
+                <button name="product_quotation" string="Create Quotation" class="oe_highlight" type="object"/>
+        </xpath>
+
+        <!-- <div name="button_box" position="inside">
+            <button class="oe_stat_button" name="action_view_price_graph" type="object" icon="fa-signal" groups="" help="Price Graph" >
+                <div class="o_field_widget o_stat_info">
+                    <span class="o_stat_text">Pricing</span>
+                </div>
+            </button>
+        </div> -->
+        <field name="type" position="replace">
+            <field name="type" invisible="1"/>
+        </field>
+        <field name="type" position="after">
+            <field name="product_group"/>
+        </field>
+
+        <field name="barcode" position="replace">
+            <field name="ip_address"/>
+            <field name="categ_short_name" invisible="1"/>
+            <field name="product_description"/>
+            <label for="capacity"/>
+                <div class="o_row">
+                    <field name="capacity"/>Kbps<br/>
+                </div>
+            <field name="product_availability"/>
+        </field>
+        <page name="purchase" position="replace">
+        </page>
+        <div name="options" position="replace">
+            <field name="sale_ok" invisible="1"/>
+            <field name="purchase_ok" invisible="1"/>
+            <div>
+                <field name="adhoc_ok"/>
+                <label for="adhoc_ok"/>
+            </div>
+            <div>
+                <field name="recurring_invoice" string="Recurring Invoice"/>
+                <label for="recurring_invoice" string="Recurring Invoice"/>
+            </div>
+        </div>
+        <label for="name" position="replace">
+            <label for="product_code" string="Product ID"/>
+        </label>
+        <field name="name" position="replace">
+            <h1><field name="product_code" placeholder="Product ID" string="Product ID"/></h1>
+            <h3><field name="name" placeholder="Product Description" string="Product Description"/></h3>
+        </field>
+        <group name="group_standard_price" position="replace">
+            <group>
+                <field name="list_price" string="Monthly Fee" widget="integer" invisible="1"/>
+                <field name="installation_fee" widget="integer" invisible="1"/>
+                <field name="otc_hrb_metroe" widget="integer" invisible="1"/>
+                <field name="otc_standalone_non_metro" widget="integer" invisible="1"/>
+                <div style="float: left; margin-right: 130px;">
+                    <label for="mtti" string="MTTI" invisible="1" style="font-weight: bold;"/>
+                </div>
+                <div style="float: left;">    
+                    <field name="mtti" class="oe_inline" invisible="1" style="margin-right: 4px;"/>
+                    <span class="o_form_label" invisible="1">Days</span>
+                </div>
+                <field name="validity_date" invisible="1"/>
+            </group>
+        </group>
+        <xpath expr="//notebook/page[3]" position="attributes">     
+            <attribute name="invisible">1</attribute>
+        </xpath>
+        <page name="sales" position="after">
+            <page string="Pricing" name="Pricing">
+                <field name="validity_ids">
+                    <tree string="Validity">
+                        <field name="sequence" widget="handle"/>
+                        <field name="region" width="30" string="Region"/>
+                        <field name="metroe" width="25"/>
+                        <field name="monthly_tariff" widget="integer" width="25"/>
+                        <field name="installation_fee" widget="integer" width="30" string="Installation Fee"/>
+                        <field name="mtti" width="30" string="MTTI"/>
+                        <field name="space"/>
+                        <field name="date_start" width="30" string="Validity"/>
+                        <!-- <field name="status" width="10" string="Active"/> -->
+                    </tree>
+                    <form string="Validity">
+                        <header>
+                            <button class="oe_stat_button" float="float-right" name="action_view_validity_graph" type="object" help="Price Graph" string="Price History" icon="fa-signal" ></button>
+                        </header>
+                        <group>
+                            <group>
+                                <field name="region" width="10" string="Region"/>
+                                <field name="hrb" width="10" string="Type of POP"/>
+                                <field name="metroe"/>
+                                <field name="monthly_tariff" widget="integer" width="5" sum="Total Monthly Tariff"/>
+                                <field name="installation_fee" widget="integer" width="10" string="Installation Fee"/>
+                            </group>
+                            <group>
+                                <field name="mtti" width="10" string="MTTI"/>
+                                <field name="date_start" width="10" />
+                                <field name="date_end" width="10" />
+                                <field name="status" />
+                            </group>
+                        </group>
+                    </form>
+                </field>
+            </page>
+            <page string="History Pricing" name="previous_pricing">
+                <field name="previous_pricing_ids">
+                    <tree string="Previous Pricing">
+                        <field name="region" width="5" string="Region"/>
+                        <field name="hrb" width="5" string="Type of POP"/>
+                        <field name="metroe" width="5"/>
+                        <field name="monthly_tariff" widget="integer" width="5"/>
+                        <field name="installation_fee" widget="integer" width="5" string="Installation Fee"/>
+                        <field name="mtti" width="5" string="MTTI"/>
+                        <field name="space"/>
+                        <field name="date_start" width="30" string="Validity"/>
+                        <!-- <field name="status" width="10" string="Active"/> -->
+                    </tree>
+                    <form string="Validity">
+                        <header>
+                            <button class="oe_stat_button" float="float-right" name="action_view_validity_graph" type="object" help="Price Graph" string="Price History" icon="fa-signal" ></button>
+                        </header>
+                        <group>
+                            <group>
+                                <field name="region" width="10" string="Region"/>
+                                <field name="hrb" width="10" string="Type of POP"/>
+                                <field name="metroe" width="5"/>
+                                <field name="monthly_tariff" widget="integer" width="5" sum="Total Monthly Tariff"/>
+                                <field name="installation_fee" widget="integer" width="10" string="Installation Fee"/>
+                            </group>
+                            <group>
+                                <field name="mtti" width="10" string="MTTI"/>
+                                <field name="date_start" width="10" />
+                                <field name="date_end" width="10" />
+                                <field name="status" />
+                            </group>
+                        </group>
+                    </form>
+                </field>
+            </page>
+            <page string="Availability" name="Availability">
+                <field name="availability_ids">
+                    <tree string="Availability">
+                        <field name="pop_id"/>
+                        <field name="pop_name"/>
+                        <field name="pop_type"/>
+                        <field name="pop_area"/>
+                    </tree>
+                </field>
+            </page>
+            <page string="Sales History" name="summary">
+                <group>
+                    <group>
+                        <field name="total_product_sold"/>
+                        <field name="total_active_service"/>
+                        <field name="total_customers"  invisible="0"/>
+                        <field name="total_revenue" widget="integer"/>
+                        <field name="arpu" widget="integer"/>
+                    </group>
+                </group>
+            </page>
+            <page string="Current Service" name="service">
+                <field name="service_ids">
+                    <tree string="Service">
+                        <field name="customer_id" string="Customer"/>
+                        <field name="price_unit" widget="integer" string="Tarif" sum="Subtotal" />
+                        <field name="space"/>
+                        <field name="act_date"/>
+                        <field name="exp_date" string="Contract Expiry"/>
+                    </tree>
+                </field>
+            </page>
+        </page>
+        </field>
+    </record>
+
+
+    <record id="product_template_create_form_view" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <form string="Product">
+                <sheet>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Product Description"/>
+                        <h1><field name="product_code" placeholder="Product ID" string="Product ID"/></h1>
+                        <h3><field name="name" placeholder="Product Description" string="Product Description"/></h3>
+                    </div>
+                    <div>
+                        <field name="adhoc_ok"/>
+                        <label for="adhoc_ok"/>
+                    </div>
+                    <div>
+                        <field name="recurring_invoice" string="Recurring Invoice"/>
+                        <label for="recurring_invoice" string="Recurring Invoice"/>
+                    </div>
+                    <notebook>
+                        <page string="General Information" name="general_information">
+                            <group>
+                                <group>
+                                    <field name="active" invisible="1"/>
+                                    <field name="type" invisible="1"/>
+                                    <field name="product_group"/>
+                                    <field name="categ_id" string="Product Category"/>
+                                    <field name="default_code"/>
+                                    <field name="ip_address"/>
+                                    <field name="categ_short_name"/>
+                                    <field name="product_description"/>
+                                    <field name="capacity"/>
+                                    <field name="product_availability"/>
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <group string="Internal Notes">
+                                <field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+                            </group>
+                        </page>
+                        <page string="Pricing" name="Pricing">
+                          <field name="validity_ids">
+                                <tree string="Validity" editable="bottom">
+                                    <field name="region" width="30" string="Region"/>
+                                    <field name="hrb" width="30" string="Type of POP"/>
+                                    <field name="metroe" width="25"/>
+                                    <field name="monthly_tariff" widget="integer" width="25" sum="Total Monthly Tariff"/>
+                                    <field name="installation_fee" widget="integer" width="30" string="Installation Fee"/>
+                                    <field name="mtti" width="30" string="MTTI"/>
+                                    <field name="space"/>
+                                    <field name="date_start" width="30" string="Validity"/>
+                                </tree>
+                          </field>
+                        </page>
+                        <page string="History Pricing" name="previous_Pricing">
+                            <field name="validity_ids">
+                                <tree string="Validity" editable="bottom">
+                                    <field name="region" width="10" string="Region"/>
+                                    <field name="hrb" width="10" string="Type of POP"/>
+                                    <field name="metroe" width="5"/>
+                                    <field name="monthly_tariff" widget="integer" width="5" sum="Total Monthly Tariff"/>
+                                    <field name="installation_fee" widget="integer" width="10" string="Installation Fee"/>
+                                    <field name="mtti" width="10" string="MTTI"/>
+                                    <field name="space"/>
+                                    <field name="date_start" width="30" string="Validity"/>                                    
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Availability" name="Availability">
+                            <field name="availability_ids">
+                                <tree string="Availability" editable="bottom">
+                                    <field name="pop_id"/>
+                                    <field name="pop_name"/>
+                                    <field name="pop_type"/>
+                                    <field name="pop_area"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Sales History" name="summary">
+                            <group>
+                                <group>
+                                    <field name="total_product_sold"/>
+                                    <field name="total_active_service"/>
+                                    <field name="total_customers"  invisible="0"/>
+                                    <field name="total_revenue" widget="integer"/>
+                                    <field name="arpu" widget="integer"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Current Service" name="service">
+                            <field name="service_ids">
+                                <tree string="Service">
+                                    <field name="customer_id" string="Customer"/>
+                                    <field name="price_unit" string="Tarif" sum="Subtotal" widget="integer"/>
+                                    <field name="space"/>
+                                    <field name="act_date"/>
+                                    <field name="exp_date" string="Contract Expiry"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="inherit_product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.product.velo.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+            <field name="barcode" position="replace">
+                <field name="ip_address"/>
+                <field name="bandwith"/>
+                <field name="categ_short_name"/>
+                <field name="product_group"/>
+                <field name="product_description"/>
+                <field name="capacity"/>
+            </field>
+            <page name="purchase" position="replace">
+            </page>
+            <div name="options" position="replace">
+                <field name="sale_ok" invisible="1"/>
+                <field name="purchase_ok" invisible="1"/>
+                <div>
+                    <field name="adhoc_ok"/>
+                    <label for="adhoc_ok"/>
+                </div>
+                <div>
+                    <field name="recurring_invoice" string="Recurring Invoice"/>
+                    <label for="recurring_invoice" string="Recurring Invoice"/>
+                </div>
+            </div>
+            <label for="name" position="replace">
+                <label for="name" string="Product Description"/>
+            </label>
+            <field name="name" position="replace">
+                <h1><field name="product_code" placeholder="Product ID" string="Product ID"/></h1>
+                <h3><field name="name" placeholder="Product Description" string="Product Description"/></h3>
+            </field>
+            <group name="group_standard_price" position="replace">
+                <group>
+                    <field name="list_price" string="Monthly Fee" widget="integer" invisible="1"/>
+                    <field name="installation_fee" widget="integer" invisible="1"/>
+                    <field name="otc_hrb_metroe" widget="integer" invisible="1"/>
+                    <field name="otc_standalone_non_metro" widget='monetary' invisible="1"/>
+                    <div style="float: left; margin-right: 130px;">
+                        <label for="mtti" string="MTTI" invisible="1" style="font-weight: bold;"/>
+                    </div>
+                    <div style="float: left;">    
+                        <field name="mtti" class="oe_inline" invisible="1" style="margin-right: 4px;"/>
+                        <span class="o_form_label" invisible="1">Days</span>
+                    </div>
+                    <field name="validity_date" invisible="1"/>
+                </group>
+            </group>
+            <xpath expr="//notebook/page[3]" position="attributes">     
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <page name="sales" position="after">
+                <page string="Pricing" name="Pricing">
+                  <field name="validity_ids">
+                        <tree string="Validity" editable="bottom">
+                            <field name="region" width="30" string="Region"/>
+                            <field name="hrb" width="30" string="Type of POP"/>
+                            <field name="metroe"/>
+                            <field name="monthly_tariff" widget="integer" width="25" sum="Total Monthly Tariff"/>
+                            <field name="installation_fee" widget="integer" width="30" string="Installation Fee"/>
+                            <field name="mtti" width="30" string="MTTI"/>
+                            <field name="space"/>
+                            <field name="date_start" width="30" string="Validity"/>
+                            <!-- <field name="status" width="10" string="Active"/> -->
+                        </tree>
+                    </field>
+                </page>
+                <page string="History Pricing" name="previous_Pricing">
+                  <field name="validity_ids">
+                        <tree string="Validity" editable="bottom">
+                            <field name="region" width="10" string="Region"/>
+                            <field name="hrb" width="10" string="Type of POP"/>
+                            <field name="metroe" width="5"/>
+                            <field name="monthly_tariff" widget="integer" width="5" sum="Total Monthly Tariff"/>
+                            <field name="installation_fee" widget="integer" width="10" string="Installation Fee"/>
+                            <field name="mtti" width="10" string="MTTI"/>
+                            <field name="space"/>
+                            <field name="date_start" width="30" string="Validity"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Availability" name="Availability">
+                    <field name="availability_ids">
+                        <tree string="Availability" editable="bottom">
+                            <field name="pop_id"/>
+                            <field name="pop_name"/>
+                            <field name="pop_type"/>
+                            <field name="pop_area"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Sales History" name="summary">
+                    <group>
+                        <group>
+                            <field name="total_product_sold"/>
+                            <field name="total_active_service"/>
+                            <field name="total_customers"  invisible="0"/>
+                            <field name="total_revenue" widget="integer"/>
+                            <field name="arpu" widget="integer"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Current Service" name="service">
+                  <field name="service_ids">
+                        <tree string="Service" editable="bottom">
+                            <field name="service_id" string="Service ID"/>
+                            <field name="customer_id" string="Customer"/>
+                            <field name="price_unit" widget="integer" string="Tariff" sum="Subtotal"/>
+                            <field name="act_date"/>
+                            <field name="exp_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_product_validity_form" model="ir.ui.view">
+      <field name="name">Product Validity Form</field>
+      <field name="model">product.validity</field>
+      <field name="arch" type="xml">
+        <form string="Product Pricing">
+          <sheet> 
+            <header>
+                <button class="oe_stat_button" float="float-right" name="action_view_validity_graph" type="object" help="Price Graph" string="Price History" icon="fa-signal" ></button>
+            </header> 
+            <group string="Pricing">
+                <group>
+                    <field name="product_id" string="Product ID"/>
+                    <field name="validity_id" string="Product Description"/>
+                    <field name="region"/>
+                    <field name="hrb"/>
+                    <field name="metroe"/>
+                    <field name="monthly_tariff" widget="integer"/>
+                    <field name="installation_fee" widget="integer"/>
+                </group>
+                <group>
+                    <div style="float: left; margin-right: 130px;">
+                        <label for="mtti" string="MTTI" style="font-weight: bold;"/>
+                    </div>
+                    <div style="float: left;">    
+                        <field name="mtti" class="oe_inline" style="margin-right: 4px;"/>
+                        <span class="o_form_label">Days</span>
+                    </div>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="status"/>
+                </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_product_validity_tree" model="ir.ui.view">
+        <field name="name">Product Validity Tree</field>
+        <field name="model">product.validity</field>
+        <field name="arch" type="xml">
+              <tree string="POP Master">
+                    <field name="region" string="Region" width="10"/>
+                    <field name="product_id" string="Product ID" width="10"/>
+                    <field name="validity_id" string="Product Description" width="10"/>
+                    <field name="monthly_tariff" widget="integer" width="10"/>
+                    <field name="installation_fee" widget="integer" width="10"/>
+                    <field name="space"/>
+                    <field name="date_start" string="Validity" width="10"/>
+                    <field name="mtti" width="10"/>
+              </tree>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+            <field name="default_code" position="replace">
+                <field name="default_code" invisible="1"/>
+            </field>
+            <field name="standard_price" position="replace">
+                <field name="standard_price" invisible="1"/>
+            </field>
+            <field name="name" position="replace">
+            </field>
+            <field name="barcode" position="after">
+                <field name="region" width="10"/>
+                <field name="product_code" width="10"/>
+                <field name="name" string="Product Description" width="10"/>
+            </field>
+            <field name="list_price" position="replace">
+                <field name="monthly_fee" string="Monthly Fee" widget="integer" width="10"/>
+                <field name="installation_fee" widget="integer" invisible="0" width="10"/>
+                <!-- <field name="otc_hrb_metroe"/>
+                <field name="otc_standalone_non_metro"/> -->
+                <field name="space" width="10"/> 
+                <field name="validity_date" width="8" widget="date"/>
+                <field name="mtti" string="MTTI (Days)" width="10"/>
+                <field name="total_customers" invisible="1"/>
+                <field name="total_active_service" invisible="1"/>
+                <field name="capacity" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="action_product_create_views" model="ir.actions.act_window">
+        <field name="name">Create a Product</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="velo_product_pricing.product_template_create_form_view"/>
+        <field name="target"></field>
+    </record>
+
+    <record id="product_template_kanban_view" model="ir.ui.view">
+        <field name="name">Product.template.product.kanban</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="replace">
+                <kanban on_create="velo_product_pricing.action_product_create_views">
+                    <field name="id"/>
+                    <field name="product_variant_count"/>
+                    <field name="currency_id"/>
+                    <field name="activity_state"/>
+                    <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('product.template', 'image_128', record.id.raw_value)" alt="Product" class="o_image_64_contain"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="product_code" placeholder="Product ID" string="Product ID"/><br/>
+                                    </strong>
+                                    <div class="pb-2">
+                                        <field name="name"/>
+                                        <small t-if="record.default_code.value">[<field name="default_code"/>]</small>
+                                    </div>
+
+                                    <div t-if="record.product_variant_count.value &gt; 1" groups="product.group_product_variant">
+                                        <strong>
+                                            <t t-esc="record.product_variant_count.value"/> Variants
+                                        </strong>
+                                    </div>
+                                    <div name="tags"/>
+                                    <ul>
+                                        <li>Monthly Fee: <field name="monthly_fee" widget="integer" options="{'currency_field': 'currency_id', 'field_digits': True}"></field></li>
+                                        <li>Installation Fee: <field name="installation_fee" widget="integer" options="{'currency_field': 'currency_id', 'field_digits': True}"></field></li>
+                                    </ul>
+                                    <div name="tags"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="velo_product_search_inherit_view" model="ir.ui.view">
+        <field name="name">product.product.search.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                 <field name="product_code" string="Product ID" filter_domain="[('product_code', 'ilike', self)]"/>
+            </field>
+        </field>
+    </record>
+    
+    <record id="view_pricing_kanban" model="ir.ui.view">
+        <field name="name">view.pricing.kanban</field>
+            <field name="model">product.validity</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="region" class="o_kanban_small_column o_opportunity_kanban" quick_create_view="view_product_validity_form"
+                    archivable="false">
+                    <field name="product_id"/>
+                    <field name="validity_id" />
+                    <field name="metroe"/>
+                    <field name="hrb"/>
+                    <field name="monthly_tariff" widget="integer"/>
+                    <field name="installation_fee" widget="integer"/>
+                    <field name="mtti"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <progressbar field="region" colors='{"a": "info","b": "primary","c": "success"}' help="This bar allows to filter the opportunities based on state activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="product_id" placeholder="Product ID" string="Product ID"/><br/>
+                                    </strong>
+                                    <div class="pb-2">
+                                        <field name="validity_id"/>
+                                    </div>
+                                    <div name="tags"/>
+                                    <ul><h6>
+                                        <li>Type of POP: <field name="hrb"/></li>
+                                        <li>Metro/Non-Metro: <field name="metroe"/></li>
+                                        <li>Monthly Fee: <field name="monthly_tariff" widget="integer" options="{'currency_field': 'currency_id', 'field_digits': True}"></field></li>
+                                        <li>Installation Fee: <field name="installation_fee" widget="integer" options="{'currency_field': 'currency_id', 'field_digits': True}"></field></li>
+                                    </h6></ul>
+                                    <div name="tags"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+    <record id="view_group_pricing_search" model="ir.ui.view">
+        <field name="name">Product Validity Search</field>
+        <field name="model">product.validity</field>
+        <field name="priority">60</field>
+        <field name="arch" type="xml">
+            <search string="Pricing">
+                <group>
+                    <filter string="Date Start" name="date_start" context="{'group_by':'date_start:year'}"/>
+                    <filter string="Region" name="price_region" context="{'group_by':'region'}"/>
+                    <filter string="Product" name="product" context="{'group_by':'validity_id'}"/>
+                    <filter string="Metro" name="metro" context="{'group_by':'metroe'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_pricing_graph">
+        <field name="name">product.validity.graph</field>
+        <field name="model">product.validity</field>
+        <field name="arch" type="xml">
+            <graph string="Pricing">
+                <field name="date_start" type="col"/>
+                <field name="monthly_tariff" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_product_validity_views" model="ir.actions.act_window">
+          <field name="name">Pricing</field>
+          <field name="res_model">product.validity</field>
+          <field name="view_mode">kanban,tree,form,graph</field>
+          <field name="domain">[('status','=', 1)]</field>
+          <field name="view_id" ref="view_product_validity_tree"/>
+          <field name="search_view_id" ref="view_group_pricing_search"/>
+          <field name="context">{'search_default_date_start':1,'search_default_price_region':1,'search_default_metro':1,'graph_mode':'line'}</field>
+          <field name="filter" eval="True"/>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Pricing
+              </p><p>
+                  Click to Add a Pricing
+              </p>
+          </field>
+    </record>
+
+        <record id="action_product_graph_views" model="ir.actions.act_window">
+          <field name="name">Pricing</field>
+          <field name="res_model">product.validity</field>
+          <field name="view_mode">graph</field>
+          <field name="view_id" ref="view_product_validity_tree"/>
+          <field name="search_view_id" ref="view_group_pricing_search"/>
+          <field name="context">{'search_default_date_start':1,'graph_mode':'line'}</field>
+          <field name="filter" eval="True"/>
+    </record>
+
+
+    <record id="action_previous_pricing_views" model="ir.actions.act_window">
+          <field name="name">Previous Pricing</field>
+          <field name="res_model">product.validity</field>
+          <field name="view_mode">kanban,tree,form,graph</field>
+          <field name="domain">[('status','=', 0)]</field>
+          <field name="view_id" ref="view_product_validity_tree"/>
+          <field name="search_view_id" ref="view_group_pricing_search"/>
+          <field name="context">{'search_default_date_start':1,'graph_mode':'line'}</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Previous Pricing
+              </p><p>
+                  Click to Add a Previous Pricing
+              </p>
+          </field>
+    </record>
+
+
+
+    <menuitem
+            id="header_product_velo"
+            name="Product and Pricing"
+            web_icon="velo_product_pricing,static/description/icon.png"
+            groups="base.group_system"
+            sequence="2"/>
+    <menuitem 
+            id="menu_velo_product" 
+            name="Product" 
+            parent="header_product_velo"
+            sequence="2" 
+            action="product.product_template_action"/>
+    
+    <menuitem 
+            id="menu_velo_pricings" 
+            name="Pricing" 
+            parent="header_product_velo" 
+            sequence="7" 
+            groups="base.group_no_one"/>
+
+            <menuitem 
+                    id="menu_velo_pricing_by_region" 
+                    name="Current Pricing" 
+                    parent="menu_velo_pricings"
+                    sequence="1" 
+                    action="action_product_validity_views"/>
+
+            <menuitem 
+                    id="menu_velo_previous_pricing" 
+                    name="Previous Pricing" 
+                    parent="menu_velo_pricings"
+                    sequence="2" 
+                    action="action_previous_pricing_views"/>
+
+    <record id="velo_view_category_property_form" model="ir.ui.view">
+        <field name="name">product.category.property.form.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="before">
+                <field name="short_name" class="oe_inline"/>
+            </field>
+        </field>
+    </record>
+
+  </data>
+</odoo>

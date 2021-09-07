@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<report id="retention_pipeline_diwo_actions"
+		string="DIWO" 
+		model="retention.pipeline" 
+		report_type="qweb-pdf"
+		name="velo_retention_pipeline.retention_pipeline_diwo" 
+		file="velo_retention_pipeline.retention_pipeline_diwo" 
+	/>
+
+    <record id="retention_pipeline_diwo_actions" model="ir.actions.report">
+        <field name="paperformat_id" ref="velo_retention_pipeline.paperformat_landscape_A4"/>
+    </record>
+
+    <template id="retention_pipeline_diwo">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="row">
+                    
+                   <!-- <div class="header"> -->
+                        <div class="row col-md-12">
+                            <div class="col-md-2">
+                                <img t-if="res_company.logo_web" t-att-src="image_data_uri(res_company.logo_web)" style="max-height:100pt;max-width:90%" alt="Company Logo"/>
+                            </div>
+                            <div class="col-md-7" align="center">
+                                <div class="col-md-12 text-left">
+                                    <p>NetToCyber</p>
+                                    <p>No.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+                   <!--  </div> -->
+
+                    <table width="100%" border="0">
+                            <tr>
+                                <td>Register Date</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>IWO Issue Date</td>
+                                <td></td>
+                                <td>IWO Ref No</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Document Attached</td>
+                                <td></td>
+                            </tr>
+                    </table> 
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

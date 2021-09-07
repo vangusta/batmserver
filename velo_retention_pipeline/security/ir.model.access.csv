@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_velo_retention_pipeline,retention_pipeline,model_retention_pipeline,base.group_system,1,1,1,1
+access_velo_price_issue,price_issue,model_price_issue,base.group_system,1,1,1,1
+access_velo_retention_category,retention_category,model_retention_category,base.group_system,1,1,1,1
+access_velo_issue_category,issue_category,model_issue_category,base.group_system,1,1,1,1
+access_velo_termination_negotiation,retention_negotiation,model_retention_negotiation,base.group_system,1,1,1,1
+access_velo_negotiation_category,negotiation_category,model_negotiation_category,base.group_system,1,1,1,1

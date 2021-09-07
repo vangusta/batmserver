@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    
+    <!-- view -->
+
+    <record id="velo_account_management_pivot1" model="ir.ui.view">
+            <field name="name">velo_account_management_pivot_1</field>
+            <field name="model">pic.manager</field>
+            <field name="arch" type="xml">
+                <pivot string="Account Management Report">
+                    <field name="pic_summary_of_specific_industry" type="row"/>
+                    <field name="pic_period" type="col"/>
+                    <field name="pic_current_penetration" type="measure" widget="percentage"/>
+                    <field name="pic_annual_quota" type="measure" widget="integer"/>
+                    <field name="pic_monthly_tariff" type="measure" widget="integer"/>
+                    <field name="pic_number_of_arpu" type="measure" widget="integer"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="velo_account_management_pivot2" model="ir.ui.view">
+            <field name="name">velo_account_management_pivot_2</field>
+            <field name="model">pic.manager</field>
+            <field name="arch" type="xml">
+                <pivot string="Account Management Report">
+                    <field name="pic_summary_of_specific_industry" type="row"/>
+                    <field name="pic_period" type="col"/>
+                    <field name="pic_number_of_customer" type="measure" widget="integer"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="velo_account_management_pivot3" model="ir.ui.view">
+            <field name="name">velo_account_management_pivot_3</field>
+            <field name="model">pic.manager</field>
+            <field name="arch" type="xml">
+                <pivot string="Account Management Report">
+                    <field name="pic_summary_of_specific_industry" type="row"/>
+                    <field name="pic_period" type="col"/>
+                    <field name="pic_number_of_arpu" type="measure" widget="integer"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="action_pivot_account_management1" model="ir.actions.act_window">
+            <field name="name">Quota</field>
+            <field name="res_model">pic.manager</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="velo_account_management_pivot1"/>
+    </record>
+
+    <record id="action_pivot_account_management2" model="ir.actions.act_window">
+            <field name="name">Customer Increase</field>
+            <field name="res_model">pic.manager</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="velo_account_management_pivot2"/>
+    </record>
+
+    <record id="action_pivot_account_management3" model="ir.actions.act_window">
+            <field name="name">Tariff Increase</field>
+            <field name="res_model">pic.manager</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="velo_account_management_pivot3"/>
+    </record>
+
+
+    <record id="dashboard_form_view" model="ir.ui.view">
+            <field name="name">Dashboard Form</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard">
+                    <board style="2-1">
+                        <column>
+                            <action
+                                string="Quota"
+                                name="%(action_pivot_account_management1)d"/>
+                            <action
+                                string="Customer Increase"
+                                name="%(action_pivot_account_management2)d"/>
+                            <action
+                                string="Tariff Increase"
+                                name="%(action_pivot_account_management3)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_manager_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="dashboard_form_view"/>
+        </record>
+
+    <record id="inherit_res_partner_velo" model="ir.ui.view">
+        <field name="name">res.pertner.velo</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="velo_customers.view_velo_customer_form"/>
+        <field name="arch" type="xml">
+            <field name="id_object" position="after">
+              <field name="service_id"/>
+              <field name="exp_date"/>
+              <field name="acc_mgm"/>
+              <field name="pic_partner_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_am_manager_form" model="ir.ui.view">
+      <field name="name">AM Manager Form</field>
+      <field name="model">pic.manager</field>
+      <field name="arch" type="xml">
+        <form string="PIC Manager">
+          <sheet>
+            <div class="oe_title">
+            <label for="pic_manager_name" class="oe_edit_only"/>
+                  <h1><field name="pic_manager_name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pic_summary_of_specific_industry"/>
+                    <field name="pic_period"/>  
+                    <field name="total_rowcount_name_pop"/> 
+                    <field name="pic_number_of_customer" widget="integer"/>
+                    <field name="pic_number_of_potential" widget="integer"/>
+                    <field name="pic_current_penetration" widget="percentage"/>
+                    <field name="pic_monthly_tariff" widget="integer"/>  
+                    <field name="pic_number_of_arpu" widget="integer"/>
+                            
+                </group>
+                <group>
+                    <field name="pic_annual_quota"/>
+                    <field name="pic_quota_this_month"/>  
+                    <field name="pic_ytd_achievement"/>
+                    <field name="pic_mcfc_this_month"/>
+                    <field name="pic_sf_this_month"/>
+                    <field name="pic_cold_leads"/>                    
+                </group>
+            </group>
+            <group>
+                <notebook>
+                      <page string="Market Potential">
+                        <field name="service_coverage_ids">
+                          <tree string="Market Potential" >
+                              <field name="pic_id" invisible="1"/>
+                              <field name="pop_name" string="POP Name/ Industry Cluster"/>
+                              <field name="pop_total_customer" string="POP Customer" width="15" sum="Total"/>
+                              <field name="pop_total_potential" string="velo_inherit_sale_order_form_view Potential" width="20" sum="Total"/>
+                              <field name="pop_total_penetration" widget="percentage" string="POP Penetration" width="15"/>
+                              <field name="pop_total_monthly_tariff" string="Monthly Tariff" width="15" sum="Total"/>
+                              <field name="pop_arpu" string="ARPU" widget="integer" width="15px" sum="Total"/>
+                              <field name="pop_program" string="Marketing Program" width="15"/>
+                              <field name="pop_cold_leads" string="Cold Leads" width="15"/>
+                          </tree>
+                        </field>
+                      </page>
+                      <page string="Customer">
+                        <field name="partner_ids">
+                          <tree string="Customer">
+                              <field name="acc_mgm"/>
+                              <field name="name"/>
+                              <field name="id_object"/>
+                              <field name="industry"/>
+                              <field name="revenue_month"/>
+                              <field name="service_id"/>
+                              <field name="exp_date"/>
+                          </tree>
+                        </field>
+                      </page>
+                      <page string="Account Management">
+                        <field name="pop_pic_am_ids" >
+                          <tree string="Account Management" limit="10">
+                              <field name="pop_pic_name_am" string="Account Manager" width="10"/>
+                              <field name="pic_number_of_customer" string="Total Customer" width="10" sum="Total"/>
+                              <field name="pic_number_of_potential" string="Total Potential" width="10" sum="Total"/>
+                              <field name="pic_current_penetration" widget="percentage" string="Total Penetration" width="10" invisible="1"/>
+                              <field name="pic_monthly_tarif" string="Monthly Tarif" width="10" sum="Total"/>
+                              <field name="pic_annual_quota" string="Annual Quota" width="10"/>
+                              <field name="pic_ytd_achievement" string="YTD Achievement" width="10"/>
+                              <field name="pic_quota_last_month" string="OB Last Month" width="10" invisible="1"/>
+                              <field name="pic_quota_this_month" string="Quota This Month" width="10"/>
+                              <field name="pic_sf_this_month" string="SF This Month" width="10"/>
+                              <field name="pic_mcfc_this_month" string="MCF-C This Month" width="10"/>
+                              <field name="pic_cold_leads" string="Cold Leads" width="10"/>
+                          </tree>
+                          <form string="POP PIC">
+                            <sheet>
+                              <div class="oe_title">
+                              <label for="pop_pic_name_am" class="oe_edit_only"/>
+                                    <h1><field name="pop_pic_name_am" placeholder="Name..."/></h1>
+                              </div>    
+                              <group>
+                                  <group>
+                                      <field name="pic_summary_of_specific_industry"/>
+                                      <field name="pic_period"/>  
+                                      <field name="pic_am_manager"/>
+                                      <field name="total_rowcount_name_pic"/> 
+                                      <field name="pic_number_of_potential"/>
+                                      <field name="pic_number_of_customer"/>
+                                      <field name="pic_current_penetration" widget="percentage"/>
+                                      <field name="pic_monthly_tarif"/>  
+                                      <field name="pic_number_of_arpu"/>                      
+                                  </group>
+                                  <group>
+                                      <field name="pic_annual_quota"/>
+                                      <field name="pic_quota_this_month"/>  
+                                      <field name="pic_ytd_achievement"/>
+                                      <field name="pic_mcfc_this_month"/>
+                                      <field name="pic_sf_this_month"/>
+                                      <field name="pic_cold_leads"/>   
+                                  </group>
+                              </group>
+                              <group>
+                                  <notebook>
+                                        <page string="Market Potential">
+                                          <field name="service_coverage_ids">
+                                            <tree string="POP" >
+                                                <field name="pic_id" invisible="1"/>
+                                                <field name="pop_name" string="POP Name/Industry Cluster"/>
+                                                <field name="pop_total_customer" string="POP Customer" width="15" sum="Total"/>
+                                                <field name="pop_total_potential" string="POP Potential" width="20" sum="Total"/>
+                                                <field name="pop_total_penetration" widget="percentage" string="POP Penetration" width="15"/>
+                                                <field name="pop_total_monthly_tariff" string="Monthly Tariff" width="15" sum="Total"/>
+                                                <field name="pop_arpu" string="ARPU" widget="integer" width="15px" sum="Total"/>
+                                                <field name="pop_total_sales_focus" string="Marketing Program" width="15"/>
+                                                <field name="pop_cold_leads" string="Cold Leads" width="15"/>
+                                            </tree>
+                                          </field>
+                                        </page>
+                                        <page string="Customer">
+                                          <field name="pic_partner_ids">
+                                            <tree string="Customer">
+                                                <field name="pic_partner_id"/>
+                                                <field name="name"/>
+                                                <field name="id_object"/>
+                                                <field name="industry"/>
+                                                <field name="revenue_month"/>
+                                                <field name="service_id"/>
+                                                <field name="exp_date"/>
+                                            </tree>
+                                          </field>
+                                        </page>
+                                        <page string="YTD Achievement">
+                                          <field name="ytd_achievement_ids">
+                                            <tree string="YTD Achievement" editable="bottom">
+                                                <field name="pic_id" invisible="1"/>
+                                                <field name="period" width="5"/>
+                                                <field name="ob_date" width="5"/>
+                                                <field name="customer_name" width="5"/>
+                                                <field name="monthly_tariff" width="5"/>
+                                                <field name="service" width="5"/>
+                                                <field name="ba_date" width="5"/>
+                                            </tree>
+                                          </field>
+                                        </page>
+                                        <page string="YTD Sales Focus">
+                                          <field name="ytd_sales_focus">
+                                            <tree string="YTD Sales Focus" editable="bottom">
+                                                <field name="pic_id" invisible="1"/>
+                                                <field name="period" width="5"/>
+                                                <field name="potential_name" width="5"/>
+                                                <field name="propose_tariff" width="5"/>
+                                                <field name="service" width="5"/>
+                                                <field name="opportunity" widget="percentage" width="5"/>
+                                                <field name="opportunity_mix" width="5"/>
+                                                <field name="sf_result" width="5"/>
+                                                <field name="next_action" width="5"/>
+                                            </tree>
+                                          </field>
+                                        </page>
+                                        <page string="YTD MCF-C">
+                                          <field name="ytd_mcfc_ids">
+                                            <tree string="YTD MCF-C" editable="bottom">
+                                                <field name="pic_id" invisible="1"/>
+                                                <field name="period" width="5"/>
+                                                <field name="potential_name" width="5"/>
+                                                <field name="propose_tariff" width="5"/>
+                                                <field name="service" width="5"/>
+                                                <field name="opportunity" widget="percentage" width="5"/>
+                                                <field name="opportunity_mix" width="5"/>
+                                                <field name="sf_result" width="5"/>
+                                                <field name="next_action" width="5"/>
+                                            </tree>
+                                          </field>
+                                        </page>
+                                        <page string="YTD Cold Leads">
+                                          <field name="ytd_cold_leads_ids">
+                                            <tree string="YTD Cold Leads" editable="bottom">
+                                                <field name="pic_id" invisible="1"/>
+                                                <field name="period" width="5"/>
+                                                <field name="cold_leads_name" width="5"/>
+                                                <field name="cold_leads_date" width="5"/>
+                                                <field name="marketing_program" width="5"/>
+                                            </tree>
+                                          </field>
+                                        </page>
+                                  </notebook>
+                              </group>
+                            </sheet>
+                          </form>                 
+                        </field>
+                      </page>
+                </notebook>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pop_pic_form" model="ir.ui.view">
+      <field name="name">view.pop.pic.form</field>
+      <field name="model">pop.pic</field>
+      <field name="arch" type="xml">
+        <form string="POP PIC">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_pic_name_am" class="oe_edit_only"/>
+                  <h1><field name="pop_pic_name_am" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pic_summary_of_specific_industry"/>
+                    <field name="pic_period"/>  
+                    <field name="pic_am_manager"/>                   
+                </group>
+                <group>
+                    <field name="pic_annual_quota"/>
+                    <field name="pic_quota_this_month"/>  
+                    <field name="pic_ytd_achievement"/>
+                    <field name="pic_cold_leads"/>                    
+                </group>
+            </group>
+            <group>
+                <notebook>
+                      <page string="POP List">
+                        <field name="service_coverage_ids">
+                          <tree string="POP" >
+                              <field name="pic_id" invisible="1"/>
+                              <field name="pop_name" string="POP Name/Industry Cluster" width="50"/>
+                              <field name="pop_total_customer" string="Number of Customer" width="50" sum="Total"/>
+                              <field name="pop_total_potential" string="Number of Potential" width="50" sum="Total"/>
+                              <field name="pop_total_penetration" string="Current Penetration" widget="percentage" width="50"/>
+                              <field name="pop_total_monthly_tariff" string="Monthly Tarif" width="50" sum="Total"/>
+                              <field name="pop_order_booking_this_month" string="YTD OB" width="50"/>
+                              <field name="pop_total_sales_focus" string="SF this Month" width="50"/>
+                              <field name="pop_cold_leads" string="Cold Leads" width="50"/>
+                          </tree>
+                        </field>
+                      </page>
+                </notebook>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_cluster_manager_form" model="ir.ui.view">
+      <field name="name">AM Cluster Manager Form</field>
+      <field name="model">pic.manager</field>
+      <field name="arch" type="xml">
+        <form string="PIC Manager">
+          <sheet>
+            <div class="oe_title">
+            <label for="pic_manager_name" class="oe_edit_only"/>
+                  <h1><field name="pic_manager_name" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pic_summary_of_specific_industry"/>
+                    <field name="pic_period"/>                    
+                </group>
+                <group>
+                    <field name="pic_annual_quota"/>
+                    <field name="pic_quota_this_month"/>  
+                    <field name="pic_ytd_achievement"/>
+                    <field name="pic_cold_leads"/>  
+                    <field name="user_id"/>                  
+                </group>
+            </group>
+            <group>
+                <notebook>
+                      <page string="Industry Cluster List">
+                        <field name="industry_cluster_ids">
+                          <tree string="Industry Cluster" >
+                              <field name="pop_industry_cluster_name" string="POP Name/Industry Cluster" width="50"/>
+                              <field name="pop_industry_cluster_total_customer" string="Number of Customer" width="50" sum="Total"/>
+                              <field name="pop_industry_cluster_total_potential" string="Number of Potential" width="50" sum="Total"/>
+                              <field name="pop_industry_cluster_total_penetration" string="Current Penetration" widget="percentage" width="50"/>
+                              <field name="pop_industry_cluster_revenue_month" string="Monthly Tarif" width="50" sum="Total"/>
+                              <field name="pop_industry_cluster_ob" string="YTD OB" width="50"/>
+                              <field name="pop_industry_cluster_sf_this_month" string="SF this Month" width="50"/>
+                              <field name="pop_industry_cluster_cold_leads" string="Cold Leads" width="50"/>
+                          </tree>
+                        </field>
+                      </page>
+                      <page string="AM List">
+                        <field name="pop_pic_am_ids">
+                          <tree string="AM List">
+                              <field name="pop_pic_name_am" string="Account Manager" width="50"/>
+                              <field name="pic_number_of_customer_industry_cluster" string="Number of Customer" width="50" sum="Total"/>
+                              <field name="pic_number_of_potential_industry_cluster" string="Number of Potential" width="50" sum="Total"/>
+                              <field name="pic_current_penetration_industry_cluster" widget="percentage" string="Number of Penetration" width="60"/>
+                              <field name="pic_monthly_tarif_industry_cluster" string="Monthly Tarif" width="40" sum="Total"/>
+                              <field name="pic_annual_quota" string="Annual Quota" width="50"/>
+                              <field name="pic_quota_this_month" string="YTD Quota" width="50"/>
+                              <field name="pic_ytd_achievement" string="YTD Achievement" width="50"/>
+                              <field name="pic_sf_this_month" string="SF this Month" width="50"/>
+                              <field name="pic_cold_leads" string="Cold Leads" width="50"/>
+                          </tree>
+                        </field>
+                      </page>
+                </notebook>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_cluster_pic_form" model="ir.ui.view">
+      <field name="name">AM PIC Form</field>
+      <field name="model">pop.pic</field>
+      <field name="arch" type="xml">
+        <form string="PIC Manager">
+          <sheet>
+            <div class="oe_title">
+            <label for="pop_pic_name_am" class="oe_edit_only"/>
+                  <h1><field name="pop_pic_name_am" placeholder="Name..."/></h1>
+            </div>    
+            <group>
+                <group>
+                    <field name="pic_summary_of_specific_industry"/>
+                    <field name="pic_period"/>
+                    <field name="pic_am_manager"/>                  
+                </group>
+                <group>
+                    <field name="pic_annual_quota"/>
+                    <field name="pic_quota_this_month"/>  
+                    <field name="pic_ytd_achievement"/>
+                    <field name="pic_cold_leads"/> 
+                    <field name="user_id"/>                  
+                </group>
+            </group>
+            <group>
+                <notebook>
+                      <page string="Industry Cluster List">
+                        <field name="industry_cluster_ids">
+                          <tree string="Industry Cluster" >
+                              <field name="pop_industry_cluster_name" string="POP Name/Industry Cluster" width="50"/>
+                              <field name="pop_industry_cluster_total_customer" string="Number of Customer" width="50"/>
+                              <field name="pop_industry_cluster_total_potential" string="Number of Potential" width="50"/>
+                              <field name="pop_industry_cluster_total_penetration" string="Current Penetration" widget="percentage" width="50"/>
+                              <field name="pop_industry_cluster_revenue_month" string="Monthly Tarif" width="50"/>
+                              <field name="pop_industry_cluster_ob" string="YTD OB" width="50"/>
+                              <field name="pop_industry_cluster_sf_this_month" string="SF this Month" width="50"/>
+                              <field name="pop_industry_cluster_cold_leads" string="Cold Leads" width="50"/>
+                          </tree>
+                        </field>
+                      </page>
+                </notebook>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_pic_manager_tree" model="ir.ui.view">
+        <field name="name">PIC Manager List</field>
+        <field name="model">pic.manager</field>
+        <field name="arch" type="xml">
+          <tree string="PIC Manager">
+              <field name="pic_manager_name" string="Manager in Charge" width="10"/>
+              <field name="pic_summary_of_specific_industry" string="Industry Mix" width="10"/>
+              <field name="pic_number_of_potential" string="Number of Potential" width="10"/>
+              <field name="pic_annual_quota" string="Annual Quota" width="10"/>
+              <field name="pic_ytd_achievement" string="YTD Achievement" width="10"/>
+              <field name="pic_quota_last_month" string="OB Last Month" width="10"/>
+              <field name="pic_quota_this_month" string="OB This Month" width="10"/>
+              <field name="pic_sf_this_month" string="SF this Month" width="10"/>
+              <field name="pic_mcfc_this_month" string="MCF-C This Month" width="10"/>
+              <field name="pic_cold_leads" string="Cold Leads" width="10"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pic_manager_industry_cluster_tree" model="ir.ui.view">
+        <field name="name">PIC Manager Industry Cluster List</field>
+        <field name="model">pic.manager</field>
+        <field name="arch" type="xml">
+          <tree string="PIC Manager">
+              <field name="pic_manager_name" string="Manager" width="50"/>
+              <field name="pic_number_of_customer_industry_cluster" string="Number of Customer" width="50"/>
+              <field name="pic_number_of_potential_industry_cluster" string="Number of Potential" width="50" />
+              <field name="pic_current_penetration_industry_cluster" widget="percentage" string="Number of Penetration" width="60"/>
+              <field name="pic_monthly_tarif_cluster" string="Monthly Tarif" width="40"/>
+              <field name="pic_annual_quota" string="Annual Quota" width="50"/>
+              <field name="pic_quota_this_month" string="YTD Quota" width="50"/>
+              <field name="pic_ytd_achievement" string="YTD Achievement" width="50"/>
+              <field name="pic_sf_this_month" string="SF this Month" width="50"/>
+              <field name="pic_cold_leads_cluster" string="Cold Leads" width="50"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_pop_pic_tree" model="ir.ui.view">
+        <field name="name">POP PIC List</field>
+        <field name="model">pop.pic</field>
+        <field name="arch" type="xml">
+          <tree string="POP PIC">
+              <field name="pop_pic_name_am" string="Account Manager" width="50"/>
+              <field name="pic_number_of_customer" string="Number of Customer" width="50"/>
+              <field name="pic_number_of_potential" string="Number of Potential" width="50"/>
+              <field name="pic_current_penetration" widget="percentage" string="Number of Penetration" width="60"/>
+              <field name="pic_monthly_tarif" string="Monthly Tarif" width="40"/>
+              <field name="pic_annual_quota" string="Annual Quota" width="50"/>
+              <field name="pic_quota_this_month" string="YTD Quota" width="50"/>
+              <field name="pic_ytd_achievement" string="YTD Achievement" width="50"/>
+              <field name="pic_sf_this_month" string="SF this Month" width="50"/>
+              <field name="pic_cold_leads" string="Cold Leads" width="50"/>
+          </tree>
+        </field>
+    </record>
+
+    <record id="view_cluster_pic_tree" model="ir.ui.view">
+        <field name="name">Cluster PIC List</field>
+        <field name="model">pop.pic</field>
+        <field name="arch" type="xml">
+          <tree string="POP PIC">
+              <field name="pop_pic_name_am" string="Account Manager" width="50"/>
+              <field name="pic_number_of_customer" string="Number of Customer" width="50"/>
+              <field name="pic_number_of_potential" string="Number of Potential" width="50"/>
+              <field name="pic_current_penetration" widget="percentage" string="Number of Penetration" width="60"/>
+              <field name="pic_monthly_tarif" string="Monthly Tarif" width="40"/>
+              <field name="pic_annual_quota" string="Annual Quota" width="50"/>
+              <field name="pic_quota_this_month" string="YTD Quota" width="50"/>
+              <field name="pic_ytd_achievement" string="YTD Achievement" width="50"/>
+              <field name="pic_sf_this_month" string="SF this Month" width="50"/>
+              <field name="pic_cold_leads" string="Cold Leads" width="50"/>
+          </tree>
+        </field>
+    </record>
+
+
+    <!-- Action -->
+
+    <record id="action_pic_manager_views" model="ir.actions.act_window">
+          <field name="name">PIC Manager</field>
+          <field name="res_model">pic.manager</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pic_manager_tree"></field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP PIC
+              </p><p>
+                  Click to Add a POP PIC
+              </p>
+          </field>
+    </record>
+
+    <record id="action_pop_pic_views" model="ir.actions.act_window">
+          <field name="name">POP PIC</field>
+          <field name="res_model">pop.pic</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="view_id" ref="view_pop_pic_tree"></field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  POP PIC
+              </p><p>
+                  Click to Add a POP PIC
+              </p>
+          </field>
+    </record>
+
+    <record id="hrb_am_summary_action" model="ir.actions.act_window">
+        <field name="name">Manager Summary HRB</field>
+        <field name="res_model">pic.manager</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_pic_manager_tree"/>
+        <field name="domain">[('pic_summary_of_specific_industry','ilike', 'HRB')]</field>
+    </record>
+
+    <record id="itemb_am_summary_action" model="ir.actions.act_window">
+        <field name="name">Manager Summary ITEmb</field>
+        <field name="res_model">pic.manager</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_pic_manager_industry_cluster_tree"/>
+        <field name="domain">[('pic_summary_of_specific_industry','ilike', 'ITEmb')]</field>
+    </record>
+
+    <record id="nrx_am_summary_action" model="ir.actions.act_window">
+        <field name="name">Manager Summary NRX</field>
+        <field name="res_model">pic.manager</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_pic_manager_industry_cluster_tree"/>
+        <field name="domain">[('pic_summary_of_specific_industry','ilike', 'NRX')]</field>
+    </record>
+
+    <record id="hos_am_summary_action" model="ir.actions.act_window">
+        <field name="name">Manager Summary HOS</field>
+        <field name="res_model">pic.manager</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_pic_manager_industry_cluster_tree"/>
+        <field name="domain">[('pic_summary_of_specific_industry','ilike', 'HOS')]</field>
+    </record>
+
+
+      <record id="action_pop_pic_tree_view2" model="ir.actions.act_window.view">
+          <field eval="6" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_pic_manager_tree"/>
+          <field name="act_window_id" ref="hrb_am_summary_action"/>
+      </record>
+      <record id="action_pop_pic_form_view3" model="ir.actions.act_window.view">
+          <field eval="7" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_am_manager_form"/>
+          <field name="act_window_id" ref="hrb_am_summary_action"/>
+      </record>
+
+      <record id="action_cluster_pic_tree_view2" model="ir.actions.act_window.view">
+          <field eval="8" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_pic_manager_industry_cluster_tree"/>
+          <field name="act_window_id" ref="itemb_am_summary_action"/>
+      </record>
+      <record id="action_cluster_pic_form_view3" model="ir.actions.act_window.view">
+          <field eval="9" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_cluster_manager_form"/>
+          <field name="act_window_id" ref="itemb_am_summary_action"/>
+      </record>
+
+      <record id="action_cluster2_pic_tree_view2" model="ir.actions.act_window.view">
+          <field eval="10" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_pic_manager_industry_cluster_tree"/>
+          <field name="act_window_id" ref="nrx_am_summary_action"/>
+      </record>
+      <record id="action_cluster2_pic_form_view3" model="ir.actions.act_window.view">
+          <field eval="11" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_cluster_manager_form"/>
+          <field name="act_window_id" ref="nrx_am_summary_action"/>
+      </record>
+
+      <record id="action_cluster3_pic_tree_view2" model="ir.actions.act_window.view">
+          <field eval="10" name="sequence"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_pic_manager_industry_cluster_tree"/>
+          <field name="act_window_id" ref="hos_am_summary_action"/>
+      </record>
+      <record id="action_cluster3_pic_form_view3" model="ir.actions.act_window.view">
+          <field eval="11" name="sequence"/>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="view_cluster_manager_form"/>
+          <field name="act_window_id" ref="hos_am_summary_action"/>
+      </record>
+
+  </data>
+</odoo>
+
+    
+  

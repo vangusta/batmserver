@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_velo_helpdesk_customer,velo_helpdesk_customer,model_helpdesk_customer,base.group_system,1,1,1,1
+access_velo_helpdesk_internal,velo_helpdesk_internal,model_helpdesk_internal,base.group_system,1,1,1,1
+access_velo_helpdesk_partner,velo_helpdesk_partner,model_helpdesk_partner,base.group_system,1,1,1,1
+access_velo_helpdesk_ticket_list,velo_helpdesk_ticket_list,model_helpdesk_ticket_list,base.group_system,1,1,1,1
+access_velo_helpdesk_pinalty,velo_helpdesk_pinalty,model_helpdesk_pinalty,base.group_system,1,1,1,1
+access_velo_helpdesk_sla_report,velo_helpdesk_sla_report,model_helpdesk_sla_report,base.group_system,1,1,1,1

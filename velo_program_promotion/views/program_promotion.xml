@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bevelo_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program BeVelo</field>
+            <field name="res_model">velo.program</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'BeVelo')]</field>
+        </record>
+
+        <record id="lovevelo_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program LoveVelo</field>
+            <field name="res_model">velo.program</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'LoveVelo')]</field>
+        </record>
+
+        <record id="velome_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program VeloMe</field>
+            <field name="res_model">velo.program</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'VeloMe')]</field>
+        </record>
+
+        <record id="velox_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program VeloX</field>
+            <field name="res_model">velo.program</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'VeloX')]</field>
+        </record>
+
+        <record id="newnormal_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program NewNormal</field>
+            <field name="res_model">velo.program</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'NewNormal')]</field>
+        </record>
+
+        <record id="blue_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program Blue (Mind)</field>
+            <field name="res_model">velo.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'Veloship')]</field>
+        </record>
+
+        <record id="green_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program Green (Soul)</field>
+            <field name="res_model">velo.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'Veloship')]</field>
+        </record>
+
+        <record id="yellow_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program Yellow (Reality)</field>
+            <field name="res_model">velo.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'Veloship')]</field>
+        </record>
+
+        <record id="red_overview_action" model="ir.actions.act_window">
+            <field name="name">Overview Program Red (Power)</field>
+            <field name="res_model">velo.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('name','ilike', 'Veloship')]</field>
+        </record>
+        
+        <record id="view_velo_program_form" model="ir.ui.view">
+            <field name="name">velo.program.form</field>
+            <field name="model">velo.program</field>
+            <field name="arch" type="xml">
+                <form string="Program">
+                    <sheet>
+                        <header>
+                            <field name="state" widget="statusbar" statusbar_visible="active" statusbar_colors='{"draft":"grey","active":"blue"}'/>
+                        </header>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Program Name" required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="program_id"/>
+                                <label for="penetration"/>
+                                <div class="o_row">
+                                    <field name="penetration"/>%<br/>
+                                </div>
+                                <label for="annual_tarif_increase"/>
+                                <div class="o_row">
+                                    <field name="annual_tarif_increase"/>%<br/>
+                                </div>
+                                <field name="annual_customer_increase"/>
+                                <field name="annual_marketing_budget"/>
+                            </group>
+                            <group>
+                                <field name="contract_period"/>
+                                <label for="monthly_discount_duration"/>
+                                <div class="o_row">
+                                    <field name="monthly_discount_duration"/>%<br/>
+                                </div>
+                                <label for="discount_monthly_tariff"/>
+                                <div class="o_row">
+                                    <field name="discount_monthly_tariff"/> Month<br/>
+                                </div>
+                                <field name="one_time_charge_discount"/>
+                                <!-- <field name="customer_incentive"/> -->
+                               <!--  <field name="program_type"/>
+                                <field name="program_category"/> -->
+                                <field name="special_arrangement"/>
+                                <field name="start_period"/>
+                                <field name="finish_period"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="desc"/>
+                            <field name="gimmick_desc"/>
+                        </group>
+                        <notebook>
+                            <!-- <page name="produk_promotion" string="Produk Promotion">
+                                <field name="promo_ids">
+                                    <tree string="Promo Lines" editable="bottom">
+                                        <field name="old_product"/>
+                                        <field name="new_product"/>
+                                    </tree>
+                                </field>
+                            </page> -->
+                            <page name="program_cost" string="Program Cost">
+                                <field name="program_cost_ids">
+                                    <tree string="Product Cost Lines" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="cost"/>
+                                        <field name="qty"/>
+                                        <field name="desc"/>
+                                        <field name="total_costs"/>
+                                    </tree>
+                                </field>
+                                <group name="note_group" col="6">
+                                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                        <field name="sum_total_costs" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </group>
+                                    <div class="oe_clear"/>
+                                </group>
+                            </page>
+                            <page name="avaibility" string="Avaibility">
+                                <field name="avaibility_ids">
+                                    <tree string="Avaibility" create="false">
+                                        <field name="pop_id" string="POP ID"/>
+                                        <field name="pop_name" string="POP Name"/>
+                                        <field name="pop_total_potential" string="Market Potential"/>
+                                        <field name="pop_total_customer" string="Total Customer"/>
+                                        <field name="pop_total_penetration" string="Current Penetration"/>
+                                        <field name="pop_cold_leads" string="Cold Leads"/>
+                                        <!-- <field name="pop_type" string="POP Type"/>
+                                        <field name="pop_area" string="District"/> -->
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_velo_retention_form" model="ir.ui.view">
+            <field name="name">velo.retention.form</field>
+            <field name="model">velo.retention</field>
+            <field name="arch" type="xml">
+                <form string="Retention">
+                    <sheet>
+                        <header>
+                            <field name="state" widget="statusbar" statusbar_visible="active" statusbar_colors='{"draft":"grey","active":"blue"}'/>
+                        </header>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Program Name" required="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="program_retention_id"/>
+                                <label for="contract_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="contract_renewal_rate"/>%<br/>
+                                </div>
+                                <field name="mtl_churn"/>
+                                <field name="mtl_downgrade"/>
+                                <label for="decrease"/>
+                                <div class="o_row">
+                                    <field name="decrease"/>%<br/>
+                                </div>
+                                <label for="increase"/>
+                                <div class="o_row">
+                                    <field name="increase"/>%<br/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="mothly_tariff_adj"/>
+                                <field name="monthly_customer_loss"/>
+                                <label for="montly_customer_renewal_rate"/>
+                                <div class="o_row">
+                                    <field name="montly_customer_renewal_rate"/>%<br/>
+                                </div>
+                                <label for="montly_contract_loss"/>
+                                <div class="o_row">
+                                    <field name="montly_contract_loss"/>%<br/>
+                                </div>
+                                <field name="start_period"/>
+                                <field name="finish_period"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="desc"/>
+                            <field name="gimmick_desc"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_velo_retention_tree" model="ir.ui.view">
+            <field name="name">velo.retention.tree</field>
+            <field name="model">velo.retention</field>
+            <field name="arch" type="xml">
+                <tree string="Retention">
+                    <field name="program_retention_id"/>
+                    <field name="start_period"/>
+                    <field name="finish_period"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_velo_program_tree" model="ir.ui.view">
+            <field name="name">velo.program.tree</field>
+            <field name="model">velo.program</field>
+            <field name="arch" type="xml">
+                <tree string="Program">
+                    <field name="program_id"/>
+                    <field name="name"/>
+                    <!-- <field name="program_category"/> -->
+                    <field name="start_period"/>
+                    <field name="finish_period"/>
+                    <field name="cost"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="action_velo_retention" model="ir.actions.act_window">
+            <field name="name">Program Retention</field>
+            <field name="res_model">velo.retention</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Program Retention
+             </p>
+            </field>
+        </record>
+
+        <record id="action_velo_program" model="ir.actions.act_window">
+            <field name="name">Program</field>
+            <field name="res_model">velo.program</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Program
+             </p>
+            </field>
+        </record>
+
+
+        <menuitem
+            id="header_program_promotion"
+            name="Marketing Program"
+            sequence="3" 
+            groups="base.group_system"
+            web_icon="velo_program_promotion,static/description/icon.png" />
+
+
+       <!--  <menuitem id="menu_velo_program" 
+        name="Program Acquisition" 
+        parent="velo_program_promotion.header_program_promotion" 
+        sequence="10" 
+        action="velo_program_promotion.action_velo_program"/> -->
+
+       <!--  <menuitem id="menu_velo_retention" 
+        name="Program Retention" 
+        parent="velo_program_promotion.header_program_promotion" 
+        sequence="11" 
+        action="velo_program_promotion.action_velo_retention"/> -->
+
+
+        <record id="action_velo_location" model="ir.actions.act_window">
+            <field name="name">Location</field>
+            <field name="res_model">velo.location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Location
+             </p>
+            </field>
+        </record>
+
+        <record id="action_velo_tipe" model="ir.actions.act_window">
+            <field name="name">Tipe</field>
+            <field name="res_model">velo.tipe</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Tipe
+             </p>
+            </field>
+        </record>
+
+        <record id="action_velo_program_category_type" model="ir.actions.act_window">
+            <field name="name">Program Category</field>
+            <field name="res_model">velo.program.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Program Category
+             </p>
+            </field>
+        </record>
+
+        <record id="action_velo_program_promo_type" model="ir.actions.act_window">
+            <field name="name">Program Type</field>
+            <field name="res_model">velo.program.promo_type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Program Tipe
+             </p>
+            </field>
+        </record>
+
+         <record id="action_velo_program_name" model="ir.actions.act_window">
+            <field name="name">Program Name</field>
+            <field name="res_model">velo.program.name</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Program Name
+             </p>
+            </field>
+        </record>
+
+        <record id="action_velo_promo_type" model="ir.actions.act_window">
+            <field name="name">Promo Type</field>
+            <field name="res_model">velo.promo.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+               Add a new Promo Type
+             </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_velo_setting" 
+        name="Setting" 
+        parent="velo_program_promotion.header_program_promotion" 
+        sequence="20" groups="base.group_no_one" />
+
+        <menuitem id="menu_velo_location" 
+        name="Location" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="1" 
+        action="velo_program_promotion.action_velo_location" groups="base.group_no_one"/>
+
+        <menuitem id="menu_velo_tipe" 
+        name="Tipe" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="2" 
+        action="velo_program_promotion.action_velo_tipe" groups="base.group_no_one"/>
+
+
+        <menuitem id="menu_velo_program_category_type" 
+        name="Program Category" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="3" 
+        action="velo_program_promotion.action_velo_program_category_type" groups="base.group_no_one"/>
+
+        <menuitem id="menu_velo_program_promo_type" 
+        name="Program Type" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="4" 
+        action="velo_program_promotion.action_velo_program_promo_type" groups="base.group_no_one"/>
+
+        <menuitem id="menu_velo_program_name" 
+        name="Program Name" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="5" 
+        action="velo_program_promotion.action_velo_program_name" groups="base.group_no_one"/>
+
+        <menuitem id="menu_velo_promo_type" 
+        name="Promo Type" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="6" 
+        action="velo_program_promotion.action_velo_promo_type" groups="base.group_no_one"/>
+
+        <menuitem id="menu_velo_program" 
+        name="Program Acquisition" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="7" 
+        action="velo_program_promotion.action_velo_program"/>
+        
+        <menuitem id="menu_velo_retention" 
+        name="Program Retention" 
+        parent="velo_program_promotion.menu_velo_setting" 
+        sequence="8" 
+        action="velo_program_promotion.action_velo_retention"/>
+
+        
+
+    </data>
+</odoo>

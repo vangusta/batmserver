@@ -1,0 +1,116 @@
+<odoo>
+  <data>
+
+        <record id="view_order_acc_tree" model="ir.ui.view">
+            <field name="name">order.acc.tree</field>
+            <field name="model">order.acc</field>
+            <field name="arch" type="xml">
+                <tree string="ACC">
+                    <field name="name"/>
+                    <field name="company_name"/>
+                    <field name="activation_date"/>
+                    <field name="invoice_date"/>
+                    <field name="contract_tarif"/>
+                    <field name="tect_cp"/>
+                    <field name="bill_cp"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_order_acc_form" model="ir.ui.view">
+            <field name="name">order.acc.form</field>
+            <field name="model">order.acc</field>
+            <field name="arch" type="xml">
+                <form string="ACC">
+                    <header>
+                        <button name="action_proses" string="Confirm" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_cancel" string="Cancel" class="oe_highlight" type="object" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"draft":"grey","active":"orange"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <div><field name="name" readonly="0"/></div>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_name"/>
+                                <field name="company_address"/>
+                                <field name="company_phone"/>
+                                <field name="cp"/>
+                            </group>
+                            <group>
+                                <field name="activation_date"/>
+                                <field name="invoice_date"/>
+                                <field name="contract_tarif"/>
+                                <field name="tect_cp"/>
+                                <field name="bill_cp"/>
+                            </group>
+                        </group>
+                        <div><h2>General Information</h2></div>
+                        <group>
+                            <group>
+                                <field name="iwo_ref"/>
+                                <field name="order_type"/>
+                            </group>
+                        </group>
+                        <div><h2>Technical Information</h2></div>
+                        <group>
+                            <group>
+                                <field name="ip_address"/>
+                                <field name="subnet"/>
+                                <field name="gateway"/>
+                                <field name="dns"/>
+                                <field name="smtp"/>
+                                <field name="mrtg"/>
+                            </group>
+                            <group>
+                                <field name="lan"/>
+                                <field name="subnet2"/>
+                                <field name="gateway2"/>
+                                <field name="dns2"/>
+                                <field name="range_ip"/>
+                                <field name="user"/>
+                                <field name="password"/>
+                            </group>
+                        </group>
+                        <div><h2>Equipment installed</h2></div>
+                        <group>
+                            <group>
+                                <field name="router_firewall"/>
+                                <field name="hub_switch"/>
+                                <field name="access_point"/>
+                                <field name="others"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_velo_order_acc" model="ir.actions.act_window">
+            <field name="name">ACC</field>
+            <field name="res_model">order.acc</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+            <!-- <field name="search_view_id" ref="view_employee_filter"/> -->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Add a new ACC
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="velo_order_acc_menu"
+            parent="sale.sale_menu_root"
+            action="velo_order_fulfilment.action_velo_order_acc"
+            sequence="4" />
+
+  </data>
+</odoo>

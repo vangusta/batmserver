@@ -1,0 +1,480 @@
+<odoo>
+    <data>
+
+        <record id="overview_team_view_kanban1" model="ir.ui.view">
+            <field name="name">overview.summary.kanban</field>
+            <field name="model">pop.overview.summary</field>
+            <field name="arch" type="xml">
+                <kanban create="false">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div style="width:100%;">
+                                <div class="row">
+                                    <div class="col-sm-3 ml-4 pl-5">
+                                        <div class="o_kanban_primary_left pl-3" style="background:#33ccff; border:1px solid silver;">
+                                            <p><strong ><h3>Service Coverage (POP)</h3></strong></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>APT-HTL (Apartment and Hotel)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>BWS (Base Wireless Station)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>DC (Data Center)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>FDC (Fiber Direct Connect)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>HRB (High Rise Building)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>Reg (IX)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>Total</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9 pl-3 row">
+
+                                        <div class="pr-0 pl-0 mr-2" style="width:18%;">
+                                            <div class="o_kanban_primary_left text-center" style="background:#33ccff; border:1px solid silver;">
+                                                <p><strong><h3>Total POP</h3></strong></p>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.apthtl_overview_action)d" type="action"><field name="sum_apt_pop"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <a name="%(velo_service_coverage.bws_overview_action)d" type="action"><field name="sum_bws_pop"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <a name="%(velo_service_coverage.dc_overview_action)d" type="action"><field name="sum_dc_pop"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <a name="%(velo_service_coverage.fdc_overview_action)d" type="action"><field name="sum_fdc_pop"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <a name="%(velo_service_coverage.hrb_overview_action)d" type="action"><field name="sum_hrb_pop"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <a name="%(velo_service_coverage.noc_overview_action)d" type="action"><field name="sum_noc_pop"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <a name="%(velo_service_coverage.action_pop_service_coverage_views)d" type="action"><field name="overview_number_pop"/></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="width:18%;">
+                                            <div class="o_kanban_primary_left text-center" style="background:#33ccff; border:1px solid silver;">
+                                                <p><strong><h3>POP Customer</h3></strong></p>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_apt_htl)d" type="action"><field name="sum_apt_cust"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_bws)d" type="action"><field name="sum_bws_cust"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_dc)d" type="action"><field name="sum_dc_cust"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_fdc)d" type="action"><field name="sum_fdc_cust"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_hrb)d" type="action"><field name="sum_hrb_cust"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_noc)d" type="action"><field name="sum_noc_cust"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.number_customer_total)d" type="action"><field name="overview_number_customer"/></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="width:18%;">
+                                            <div class="o_kanban_primary_left text-center" style="background:#33ccff; border:1px solid silver;">
+                                                <p><strong><h3>Monthly Tariff</h3></strong></p>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_apt_htl)d" type="action"><field name="sum_apt_month_tarif" widget="integer"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_bws)d" type="action"><field name="sum_bws_month_tarif" widget="integer"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_dc)d" type="action"><field name="sum_dc_month_tarif" widget="integer"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_fdc)d" type="action"><field name="sum_fdc_month_tarif" widget="integer"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_hrb)d" type="action"><field name="sum_hrb_month_tarif" widget="integer"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_noc)d" type="action"><field name="sum_noc_month_tarif" widget="integer"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-left pt-2 pb-2 pl-4" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.monthly_tariff_total)d" type="action"><field name="overview_monthly_tarif" widget="integer"/></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="width:18%;">
+                                            <div class="o_kanban_primary_left text-center" style="background:#33ccff; border:1px solid silver;">
+                                                <p><strong><h3>POP Potential</h3></strong></p>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential_apt_htl)d" type="action"><field name="sum_apt_tot_potential"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential_bws)d" type="action"><field name="sum_bws_tot_potential"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential_dc)d" type="action"><field name="sum_dc_tot_potential"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential_fdc)d" type="action"><field name="sum_fdc_tot_potential"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential_hrb)d" type="action"><field name="sum_hrb_tot_potential"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential_noc)d" type="action"><field name="sum_noc_tot_potential"/></a>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <a name="%(velo_service_coverage.total_potential)d" type="action"><field name="overview_total_potential"/></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="pr-0 pl-0 mr-2" style="width:18%;">
+                                            <div class="o_kanban_primary_left text-center" style="background:#33ccff; border:1px solid silver;">
+                                                <p><strong><h3>POP Penetration</h3></strong></p>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <field name="sum_apt_current_penetration" widget="Percentage"/>%
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <field name="sum_bws_current_penetration"/>%
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <field name="sum_dc_current_penetration"/>%
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <field name="sum_fdc_current_penetration"/>%
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <field name="sum_hrb_current_penetration" />%
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <field name="sum_noc_current_penetration"/>%
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                               <field name="overview_current_penetration"/>%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="width:100%;">
+                                <div class="row">
+                                    <div class="col-sm-3 ml-4 pl-5">
+                                        <div class="o_kanban_primary_left pl-3" style="background:#33ccff; border:1px solid silver;">
+                                            <p><strong ><h3>Type of POP</h3></strong></p>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>APT-HTL (Apartment and Hotel)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>BWS (Base Wireless Station)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>DC (Data Center)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>FDC (Fiber Direct Connect)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>HRB (High Rise Building)</strong>
+                                        </div>
+                                        <div class="o_kanban_primary_left pt-2 pb-2 pl-3" style="background:#cceeff;border-top:2px solid white;">
+                                            <strong>Reg (IX)</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9 pl-3 row">
+                                        <div class="pr-0 pl-0 mr-2" style="width:74%;">
+                                            <div class="o_kanban_primary_left text-center" style="background:#ffffff; border:1px solid silver;">
+                                                <p><strong><h3>Description</h3></strong></p>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1;">
+                                                <strong>Apartment and Hotel for Retail and Guest Service</strong>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <strong>BWA Radio to serve stand alone customer in Industry or HRB or residential</strong>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <strong>Colocation and Cloud Services</strong>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <strong>Stand Alone customer direct to Velo Metro POP</strong>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <strong>POP-in High-rise Building (Office Building) to serving tenant in the building, with primary link Fiber Optic and back-up link BWA Radio</strong>
+                                            </div>
+                                            <div class="o_kanban_primary_left text-center pt-2 pb-2" style="border-top:2px solid white;background:#c1c1c1; ">
+                                                <strong>Interconnection to Regional (NOC-IX,NOC-IIX)</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="overview_service_coverage_form" model="ir.ui.view">
+            <field name="name">view.overview.summary.form</field>
+            <field name="model">pop.overview.summary</field>
+            <field name="arch" type="xml">
+                <form string="Form Overview Summary" create="false" edit="false">
+                    <sheet>  
+                        <group>
+                            <group string="Number of POP">
+                                <field name="sum_apt_pop"/>
+                                <field name="sum_bws_pop"/>
+                                <field name="sum_dc_pop"/>
+                                <field name="sum_fdc_pop"/>
+                                <field name="sum_hrb_pop"/>
+                                <field name="sum_noc_pop"/>
+                                <field name="overview_number_pop"/>
+                            </group>
+                            <group string="Number of Customer">
+                                <field name="sum_apt_cust"/>
+                                <field name="sum_bws_cust"/>
+                                <field name="sum_dc_cust"/>
+                                <field name="sum_fdc_cust"/>
+                                <field name="sum_hrb_cust"/>
+                                <field name="sum_noc_cust"/>
+                                <field name="overview_number_customer"/>
+                            </group>
+                            <group string="Monthly Tariff">
+                                <field name="sum_apt_month_tarif"/>
+                                <field name="sum_bws_month_tarif"/>
+                                <field name="sum_dc_month_tarif"/>
+                                <field name="sum_fdc_month_tarif"/>
+                                <field name="sum_hrb_month_tarif"/>
+                                <field name="sum_noc_month_tarif"/>
+                                <field name="overview_monthly_tarif"/>
+                            </group>
+                            <group string="Total Potential">
+                                <field name="sum_apt_tot_potential"/>
+                                <field name="sum_bws_tot_potential"/>
+                                <field name="sum_dc_tot_potential"/>
+                                <field name="sum_fdc_tot_potential"/>
+                                <field name="sum_hrb_tot_potential"/>
+                                <field name="sum_noc_tot_potential"/>
+                                <field name="overview_total_potential"/>
+                            </group>
+                            <group string="Current Penetration">
+                                <field name="sum_apt_current_penetration"/>
+                                <field name="sum_bws_current_penetration"/>
+                                <field name="sum_dc_current_penetration"/>
+                                <field name="sum_fdc_current_penetration"/>
+                                <field name="sum_hrb_current_penetration" widget="Percentage"/>
+                                <field name="sum_noc_current_penetration"/>
+                                <field name="overview_current_penetration"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="main_overview_summary" model="ir.ui.view">
+        <field name="name">view.main.overview.tree</field>
+        <field name="model">pop.overview.summary</field>
+        <field name="arch" type="xml"> 
+              <tree string="Overview Summary">
+                    <field name="overview_number_pop" width="50"/>
+                    <field name="sum_apt_pop" width="80"/>
+                    <field name="sum_bws_pop" width="80"/>
+                    <field name="sum_dc_pop" width="80"/>
+                    <field name="sum_fdc_pop" width="80"/>
+                    <field name="sum_hrb_pop" width="80"/>
+                    <field name="sum_noc_pop" width="80"/>
+              </tree>
+        </field>
+    </record>
+
+
+        <record model="ir.actions.act_window" id="act_service_coverage_list">
+            <field name="name">Summary by Type of POP</field>
+            <field name="res_model">pop.service.coverage</field>
+   	        <field name="context">{'group_by' : 'pop_type'}</field>
+            <field name="limit" eval="10"/>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <record id="pop_industry_view_pivot_slide_channel" model="ir.ui.view">
+            <field name="name">pop.industry.view.pivot.slides</field>
+            <field name="model">pop.industry.cluster</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <pivot string="Summary by Industry">
+                    <field name="cluster_id" type="row" invisible="0"/>
+                    <!-- <field name="pop_industry_name" type="measure" /> -->
+                    <field name="pop_industry_number_of_customer" type="measure"/>
+                    <field name="pop_industry_revenue_month" type="measure"/>
+                    <field name="pop_industry_arpu" type="measure"/>
+                    <field name="pop_industry_number_of_service" type="measure"/>
+                    <field name="pop_industry_ob_quota" type="measure"/>
+                    <field name="pop_industry_ytd_achivement" type="measure"/>
+                    <field name="pop_industry_achieve" type="measure"/>
+                    <field name="pop_industry_ytd_churn" type="measure"/>
+                    <field name="pop_industry_ytd_downgrade" type="measure"/>
+                    <field name="pop_industry_ytd_net_increase" type="measure"/>
+                    <field name="pop_industry_ytd_rev_growth" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_industry_list">
+            <field name="name">Summary by Industry</field>
+            <field name="res_model">pop.industry.cluster</field>
+            <field name="view_mode">pivot,tree,form,kanban</field>
+        </record>
+
+        <record id="action_summary_tree_view_summary" model="ir.actions.act_window.view">
+            <field name="sequence" eval="5"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="pop_industry_view_pivot_slide_channel"/>
+            <field name="act_window_id" ref="act_industry_list"/>
+        </record>
+
+        <record id="overview_service_coverage_main" model="ir.actions.act_window">
+            <field name="name">Potential by POP</field>
+            <field name="res_model">pop.overview.summary</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="overview_team_view_kanban1"/>
+        </record>
+
+        <record model="ir.ui.view" id="board_overview_service_coverage">
+            <field name="name">Service Coverage Overview</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Session Dashboard">
+                    <board style="1">
+                        <column>
+                            <action
+                                string=""
+                                name="%(overview_service_coverage_main)d"
+                                height="250"
+                                width="500" readonly="1"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="board_pop_type">
+            <field name="name">Service Coverage Overview</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Session Dashboard">
+                    <board style="1">
+                        <column>
+                            <action
+                                string="Summary By Type of POP"
+                                name="%(act_service_coverage_list)d"
+                                height="150"
+                                width="510"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="board_pop_industry">
+            <field name="name">Service Coverage Overview</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Session Dashboard">
+                    <board style="1">
+                        <column>
+                            <action
+                                string="Summary By Industry"
+                                name="%(act_industry_list)d"/>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <!-- <record id="product_team_action_main1" model="ir.actions.act_window">
+            <field name="name">Product Overview</field>
+            <field name="res_model">product.summary</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="velo_product_pricing.product_team_view_kanban1"/>
+        </record> -->
+
+        <record model="ir.actions.act_window" id="overview_service_coverage_action_main">
+            <field name="name">My Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_overview_service_coverage"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_pop_type">
+          <field name="name">POP Type</field>
+          <field name="res_model">board.board</field>
+          <field name="view_mode">form</field>
+          <field name="usage">menu</field>
+          <field name="view_id" ref="board_pop_type"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_pop_industry">
+          <field name="name">POP Industry</field>
+          <field name="res_model">board.board</field>
+          <field name="view_mode">form</field>
+          <field name="usage">menu</field>
+          <field name="view_id" ref="board_pop_industry"/>
+        </record>
+
+        <menuitem id="overview_service_coverage_id"
+                  name="Potential by POP"
+                  sequence="1" 
+                  action="overview_service_coverage_main"
+                  parent="velo_service_coverage.menu_service_coverage_root"/>
+        
+        <menuitem id="potential_by_pop" 
+                  name="Potential by Industry"
+                  sequence="2"
+                  action="velo_service_coverage.action_pop_industry_views"
+                  parent="velo_service_coverage.menu_service_coverage_root"/>
+
+        <menuitem id="summary_pop_type" 
+                  name="Summary of Type"
+                  groups="base.group_no_one"
+                  sequence="3"
+                  action="act_service_coverage_list"
+                  parent="velo_service_coverage.menu_service_coverage_root"/>
+        
+        <!-- <menuitem id="summary_pop_industry"
+                  name="Summary POP Industry"
+                  sequence="2"
+                  action="act_industry_list"
+                  parent="velo_service_coverage.menu_service_coverage_root"/> -->
+        
+        <!-- <delete model="ir.ui.menu" id="base.menu_board_root"/>
+        <delete model="ir.ui.menu" id="board.menu_board_my_dash"/> -->
+    </data>
+</odoo>

@@ -1,0 +1,1014 @@
+<odoo>
+  <data>
+
+    <record id="product_template_velocity_action" model="ir.actions.act_window">
+        <field name="name">Products Velocity</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('categ_id.name','ilike', 'velocity')]</field>
+    </record>
+
+    <record id="product_template_vraptor_action" model="ir.actions.act_window">
+        <field name="name">Products VRaptor</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('categ_id.name','ilike', 'vraptor')]</field>
+    </record>
+
+    <record id="product_template_velocloud_action" model="ir.actions.act_window">
+        <field name="name">Products VeloCloud</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('categ_id.name','ilike', 'velocloud')]</field>
+    </record>
+
+    <record id="product_template_velolink_action" model="ir.actions.act_window">
+        <field name="name">Products VeloLink</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('categ_id.name','ilike', 'velolink')]</field>
+    </record>
+
+    <record id="product_template_velonet_action" model="ir.actions.act_window">
+        <field name="name">Products VeloNet</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('categ_id.name','ilike', 'velonet')]</field>
+    </record>
+
+    <record id="product_template_velo1solution_action" model="ir.actions.act_window">
+        <field name="name">Products Velo 1.Solution</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('categ_id.name','ilike', 'ms')]</field>
+    </record>
+
+    <record id="sale_subscription_velo_product_tree" model="ir.ui.view">
+        <field name="name">sale.subscription.line.tree</field>
+        <field name="model">sale.subscription.line</field>
+        <field name="arch" type="xml">
+            <tree string="Contracts Line" create="false" delete="false" edit="false">
+                <field name="product_id" string="Product ID"/>
+                <field name="cust_id_object" width="10"/>
+                <field name="customer_id" width="10"/>
+                <field name="service_id" width="10"/>
+                <field name="price_unit" string="Tariff" widget="integer" width="10"/>
+                <field name="space"/>
+                <field name="exp_date" string="Contract Expiry" width="10"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="sale_subscription_velo_tariff_tree" model="ir.ui.view">
+        <field name="name">sale.subscription.line.tree</field>
+        <field name="model">sale.subscription.line</field>
+        <field name="arch" type="xml">
+            <tree string="Contracts Line"  create="false" delete="false" edit="false">
+                <field name="product_id" string="Product ID"/>
+                <field name="cust_id_object" string="Cust ID" width="10"/>
+                <field name="customer_id" string="Cust Name" width="10"/>
+                <field name="service_id" width="10"/>
+                <field name="price_unit" string="Tariff" widget="integer" width="10"/>
+                <field name="space"/>
+                <field name="act_date" string="Active Date" width="10"/>
+                <field name="exp_date" string="Contract Expiry" width="10"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="sale_subscription_velo_form" model="ir.ui.view">
+        <field name="name">sale.subscription.line.form</field>
+        <field name="model">sale.subscription.line</field>
+        <field name="arch" type="xml">
+            <form string="Contracts Line"  create="false" delete="false" edit="false">
+                <sheet>
+                    <div>
+                        <h2><field name="product_code"/></h2>
+                    </div>
+                    <div>
+                        <field name="product_id"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="product_uom_category_id"/>
+                            <field name="discount"/>
+                            <field name="price_unit"/>
+                            <field name="price_subtotal" sum="Price Subtotal"/>
+                        </group>
+                        <group>
+                            <field name="cust_id_object"/>
+                            <field name="customer_id"/>
+                            <field name="act_date"/>
+                            <field name="exp_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_group_subscription_search" model="ir.ui.view">
+        <field name="name">Product Subscription Search</field>
+        <field name="model">sale.subscription.line</field>
+        <field name="priority">60</field>
+        <field name="arch" type="xml">
+            <search string="subscription">
+                <group>
+                    <filter string="Product" name="product" context="{'group_by':'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="sale_subscription_velocity_product_action" model="ir.actions.act_window">
+        <field name="name">Product Sold YTD (VeloCity) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velocity')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_product_tree"/>
+    </record>
+
+    <record id="sale_subscription_velocity_tariff_action" model="ir.actions.act_window">
+        <field name="name">Tariff (VeloCity) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velocity')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_tariff_tree"/>
+    </record>
+
+    <record id="sale_subscription_velocity_customers_action" model="ir.actions.act_window">
+        <field name="name">Number Of Customers (VeloCity) </field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context"></field>
+        <field name="domain">[('sale_subcription_ids.recurring_invoice_line_ids.product_id_tmpl.categ_id.name','ilike', 'velocity')]</field>
+    </record>
+
+    <record id="crm_lead_velocity_potential_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Potential (VeloCity) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velocity')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+    <record id="crm_lead_velocity_tariff_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Tariff (VeloCity) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velocity')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+
+
+
+    <record id="sale_subscription_vraptor_product_action" model="ir.actions.act_window">
+        <field name="name">Product Sold YTD (VRaptor) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'vraptor')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_product_tree"/>
+    </record>
+
+    <record id="sale_subscription_vraptor_tariff_action" model="ir.actions.act_window">
+        <field name="name">Tariff (VRaptor) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'vraptor')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_tariff_tree"/>
+    </record>
+
+    <record id="sale_subscription_vraptor_customers_action" model="ir.actions.act_window">
+        <field name="name">Number Of Customers (VRaptor) </field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context"></field>
+        <field name="domain">[('sale_subcription_ids.recurring_invoice_line_ids.product_id_tmpl.categ_id.name','ilike', 'vraptor')]</field>
+    </record>
+
+    <record id="crm_lead_vraptor_potential_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Potential (VRaptor) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'vraptor')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+    <record id="crm_lead_vraptor_tariff_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Tariff (VRaptor) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'vraptor')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+
+    <record id="sale_subscription_velocloud_product_action" model="ir.actions.act_window">
+        <field name="name">Product Sold YTD (VeloCloud) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velocloud')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_product_tree"/>
+    </record>
+
+    <record id="sale_subscription_velocloud_tariff_action" model="ir.actions.act_window">
+        <field name="name">Tariff (VeloCloud) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velocloud')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_tariff_tree"/>
+    </record>
+
+    <record id="sale_subscription_velocloud_customers_action" model="ir.actions.act_window">
+        <field name="name">Number Of Customers (VeloCloud) </field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context"></field>
+        <field name="domain">[('sale_subcription_ids.recurring_invoice_line_ids.product_id_tmpl.categ_id.name','ilike', 'velocloud')]</field>
+    </record>
+
+    <record id="crm_lead_velocloud_potential_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Potential (VeloCloud) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velocloud')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+    <record id="crm_lead_velocloud_tariff_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Tariff (VeloCloud) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velocloud')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+
+
+
+
+    <record id="sale_subscription_velolink_product_action" model="ir.actions.act_window">
+        <field name="name">Product Sold YTD (VeloLink) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velolink')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_product_tree"/>
+    </record>
+
+    <record id="sale_subscription_velolink_tariff_action" model="ir.actions.act_window">
+        <field name="name">Tariff (VeloLink) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velolink')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_tariff_tree"/>
+    </record>
+
+    <record id="sale_subscription_velolink_customers_action" model="ir.actions.act_window">
+        <field name="name">Number Of Customers (VeloLink) </field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context"></field>
+        <field name="domain">[('sale_subcription_ids.recurring_invoice_line_ids.product_id_tmpl.categ_id.name','ilike', 'velolink')]</field>
+    </record>
+
+    <record id="crm_lead_velolink_potential_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Potential (VeloLink) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velolink')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+    <record id="crm_lead_velolink_tariff_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Tariff (VeloLink) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velolink')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+
+
+
+
+    <record id="sale_subscription_velonet_product_action" model="ir.actions.act_window">
+        <field name="name">Product Sold YTD (VeloNet) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velonet')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_product_tree"/>
+    </record>
+
+    <record id="sale_subscription_velonet_tariff_action" model="ir.actions.act_window">
+        <field name="name">Tariff (VeloNet) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'velonet')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_tariff_tree"/>
+    </record>
+
+    <record id="sale_subscription_velonet_customers_action" model="ir.actions.act_window">
+        <field name="name">Number Of Customers (VeloNet) </field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context"></field>
+        <field name="domain">[('sale_subcription_ids.recurring_invoice_line_ids.product_id_tmpl.categ_id.name','ilike', 'velonet')]</field>
+    </record>
+
+    <record id="crm_lead_velonet_potential_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Potential (VeloNet) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velonet')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+    <record id="crm_lead_velonet_tariff_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Tariff (VeloNet) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'velonet')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+
+
+
+
+    <record id="sale_subscription_velo1solution_product_action" model="ir.actions.act_window">
+        <field name="name">Product Sold YTD (Velo1Solution) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'ms')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_product_tree"/>
+    </record>
+
+    <record id="sale_subscription_velo1solution_tariff_action" model="ir.actions.act_window">
+        <field name="name">Tariff (Velo1Solution) </field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="search_view_id" ref="view_group_subscription_search"/>
+        <field name="context">{'target': 'main','search_default_product':1}</field>
+        <field name="domain">[('product_id_tmpl.categ_id.name','ilike', 'ms')]</field>
+        <field name="view_id" ref="velo_product_pricing.sale_subscription_velo_tariff_tree"/>
+    </record>
+
+    <record id="sale_subscription_velo1solution_customers_action" model="ir.actions.act_window">
+        <field name="name">Number Of Customers (Velo1Solution) </field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context"></field>
+        <field name="domain">[('sale_subcription_ids.recurring_invoice_line_ids.product_id_tmpl.categ_id.name','ilike', 'ms')]</field>
+    </record>
+
+    <record id="crm_lead_velo1solution_potential_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Potential (Velo1Solution) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'ms')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+    <record id="crm_lead_velo1solution_tariff_action" model="ir.actions.act_window">
+        <field name="name">Current SF - Tariff (Velo1Solution) </field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="domain">[('stage_id.name','ilike', 'Sales Focus'),('order_ids.order_line.product_template_id.categ_id.name','ilike', 'ms')]</field>
+        <field name="view_id" ref=""/>
+    </record>
+
+
+    <record id="product_team_view_kanban2" model="ir.ui.view">
+        <field name="name">Product.summary.kanban</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <dashboard>
+                <group>
+                    <group>
+                        <widget name="pie_chart2" title="YTD Product Sold" attrs="{'groupby': 'categ_id','measure': 'total_active_service'}"/>
+                    </group>
+                    <group>
+                        <widget name="pie_chart2" title="YTD Tariff" attrs="{'groupby': 'categ_id','measure': 'total_revenue'}"/>
+                    </group>
+                    <group>
+                        <widget name="pie_chart2" title="Number Of Customers" attrs="{'groupby': 'categ_id','measure': 'total_customers'}"/>
+                    </group>
+                </group>
+            </dashboard>
+        </field>
+    </record>
+
+    <record id="product_team_action_main2" model="ir.actions.act_window">
+        <field name="name">Product Overview</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">dashboard</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="view_id" ref="velo_product_pricing.product_team_view_kanban2"/>
+    </record>
+
+
+    <record id="product_team_view_kanban1" model="ir.ui.view">
+        <field name="name">Product.summary.kanban</field>
+        <field name="model">product.summary</field>
+        <field name="arch" type="xml">
+            <kanban create="false">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div style="width:100%;">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="o_kanban_primary_left">
+                                        <div class="o_primary pb-4"><h1>Product</h1></div>
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        YTD Products Sold (Service)
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        YTD Tariff
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        Number Customer by Product
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        ARPU Per-Product
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        Available products
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        Current SF - Potential
+                                    </div>
+                                    <div class="o_kanban_primary_left pt-3">
+                                        Current SF - Tariff
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-10 row">
+
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/vc1.png" alt="VeloCity" class="o_image_64_contain" style="width:155px!important;" modifiers="{}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_product_action)d" type="action"><field name="velocity_sold_annual"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_tariff_action)d" type="action"><field name="velocity_tariff" widget="integer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocity_customers_action)d" type="action"><field name="velocity_number_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <span style="color:#008784;"><field name="velocity_arpu" widget="integer"/></span>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.product_template_velocity_action)d" type="action"><field name="velocity_available_product"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velocity_potential_action)d" type="action"><field name="velocity_current_sf_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velocity_tariff_action)d" type="action"><field name="velocity_current_sf_tariff"/></a>
+                                        </div>
+                                    </div>
+
+            
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_vraptor_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/vrap.png" alt="Vraptor" class="o_image_64_contain" style="width:155px!important;" modifiers="{}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_vraptor_product_action)d" type="action"><field name="vraptor_sold_annual"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_vraptor_tariff_action)d" type="action"><field name="vraptor_tariff" widget="integer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_vraptor_customers_action)d" type="action"><field name="vraptor_number_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <span style="color:#008784;"><field name="vraptor_arpu" widget="integer"/></span>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.product_template_vraptor_action)d" type="action"><field name="vraptor_available_product"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_vraptor_potential_action)d" type="action"><field name="vraptor_current_sf_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_vraptor_tariff_action)d" type="action"><field name="vraptor_current_sf_tariff"/></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velocloud_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/velocloud.png" alt="VeloCloud" class="o_image_64_contain" style="width:155px!important;" modifiers="{}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocloud_product_action)d" type="action"><field name="velocloud_sold_annual"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocloud_tariff_action)d" type="action"><field name="velocloud_tariff" widget="integer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velocloud_customers_action)d" type="action"><field name="velocloud_number_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <span style="color:#008784;"><field name="velocloud_arpu" widget="integer"/></span>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.product_template_velocloud_action)d" type="action"><field name="velocloud_available_product"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velocloud_potential_action)d" type="action"><field name="velocloud_current_sf_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velocloud_tariff_action)d" type="action"><field name="velocloud_current_sf_tariff"/></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velolink_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/velolink.png" alt="VeloLink" class="o_image_64_contain" style="width:155px!important;" modifiers="{}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velolink_product_action)d" type="action"><field name="velolink_sold_annual"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velolink_tariff_action)d" type="action"><field name="velolink_tariff" widget="integer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velolink_customers_action)d" type="action"><field name="velolink_number_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <span style="color:#008784;"><field name="velolink_arpu" widget="integer"/></span>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.product_template_velolink_action)d" type="action"><field name="velolink_available_product"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velolink_potential_action)d" type="action"><field name="velolink_current_sf_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velolink_tariff_action)d" type="action"><field name="velolink_current_sf_tariff"/></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="pr-0 pl-0 mr-3" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velonet_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/velonet.png" alt="VeloNet" class="o_image_64_contain" style="width:155px!important;" modifiers="{}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velonet_product_action)d" type="action"><field name="velonet_sold_annual"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velonet_tariff_action)d" type="action"><field name="velonet_tariff" widget="integer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velonet_customers_action)d" type="action"><field name="velonet_number_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <span style="color:#008784;"><field name="velonet_arpu" widget="integer"/></span>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.product_template_velonet_action)d" type="action"><field name="velonet_available_product"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velonet_potential_action)d" type="action"><field name="velonet_current_sf_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velonet_tariff_action)d" type="action"><field name="velonet_current_sf_tariff"/></a>
+                                        </div>
+                                    </div>
+
+                                    <div class="pr-0 pl-0" style="width:15.5%;">
+                                        <div t-attf-class="o_kanban_card_header" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_template_velo1solution_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/veloms.png" alt="VeloNet" class="o_image_64_contain" style="width:155px!important;" modifiers="{}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velo1solution_product_action)d" type="action"><field name="velo1solution_sold_annual"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velo1solution_tariff_action)d" type="action"><field name="velo1solution_tariff" widget="integer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.product_template_velo1solution_action)d" type="action"><field name="velo1solution_number_customer"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <span style="color:#008784;"><field name="velo1solution_arpu" widget="integer"/></span>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.sale_subscription_velo1solution_customers_action)d" type="action"><field name="velo1solution_available_product"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-3" style="background:#ffffff; border-top:4px solid white;">
+
+                                            </div>
+                                        <div class="o_kanban_primary_left text-center pt-2 pb-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velo1solution_potential_action)d" type="action"><field name="velo1solution_current_sf_potential"/></a>
+                                        </div>
+                                        <div class="o_kanban_primary_left text-center pt-2" style="background:#c1c1c1;border-top:2px solid white;">
+                                            <a name="%(velo_product_pricing.crm_lead_velo1solution_tariff_action)d" type="action"><field name="velo1solution_current_sf_tariff"/></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width:100%;">
+                            <div class="row">
+                                <div class="col-sm-12 ml-1 row">
+                                    <div class="col-sm-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_jakarta_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/jakarta.png" alt="PricingJakarta" class="o_image_64_contain" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_jakarta_action)d" type="action">
+                                                    <h3><b>Jakarta</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- <div class="col-sm-12 row mb-1" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_jakarta_metro_action)d" type="action" style="color:Black">
+                                                    <b>Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_jakarta_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="col-sm-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_bandung_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/bandung.png" alt="PricingBandung" class="o_image_64_contain" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_bandung_action)d" type="action">
+                                                    <h3><b>Bandung</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_bandung_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="col-sm-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_semarang_nonmetro_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/semarang.png" alt="PricingSemarang" class="o_image_64_contain" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_semarang_nonmetro_action)d" type="action">
+                                                    <h3><b>Semarang</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_semarang_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+                                    <!-- <div class="col-sm-3" style="width:30%;">
+                                    </div> -->
+
+                                    <div class="col-sm-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_yogyakarta_nonmetro_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/yogyakarta.png" alt="PricingYogyakarta" class="o_image_64_contain" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_yogyakarta_nonmetro_action)d" type="action">
+                                                    <h3><b>Yogyakarta</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_yogyakarta_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <!-- <div class="col-sm-3" style="width:30%;">
+                                    </div> -->
+
+                                    <div class="col-sm-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_surabaya_nonmetro_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/surabaya.png" alt="PricingSurabaya" class="o_image_64_contain" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_surabaya_nonmetro_action)d" type="action">
+                                                    <h3><b>Surabaya</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_surabaya_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+                                    <div class="col-sm-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_bali_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/bali.png" alt="PricingBali" class="o_image_64_contain" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_bali_action)d" type="action">
+                                                    <h3><b>Bali</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- <div class="col-sm-12 row mb-1" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_bali_metro_action)d" type="action" style="color:Black">
+                                                    <b>Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 ml-2 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_bali_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+                                    <!-- <div class="col-sm-4" style="width:30%;">
+
+                                    </div>
+                                    <div class="col-sm-4 mt-2" style="width:30%;">
+                                        <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_all_region_nonmetro_action)d" type="action">
+                                                    <img src="/velo_product_pricing/static/src/img/product_pricing.png" alt="ProductPricing" class="o_image_64_contain pl-4" style="width:155px!important;height:80px!important;" modifiers="{}" />
+                                                </a>
+                                        </div>
+                                        <div t-attf-class="o_kanban_card_header pt-2 mb-1" style="border:1px solid silver;" >
+                                            <div class="o_kanban_card_header_title text-center">
+                                                <a name="%(velo_product_pricing.product_pricings_all_region_nonmetro_action)d" type="action">
+                                                    <h3><b>Product Pricing</b></h3>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 row" style="width:100%;">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-7 o_kanban_card_header_title text-center pt-1" style="background:#ff8c66;border:1px solid white;border-radius: 12px;">
+                                                <a name="%(velo_product_pricing.product_pricings_all_region_nonmetro_action)d" type="action" style="color:Black">
+                                                    <b>Non Metro</b>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4" style="width:30%;">
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    
+  
+    <record id="product_team_action_main1" model="ir.actions.act_window">
+        <field name="name">Product Overview</field>
+        <field name="res_model">product.summary</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'target': 'main'}</field>
+        <field name="view_id" ref="velo_product_pricing.product_team_view_kanban1"/>
+    </record>
+
+    <record model="ir.ui.view" id="board_product_summary">
+        <field name="name">Product</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Session Dashboard" create="false" >
+                <board style="1">
+                    <column>
+                        <action
+                            string=""
+                            name="%(product_team_action_main2)d"
+                            height="150"
+                            width="100%" readonly="1"/>
+                    </column>
+                </board>
+                <board style="1">
+                    <column>
+                        <action
+                            string=""
+                            name="%(product_team_action_main1)d"
+                            height="150"
+                            width="100%" readonly="1"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="product_team_dashboard_action_main">
+        <field name="name">Product</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="board_product_summary"/>
+    </record>
+
+
+    <!-- <menuitem id="product_menu_team_dashboard" action="velo_product_pricing.product_team_dashboard_action_main"
+        sequence="1" parent="header_product_velo" name="Overview"/> -->
+
+    <menuitem id="product_menu_team_dashboard" 
+              action="velo_product_pricing.product_team_action_main1"
+              sequence="1" 
+              parent="header_product_velo" 
+              name="Standard Pricing"/>
+
+
+  </data>
+</odoo>

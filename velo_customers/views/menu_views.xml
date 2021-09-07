@@ -1,0 +1,125 @@
+<odoo>
+  <data>
+
+
+
+
+    <menuitem id="res_partner_velo_menu_customer"
+              name="Customers"
+              web_icon="velo_customers,static/description/icon.png"
+              action="action_velo_partner_customer_form"
+              groups="base.group_system"
+              sequence="5"/>
+
+    <menuitem id="velo_menu_customer"
+                name="Customers"
+                action="action_velo_partner_customer_form"
+                parent="res_partner_velo_menu_customer"/>
+
+    <!-- <menuitem id="customer_menu_dashboard"
+              name="Industry Mix"
+              sequence="1"
+              action="customer_dashboard_action_main"
+              parent="res_partner_velo_menu_customer"/>
+
+    
+
+    <menuitem id="velo_menu_customer"
+                name="Customers"
+                action="action_velo_partner_customer_form"
+                parent="res_partner_velo_menu_customer"/>
+
+    <menuitem id="all_industry" 
+              name="All Industry"
+              sequence="4"
+              action="velo_service_coverage.action_pop_industry_views"
+              parent="res_partner_velo_menu_customer"/>
+
+    <menuitem id="potential_menu"
+              name="Potentials"
+              sequence="98"
+              action="potential_dashboard_action_main"
+              parent="res_partner_velo_menu_customer"/>
+
+    <menuitem id="am_summary"
+              name="AM Summary"
+              sequence="3"
+              
+              parent="res_partner_velo_menu_customer"/>
+
+              <menuitem id="am_hrb"
+                        name="HRB"
+                        sequence="1"
+                        action="velo_customers.hrb_am_summary_action"
+                        parent="am_summary"/>
+              
+              <menuitem id="am_itemb"
+                        name="IT.Emb"
+                        sequence="2"
+                        action="velo_customers.itemb_am_summary_action"
+                        parent="am_summary"/>
+              
+              <menuitem id="am_nrx"
+                        name="NRX"
+                        sequence="3"
+                        action="velo_customers.nrx_am_summary_action"
+                        parent="am_summary"/>
+            
+              <menuitem id="am_hos"
+                        name="HOS"
+                        sequence="4"
+                        action="velo_customers.hos_am_summary_action"
+                        parent="am_summary"/> -->
+
+
+
+    <menuitem id="customer_setting"
+              name="Setting"
+              groups="base.group_no_one"
+              sequence="100"
+              parent="res_partner_velo_menu_customer"/>
+
+              <menuitem id="cus_brand" 
+                        name="Brand"
+                        sequence="1"
+                        action="velo_customers.action_velo_customer_brand_form"
+                        parent="customer_setting"/>
+
+              <menuitem id="cus_group" 
+                        name="Group"
+                        sequence="2"
+                        action="velo_customers.action_velo_customer_group_form"
+                        parent="customer_setting"/>
+
+              <menuitem id="pop_pic" 
+                        name="PIC"
+                        sequence="5"
+                        action="velo_customers.action_pop_pic_views"
+                        parent="customer_setting"/>
+
+              <menuitem id="pic_manager" 
+                        name="PIC Manager"
+                        sequence="6"
+                        action="velo_customers.action_pic_manager_views"
+                        parent="customer_setting"/>
+            
+              <menuitem id="tenant_velo_menu_customer"
+                        name="Potentials"
+                        action="velo_customers.action_tenant_views"
+                        sequence="9"
+                        parent="customer_setting" />
+
+              <menuitem id="potential_summary" 
+                        name="Potential Summary"
+                        sequence="100"
+                        action="velo_customers.potential_action_main1"
+                        parent="customer_setting"/>
+
+              <menuitem id="cus_summary" 
+                        name="Customer Summary"
+                        sequence="100"
+                        action="velo_customers.customer_action_main1"
+                        parent="customer_setting"/>
+
+  </data>
+</odoo>
